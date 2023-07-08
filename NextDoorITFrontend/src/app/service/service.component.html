@@ -1,0 +1,187 @@
+<div class="service-page">
+  <div class="wrapper sticky custom-wrapper">
+    <nav class="navbar-fixed-top">
+      <a href="#" class="logo">
+        <mat-icon>computer</mat-icon> Next Door IT Solutions
+      </a>
+      <ul>
+        <li>
+          <a>Careers</a>
+          <a>About Us</a>
+          <a>Services</a>
+          <a>Login</a>
+          <a (click)="handleSignupAction()">Sign Up</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="service1">
+    <mat-grid-list cols="2" rowHeight="500px">
+      <mat-grid-tile>
+        <div class="serv1-left">
+          <h2>Our Services</h2>
+          <p>We provide you with detailed lists of expenses.</p>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <img src="https://promo-theme.com/itera/wp-content/uploads/2018/12/side-img3.png" />
+      </mat-grid-tile>
+    </mat-grid-list>
+
+  </div>
+  <div class="service2-outer">
+    <div class="service2">
+
+      <mat-grid-list cols="3" rowHeight="280px">
+        <mat-grid-tile>
+          <mat-card class="service-matcard">
+            <mat-card-content>
+              <div class="card1 a">
+                <img src="assets/img/bulb.png" />
+                <h2>Hardware Sales </h2>
+                <p>Our website offers a convenient online platform for individuals looking to purchase hardware parts.
+                </p>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-card class="service-matcard">
+            <mat-card-content>
+              <div class="card1 b">
+                <img src="assets/img/bulb.png" />
+                <h2>Home Services</h2>
+                <p>Our skilled team offers on-site hardware services to address any technical issues you may encounter
+                  at
+                  your home.
+                </p>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-card class="service-matcard">
+            <mat-card-content>
+              <div class="card1 c">
+                <img src="assets/img/link.png" />
+                <h2>Software Development</h2>
+                <p>Whether it's web development, software development, or any other development-related inquiries, we
+                  are
+                  here to assist you.</p>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-card class="service-matcard">
+            <mat-card-content>
+              <div class="card1 d">
+                <img src="assets/img/link.png" />
+                <h2>Trouble shoot </h2>
+                <p>Our team is ready to provide assistance and troubleshooting support for any issues you may encounter.
+                </p>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-card class="service-matcard">
+            <mat-card-content>
+              <div class="card1 d">
+                <img src="assets/img/bulb.png" />
+                <h2>App Development
+                </h2>
+                <p>Our team is skilled in developing custom applications tailored to your specific requirements.
+                </p>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-card class="service-matcard">
+            <mat-card-content>
+              <div class="card1 d">
+                <img src="assets/img/bulb.png" />
+                <h2>Trainings</h2>
+                <p>Our services extend to providing training and online courses focused on various aspects of
+                  development.
+                </p>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+    </div>
+  </div>
+
+  <div class="service-form">
+    <h2>Have a Questions?</h2>
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>address@yourmail.com</mat-label>
+      <input matInput>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Service Type</mat-label>
+      <mat-select>
+        <mat-option value="one">Hardware</mat-option>
+        <mat-option value="one">Trouble Shoot</mat-option>
+        <mat-option value="one">Software Development</mat-option>
+        <mat-option value="one">Training</mat-option>
+        <mat-option value="two">Home Service</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Your Questions</mat-label>
+      <textarea matInput></textarea>
+    </mat-form-field>
+    <div class="submit-btn text-center">
+      <button mat-raised-button>Submit</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer" id="signup">
+  <div class="footer-link">
+    <mat-grid-list cols="4" rowHeight="100px">
+      <mat-grid-tile>
+        <ul class="social-ul">
+          <li><strong>Social Links</strong></li>
+          <div class="social-dv">
+            <p><a><i class="fa fa-facebook" aria-hidden="true"></i>facebook</a></p>
+            <p><a><i class="fa fa-linkedin" aria-hidden="true"></i>LinkedIn</a></p>
+            <p><a><i class="fa fa-twitter" aria-hidden="true"></i>Twitter</a></p>
+          </div>
+        </ul>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <ul>
+          <li><a>Privacy policy</a></li>
+          <li><a>Reviews</a></li>
+          <li><a>Support policy</a></li>
+        </ul>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <ul>
+          <li><a>Terms & Services</a></li>
+          <li><a>Submit a Ticket</a></li>
+        </ul>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <ul>
+          <li><a>FAQ</a></li>
+          <li><a>Help Center</a></li>
+        </ul>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <ul>
+    <li></li>
+  </ul>
+  <h2 class="last-head">All right reserved @Next Door IT Solutions</h2>
+</div>

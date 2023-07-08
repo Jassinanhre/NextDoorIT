@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { SignupComponent } from '../signup/signup.component';
 
+
+import { MatCardModule } from '@angular/material/card';
+
+
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  templateUrl: './service.component.html',
+  styleUrls: ['./service.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class ServiceComponent implements OnInit {
 
   constructor(private dialog: MatDialog) { }
 
