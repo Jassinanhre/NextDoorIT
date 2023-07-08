@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
                     return NextDoorItUtils.getTokenResponseEntity("UNAUTHORIZED_USER", HttpStatus.UNAUTHORIZED);
                 } else {
                     // WRITE TOKEN HERE TO GENERATE TOKEN AND RETURN IT AFTER SUCCESSFUL LOGIN
-                    String accessToken = jwtUtil.generateToken(requestMap.get("username"), "user");
+                    String accessToken = jwtUtil.generateToken(requestMap.get("email"), "user");
                     return NextDoorItUtils.getTokenResponseEntity(accessToken, HttpStatus.OK);
                 }
             } else {
