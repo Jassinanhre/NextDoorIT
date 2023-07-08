@@ -20,6 +20,7 @@ body {
   z-index: 9;
 }
 
+
 /* Style the top navigation bar */
 .navbar {
   display: flex;
@@ -244,7 +245,7 @@ a {
 
 .bg-image {
   /* The image used */
-  background-image: url("../../assets/img/itsolutions.jpeg");
+  background-image: url("../../../../assets/img/itsolutions.jpeg");
 
   /* Add the blur effect */
   filter: blur(3px);
@@ -365,8 +366,4 @@ a {
 
 .service-form h2 {
   color: #000;
-}
-
-.navbar-fixed-top li a {
-  font-size: 15px;
 }
