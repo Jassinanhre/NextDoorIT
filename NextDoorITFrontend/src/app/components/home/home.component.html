@@ -1,5 +1,4 @@
 <div class="bg-image"></div>
-<app-best-seller></app-best-seller>
 
 <div class="wrapper sticky custom-wrapper">
   <nav class="navbar-fixed-top">
@@ -10,16 +9,16 @@
       <li>
         <a>Careers</a>
         <a>About Us</a>
-        <a>Services</a>
-        <a>Login</a>
+        <a routerLink="/service">Services</a>
+        <a (click)="handleLoginAction()">Login</a>
         <a (click)="handleSignupAction()">Sign Up</a>
       </li>
     </ul>
   </nav>
 </div>
 <div class="contact-us">
-
 </div>
+
 <div class="footer" id="signup">
   <div class="footer-link">
     <mat-grid-list cols="4" rowHeight="100px">

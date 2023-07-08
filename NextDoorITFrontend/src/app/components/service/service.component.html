@@ -8,13 +8,16 @@
         <li>
           <a>Careers</a>
           <a>About Us</a>
-          <a>Services</a>
-          <a>Login</a>
+          <a routerLink="/service">Services</a>
+          <a (click)="handleLoginAction()">Login</a>
           <a (click)="handleSignupAction()">Sign Up</a>
         </li>
       </ul>
     </nav>
   </div>
+  <div class="contact-us">
+  </div>
+
   <div class="service1">
     <mat-grid-list cols="2" rowHeight="500px">
       <mat-grid-tile>
@@ -31,90 +34,22 @@
   </div>
   <div class="service2-outer">
     <div class="service2">
-
       <mat-grid-list cols="3" rowHeight="280px">
-        <mat-grid-tile>
+        <mat-grid-tile *ngFor="let service of services; let i = index" [class.active]="i == currentIndex"
+          (click)="setActiveService(service, i)">
           <mat-card class="service-matcard">
             <mat-card-content>
               <div class="card1 a">
-                <img src="assets/img/bulb.png" />
-                <h2>Hardware Sales </h2>
-                <p>Our website offers a convenient online platform for individuals looking to purchase hardware parts.
-                </p>
-              </div>
-            </mat-card-content>
-          </mat-card>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <mat-card class="service-matcard">
-            <mat-card-content>
-              <div class="card1 b">
-                <img src="assets/img/bulb.png" />
-                <h2>Home Services</h2>
-                <p>Our skilled team offers on-site hardware services to address any technical issues you may encounter
-                  at
-                  your home.
-                </p>
-              </div>
-            </mat-card-content>
-          </mat-card>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <mat-card class="service-matcard">
-            <mat-card-content>
-              <div class="card1 c">
-                <img src="assets/img/link.png" />
-                <h2>Software Development</h2>
-                <p>Whether it's web development, software development, or any other development-related inquiries, we
-                  are
-                  here to assist you.</p>
-              </div>
-            </mat-card-content>
-          </mat-card>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <mat-card class="service-matcard">
-            <mat-card-content>
-              <div class="card1 d">
-                <img src="assets/img/link.png" />
-                <h2>Trouble shoot </h2>
-                <p>Our team is ready to provide assistance and troubleshooting support for any issues you may encounter.
-                </p>
-              </div>
-            </mat-card-content>
-          </mat-card>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <mat-card class="service-matcard">
-            <mat-card-content>
-              <div class="card1 d">
-                <img src="assets/img/bulb.png" />
-                <h2>App Development
-                </h2>
-                <p>Our team is skilled in developing custom applications tailored to your specific requirements.
-                </p>
-              </div>
-            </mat-card-content>
-          </mat-card>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <mat-card class="service-matcard">
-            <mat-card-content>
-              <div class="card1 d">
-                <img src="assets/img/bulb.png" />
-                <h2>Trainings</h2>
-                <p>Our services extend to providing training and online courses focused on various aspects of
-                  development.
-                </p>
+                <img src="{{service.image}}" />
+                <h2>{{service.title}} </h2>
+                <p>{{service.description}}</p>
               </div>
             </mat-card-content>
           </mat-card>
         </mat-grid-tile>
       </mat-grid-list>
-
     </div>
   </div>
-
   <div class="service-form">
     <h2>Have a Questions?</h2>
     <mat-form-field appearance="fill">
