@@ -1,22 +1,25 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { HttpClientModule } from '@angular/common/http';
+
+import { NgxUiLoaderConfig, NgxUiLoaderModule, SPINNER } from 'ngx-ui-loader';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './shared/material-module';
-import { HomeComponent } from './home/home.component';
-import { BestSellerComponent } from './best-seller/best-seller.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { SharedModule } from './shared/shared.module';
-import { FullComponent } from './layouts/full/full.component';
-import { AppHeaderComponent } from './layouts/full/header/header.component';
-import { AppSidebarComponent } from './layouts/full/sidebar/sidebar.component';
-import { HttpClientModule } from '@angular/common/http';
-import { SignupComponent } from './signup/signup.component';
-import { NgxUiLoaderConfig, NgxUiLoaderModule, SPINNER } from 'ngx-ui-loader';
-import { ServiceComponent } from './service/service.component';
+import { MaterialModule } from './components/shared/material-module';
+import { HomeComponent } from './components/home/home.component';
+
+import { SharedModule } from './components/shared/shared.module';
+import { FullComponent } from './components/layouts/full/full.component';
+import { AppHeaderComponent } from './components/layouts/full/header/header.component';
+import { AppSidebarComponent } from './components/layouts/full/sidebar/sidebar.component';
+import { SignupComponent } from './components/auth/signup/signup.component';
+import { ServiceComponent } from './components/service/service.component';
+import { LoginComponent } from './components/auth/login/login.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   text: "Loading...",
@@ -33,15 +36,16 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   declarations: [
     AppComponent,
     HomeComponent,
-    BestSellerComponent,
     FullComponent,
     AppHeaderComponent,
     AppSidebarComponent,
     SignupComponent,
-    ServiceComponent
+    LoginComponent,
+    ServiceComponent,
   ],
   imports: [
     BrowserModule,
+    RouterModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,

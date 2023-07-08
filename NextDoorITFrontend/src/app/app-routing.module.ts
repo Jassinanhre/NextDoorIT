@@ -1,31 +1,25 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { ServiceComponent } from './service/service.component';
-import { FullComponent } from './layouts/full/full.component';
+import { HomeComponent } from './components/home/home.component';
+import { ServiceComponent } from './components/service/service.component';
+import { SignupComponent } from './components/auth/signup/signup.component';
+import { LoginComponent } from './components/auth/login/login.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  {
-    path: 'cafe',
-    component: FullComponent,
-    children: [
-      {
-        path: '',
-        redirectTo: '/cafe/dashboard',
-        pathMatch: 'full',
-      },
-      {
-        path: '',
-        loadChildren:
-          () => import('./material-component/material.module').then(m => m.MaterialComponentsModule),
-      },
-      {
-        path: 'dashboard',
-        loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
-      }
-    ]
-  },
+  { path: 'service', component: ServiceComponent },
+  // {
+  //   path: 'service',
+  //   component: ServiceComponent,
+  //   children: [
+  //     {
+  //       path: 'primary', component: LoginComponent
+  //     },
+  //     {
+  //       path: 'secondary', component: SignupComponent
+  //     }
+  //   ]
+  // },
   { path: '**', component: HomeComponent },
 ];
 
