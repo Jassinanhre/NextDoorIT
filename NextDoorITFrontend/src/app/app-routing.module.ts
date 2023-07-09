@@ -13,6 +13,8 @@ import { ContactUsComponent } from './modules/common/contact-us/contact-us.compo
 import { ServiceListComponent } from './modules/service/service-list/service-list.component';
 
 const routes: Routes = [
+  // otherwise redirect to Home Component
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: '', component: MainLayoutComponent,
     children: [
@@ -35,8 +37,7 @@ const routes: Routes = [
     ]
   },
 
-  // otherwise redirect to home
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  // otherwise redirect to Error Component
   { path: '**', component: HomeComponent }
 ];
 
