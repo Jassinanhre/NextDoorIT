@@ -8,7 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MaterialRoutes } from './material.routing';
-import { MaterialModule } from '../shared/material-module';
+import { MaterialModule } from '../../shared/material-module';
 import { ViewBillProductsComponent } from './dialog/view-bill-products/view-bill-products.component';
 
 @NgModule({
@@ -27,4 +27,4 @@ import { ViewBillProductsComponent } from './dialog/view-bill-products/view-bill
     ViewBillProductsComponent
   ]
 })
-export class MaterialComponentsModule {}
+export class MaterialComponentsModule { }

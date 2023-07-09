@@ -17,26 +17,7 @@
     <!-- <app-service-category></app-service-category> -->
   </div>
 
-  <div class="service2-outer">
-    <div class="service2">
-
-      <mat-grid-list cols="3" rowHeight="280px">
-        <mat-grid-tile *ngFor="let service of services; let i = index" [class.active]="i == currentIndex"
-          (click)="setActiveService(service, i)">
-          <mat-card class="service-matcard">
-            <mat-card-content routerLink="/service/{{ service.id }}">
-              <div class="card1 a">
-                <img src="{{service.image}}" />
-                <h2>{{service.title}} </h2>
-                <p>{{service.description}}</p>
-              </div>
-            </mat-card-content>
-          </mat-card>
-        </mat-grid-tile>
-      </mat-grid-list>
-
-    </div>
-  </div>
+  <router-outlet></router-outlet>
 
   <div class="service-form">
     <h2>Have a Questions?</h2>
