@@ -11,8 +11,8 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './modules/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { MainLayoutComponent } from './layouts/main/main.component';
-import { DefaultLayoutComponent } from './layouts/default/default.component';
+import { MainLayoutComponent } from './modules/layouts/main/main.component';
+import { DefaultLayoutComponent } from './modules/layouts/default/default.component';
 
 import { MaterialModule } from './shared/material-module';
 import { SharedModule } from './shared/shared.module';
@@ -25,6 +25,7 @@ import { ServiceCategoryComponent } from './modules/service/service-category/ser
 import { AboutUsComponent } from './modules/common/about-us/about-us.component';
 import { ContactUsComponent } from './modules/common/contact-us/contact-us.component';
 import { CareerComponent } from './modules/common/career/career.component';
+import { ServiceListComponent } from './modules/service/service-list/service-list.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   text: "Loading...",
@@ -42,7 +43,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     AppComponent,
     DefaultLayoutComponent,
     MainLayoutComponent,
-    // Modules
+    // Main Modules
     HomeComponent,
     SignupComponent,
     LoginComponent,
@@ -52,8 +53,10 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     AboutUsComponent,
     ContactUsComponent,
     CareerComponent,
+    ServiceListComponent,
   ],
   imports: [
+    SharedModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
