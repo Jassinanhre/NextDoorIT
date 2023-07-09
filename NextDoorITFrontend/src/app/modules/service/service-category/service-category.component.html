@@ -1,4 +1,15 @@
 <div class="service1">
+  <div class="service-cat">
+    <mat-form-field>
+      <mat-label>Filter by category</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let category of serviceCategory; let i = index" [value]="">
+          {{category.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
   <mat-grid-list cols="2" rowHeight="300px">
     <h2>Service category</h2>
     <mat-grid-tile *ngFor="let category of serviceCategory; let i = index">
