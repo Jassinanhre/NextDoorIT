@@ -26,6 +26,7 @@ import { AboutUsComponent } from './modules/common/about-us/about-us.component';
 import { ContactUsComponent } from './modules/common/contact-us/contact-us.component';
 import { CareerComponent } from './modules/common/career/career.component';
 import { ServiceListComponent } from './modules/service/service-list/service-list.component';
+import { ServiceRequestComponent } from './modules/service/service-request/service-request.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   text: "Loading...",
@@ -54,6 +55,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     ContactUsComponent,
     CareerComponent,
     ServiceListComponent,
+    ServiceRequestComponent,
   ],
   imports: [
     SharedModule,
