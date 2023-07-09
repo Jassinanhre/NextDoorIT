@@ -1,24 +1,30 @@
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { NgxUiLoaderConfig, NgxUiLoaderModule, SPINNER } from 'ngx-ui-loader';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './components/shared/material-module';
-import { HomeComponent } from './components/home/home.component';
+import { HomeComponent } from './modules/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { SharedModule } from './components/shared/shared.module';
-import { FullComponent } from './components/layouts/full/full.component';
-import { AppHeaderComponent } from './components/layouts/full/header/header.component';
-import { AppSidebarComponent } from './components/layouts/full/sidebar/sidebar.component';
-import { HttpClientModule } from '@angular/common/http';
-import { SignupComponent } from './components/auth/signup/signup.component';
-import { NgxUiLoaderConfig, NgxUiLoaderModule, SPINNER } from 'ngx-ui-loader';
-import { ServiceComponent } from './components/service/service.component';
-import { LoginComponent } from './components/auth/login/login.component';
-import { ServiceDetailsComponent } from './components/service/service-details/service-details.component';
-import { ServiceCategoryComponent } from './components/service/service-category/service-category.component';
+
+import { MainLayoutComponent } from './layouts/main/main.component';
+import { DefaultLayoutComponent } from './layouts/default/default.component';
+
+import { MaterialModule } from './shared/material-module';
+import { SharedModule } from './shared/shared.module';
+
+import { LoginComponent } from './modules/auth/login/login.component';
+import { SignupComponent } from './modules/auth/signup/signup.component';
+import { ServiceComponent } from './modules/service/service.component';
+import { ServiceDetailsComponent } from './modules/service/service-details/service-details.component';
+import { ServiceCategoryComponent } from './modules/service/service-category/service-category.component';
+import { AboutUsComponent } from './modules/common/about-us/about-us.component';
+import { ContactUsComponent } from './modules/common/contact-us/contact-us.component';
+import { CareerComponent } from './modules/common/career/career.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   text: "Loading...",
@@ -34,15 +40,18 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 @NgModule({
   declarations: [
     AppComponent,
+    DefaultLayoutComponent,
+    MainLayoutComponent,
+    // Modules
     HomeComponent,
-    FullComponent,
-    AppHeaderComponent,
-    AppSidebarComponent,
     SignupComponent,
-    ServiceComponent,
     LoginComponent,
+    ServiceComponent,
     ServiceDetailsComponent,
-    ServiceCategoryComponent
+    ServiceCategoryComponent,
+    AboutUsComponent,
+    ContactUsComponent,
+    CareerComponent,
   ],
   imports: [
     BrowserModule,
