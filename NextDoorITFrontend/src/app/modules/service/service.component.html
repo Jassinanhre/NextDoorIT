@@ -1,0 +1,74 @@
+<div class="service-page">
+  <div class="service1">
+    <mat-grid-list cols="2" rowHeight="500px">
+      <mat-grid-tile>
+        <div class="serv1-left">
+          <h2>Our Services</h2>
+          <p>We provide you with detailed lists of expenses.</p>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <img src="https://promo-theme.com/itera/wp-content/uploads/2018/12/side-img3.png" />
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+
+  <div class="service1">
+    <!-- <app-service-category></app-service-category> -->
+  </div>
+
+  <div class="service2-outer">
+    <div class="service2">
+
+      <mat-grid-list cols="3" rowHeight="280px">
+        <mat-grid-tile *ngFor="let service of services; let i = index" [class.active]="i == currentIndex"
+          (click)="setActiveService(service, i)">
+          <mat-card class="service-matcard">
+            <mat-card-content routerLink="/service/{{ service.id }}">
+              <div class="card1 a">
+                <img src="{{service.image}}" />
+                <h2>{{service.title}} </h2>
+                <p>{{service.description}}</p>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+    </div>
+  </div>
+
+  <div class="service-form">
+    <h2>Have a Questions?</h2>
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>address@yourmail.com</mat-label>
+      <input matInput>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Service Type</mat-label>
+      <mat-select>
+        <mat-option value="one">Hardware</mat-option>
+        <mat-option value="one">Trouble Shoot</mat-option>
+        <mat-option value="one">Software Development</mat-option>
+        <mat-option value="one">Training</mat-option>
+        <mat-option value="two">Home Service</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Your Questions</mat-label>
+      <textarea matInput></textarea>
+    </mat-form-field>
+    <div class="submit-btn text-center">
+      <button mat-raised-button>Submit</button>
+    </div>
+  </div>
+
+  <!-- <div *ngIf="!currentService">
+    <br />
+    <p>Please click on a Service...</p>
+  </div> -->
+</div>
