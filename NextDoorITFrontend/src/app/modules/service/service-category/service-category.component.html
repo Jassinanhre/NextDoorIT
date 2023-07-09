@@ -2,8 +2,8 @@
   <div class="service-cat">
     <mat-form-field>
       <mat-label>Filter by category</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let category of serviceCategory; let i = index" [value]="">
+      <mat-select (selectionChange)="onCategoryChange($event.value)">
+        <mat-option *ngFor="let category of serviceCategory; let i = index" [value]="category">
           {{category.name}}
         </mat-option>
       </mat-select>

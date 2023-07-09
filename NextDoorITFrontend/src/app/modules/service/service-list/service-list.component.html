@@ -1,5 +1,7 @@
 <div class="service2-outer">
-
+  <div class="service1">
+    <app-service-category></app-service-category>
+  </div>
   <div class="service2">
 
     <mat-grid-list cols="3" rowHeight="280px">
@@ -16,8 +18,7 @@
         </mat-card>
       </mat-grid-tile>
     </mat-grid-list>
-
   </div>
 
-  <app-service-request></app-service-request>
+  <app-service-request (category)="filterByCategory($event)"></app-service-request>
 </div>

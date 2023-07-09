@@ -109,4 +109,8 @@ export class ServiceListComponent implements OnInit {
           console.log(error);
         });
   }
+
+  filterByCategory(id: any) {
+    console.log("Here i received category : ", id);
+  }
 }
