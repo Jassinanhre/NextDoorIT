@@ -8,6 +8,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MaterialModule } from './material-module';
 import { AppRoutingModule } from '../app-routing.module';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { AppRoutingModule } from '../app-routing.module';
     NavbarComponent,
     SidebarComponent,
     FooterComponent,
+    SearchComponent,
     AccordionAnchorDirective,
     AccordionLinkDirective,
     AccordionDirective,
@@ -28,6 +30,7 @@ import { AppRoutingModule } from '../app-routing.module';
     NavbarComponent,
     SidebarComponent,
     FooterComponent,
+    SearchComponent,
     AccordionAnchorDirective,
     AccordionLinkDirective,
     AccordionDirective,

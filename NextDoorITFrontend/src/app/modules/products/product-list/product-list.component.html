@@ -1,0 +1,24 @@
+<div class="service2-outer">
+  <div class="service1">
+    <app-product-category (categoryEvent)="filterByCategory($event)"></app-product-category>
+  </div>
+  <div class="productSearch">
+    <app-search (searchEvent)="filterByText($event)"></app-search>
+  </div>
+  <div class="service2">
+    <mat-grid-list cols="3" rowHeight="280px">
+      <mat-grid-tile *ngFor="let product of products; let i = index" [class.active]="i == currentIndex"
+        (click)="setActiveProduct(product, i)">
+        <mat-card class="service-matcard">
+          <mat-card-content routerLink="/product/{{ product.id }}">
+            <div class="card1 a">
+              <img src="{{product.image}}" />
+              <h2>{{product.title}} </h2>
+              <p>{{product.description}}</p>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</div>

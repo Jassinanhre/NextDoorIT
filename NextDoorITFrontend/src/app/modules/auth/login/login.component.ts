@@ -36,15 +36,6 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  validateSubmit() {
-    if (this.loginForm.controls['password'].value && this.loginForm.controls['email'].value) {
-      return true;
-    }
-    else {
-      return false;
-    }
-  }
-
   handleSubmit() {
     this.ngxService.start();
     var formData = this.loginForm.value;
