@@ -1,0 +1,14 @@
+<div class="service1">
+  <div class="service-cat">
+    <mat-form-field>
+      <mat-label>Filter by category</mat-label>
+      <mat-select (selectionChange)="onCategoryChange($event.value)">
+        <mat-option>None</mat-option>
+        <mat-option *ngFor="let selectedCategory of productCategory; let i = index" [value]="selectedCategory">
+          {{selectedCategory.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+</div>
