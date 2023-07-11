@@ -7,8 +7,7 @@ import { ServiceCategory } from 'src/app/models/serviceCategory.model';
   styleUrls: ['./service-category.component.scss']
 })
 export class ServiceCategoryComponent implements OnInit {
-  selectedCategory: any = {}
-  @Output() category = new EventEmitter<string>();
+  @Output() categoryEvent = new EventEmitter<string>();
 
   serviceCategory?: ServiceCategory[] = [
     {
@@ -48,11 +47,8 @@ export class ServiceCategoryComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onCategoryChange(selectedItem: any) {
-    // console.log('category changed...', selectedItem);
-    this.selectedCategory = selectedItem.id;
-    // console.log('category changed...', this.selectedCategory);
-    this.category.emit(this.selectedCategory);
+  onCategoryChange(item: any) {
+    this.categoryEvent.emit(item?.id);
   }
 
 }
