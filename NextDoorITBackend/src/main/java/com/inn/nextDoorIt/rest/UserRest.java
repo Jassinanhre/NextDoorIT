@@ -9,4 +9,7 @@ import java.util.Map;
 public interface UserRest {
     @RequestMapping(path = "/signup")
     public ResponseEntity<String> signUp(@RequestBody(required = true) Map<String, String> requestMap);
+
+    @RequestMapping(path="/login")
+    public ResponseEntity<String> login(@RequestBody(required = true) Map<String,String> requestMap);
 }
