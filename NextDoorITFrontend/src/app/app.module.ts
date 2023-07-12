@@ -27,6 +27,10 @@ import { ContactUsComponent } from './modules/common/contact-us/contact-us.compo
 import { CareerComponent } from './modules/common/career/career.component';
 import { ServiceListComponent } from './modules/service/service-list/service-list.component';
 import { ServiceRequestComponent } from './modules/service/service-request/service-request.component';
+import { ProductComponent } from './modules/products/product.component';
+import { ProductCategoryComponent } from './modules/products/product-category/product-category.component';
+import { ProductDetailsComponent } from './modules/products/product-details/product-details.component';
+import { ProductListComponent } from './modules/products/product-list/product-list.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   text: "Loading...",
@@ -48,14 +52,22 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     HomeComponent,
     SignupComponent,
     LoginComponent,
+    // Service Components
     ServiceComponent,
+    ServiceListComponent,
     ServiceDetailsComponent,
     ServiceCategoryComponent,
+    ServiceRequestComponent,
+    // Product Components
+    ProductComponent,
+    ProductListComponent,
+    ProductDetailsComponent,
+    ProductCategoryComponent,
+    // Common Components
     AboutUsComponent,
     ContactUsComponent,
     CareerComponent,
-    ServiceListComponent,
-    ServiceRequestComponent,
+
   ],
   imports: [
     SharedModule,

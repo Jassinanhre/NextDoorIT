@@ -1,117 +1,117 @@
 import { Component, OnInit } from '@angular/core';
-import { Service } from 'src/app/models/service.model';
-import { ServicesService } from 'src/app/services/services.service';
+import { Product } from 'src/app/models/product.model';
+import { ProductService } from 'src/app/services/product/product.service';
 
 @Component({
-  selector: 'app-service-list',
-  templateUrl: './service-list.component.html',
-  styleUrls: ['./service-list.component.scss']
+  selector: 'app-product-list',
+  templateUrl: './product-list.component.html',
+  styleUrls: ['./product-list.component.scss']
 })
-export class ServiceListComponent implements OnInit {
+export class ProductListComponent implements OnInit {
 
-  allServices?: Service[] = [
+  allProducts?: Product[] = [
     {
       id: "1",
       title: "Hardware Sales",
       description: "Our website offers a convenient online platform for individuals looking to purchase hardware parts.",
       image: "assets/img/bulb.png",
-      category: ""
+      productCategory: ""
     },
     {
       id: "2",
       title: "Home Services",
       description: "Our skilled team offers on-site hardware services to address any technical issues you may encounter at your home.",
       image: "assets/img/bulb.png",
-      category: ""
+      productCategory: ""
     },
     {
       id: "3",
       title: "Software Development",
       description: "Whether it's web development, software development, or any other development-related inquiries, we are here to assist you.",
       image: "assets/img/bulb.png",
-      category: ""
+      productCategory: ""
     },
     {
       id: "4",
       title: "Trouble shoot",
       description: "Our team is ready to provide assistance and troubleshooting support for any issues you may encounter.",
       image: "assets/img/bulb.png",
-      category: ""
+      productCategory: ""
     },
     {
       id: "5",
       title: "App Development",
       description: "Our team is skilled in developing custom applications tailored to your specific requirements.",
       image: "assets/img/bulb.png",
-      category: ""
+      productCategory: ""
     },
     {
       id: "6",
       title: "Trainings",
       description: "Our services extend to providing training and online courses focused on various aspects of development.",
       image: "assets/img/bulb.png",
-      category: ""
+      productCategory: ""
     }
   ];
-  services?: Service[] = [
+  products?: Product[] = [
     {
       id: "1",
       title: "Hardware Sales",
       description: "Our website offers a convenient online platform for individuals looking to purchase hardware parts.",
       image: "assets/img/bulb.png",
-      category: ""
+      productCategory: ""
     },
     {
       id: "2",
       title: "Home Services",
       description: "Our skilled team offers on-site hardware services to address any technical issues you may encounter at your home.",
       image: "assets/img/bulb.png",
-      category: ""
+      productCategory: ""
     },
     {
       id: "3",
       title: "Software Development",
       description: "Whether it's web development, software development, or any other development-related inquiries, we are here to assist you.",
       image: "assets/img/bulb.png",
-      category: ""
+      productCategory: ""
     },
     {
       id: "4",
       title: "Trouble shoot",
       description: "Our team is ready to provide assistance and troubleshooting support for any issues you may encounter.",
       image: "assets/img/bulb.png",
-      category: ""
+      productCategory: ""
     },
     {
       id: "5",
       title: "App Development",
       description: "Our team is skilled in developing custom applications tailored to your specific requirements.",
       image: "assets/img/bulb.png",
-      category: ""
+      productCategory: ""
     },
     {
       id: "6",
       title: "Trainings",
       description: "Our services extend to providing training and online courses focused on various aspects of development.",
       image: "assets/img/bulb.png",
-      category: ""
+      productCategory: ""
     }
   ];
-  currentService?: Service;
+  currentService?: Product;
   currentIndex = -1;
   title = '';
 
-  constructor(private servicesService: ServicesService) { }
+  constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
-    this.retrieveServices();
+    this.retrieveProducts();
   }
 
-  retrieveServices(): void {
-    this.servicesService.getAll()
+  retrieveProducts(): void {
+    this.productService.getAll()
       .subscribe(
         data => {
-          this.services = data;
+          this.products = data;
           console.log(data);
         },
         error => {
@@ -120,18 +120,18 @@ export class ServiceListComponent implements OnInit {
   }
 
   refreshList(): void {
-    this.retrieveServices();
+    this.retrieveProducts();
     this.currentService = undefined;
     this.currentIndex = -1;
   }
 
-  setActiveService(service: Service, index: number): void {
-    this.currentService = service;
+  setActiveProduct(product: Product, index: number): void {
+    this.currentService = product;
     this.currentIndex = index;
   }
 
-  removeAllServices(): void {
-    this.servicesService.deleteAll()
+  removeAllProducts(): void {
+    this.productService.deleteAll()
       .subscribe(
         response => {
           console.log(response);
@@ -143,10 +143,10 @@ export class ServiceListComponent implements OnInit {
   }
 
   searchTitle(): void {
-    this.servicesService.findByTitle(this.title)
+    this.productService.findByTitle(this.title)
       .subscribe(
         data => {
-          this.services = data;
+          this.products = data;
           console.log(data);
         },
         error => {
@@ -155,7 +155,13 @@ export class ServiceListComponent implements OnInit {
   }
 
   filterByCategory(id: string) {
-    // this.retrieveServices();
-    this.services = id ? this.allServices?.filter(service => { return service.id === id }) : this.allServices;
+    // this.retrieveProducts();
+    this.products = id ? this.allProducts?.filter(product => { return product.id === id }) : this.allProducts;
+  }
+
+  filterByText(search: string) {
+    this.title = search;
+    // this.searchTitle();
+    this.products = search ? this.allProducts?.filter(product => { return product.title?.includes(search) }) : this.allProducts;
   }
 }

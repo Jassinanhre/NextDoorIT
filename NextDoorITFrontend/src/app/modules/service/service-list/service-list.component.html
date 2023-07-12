@@ -1,7 +1,8 @@
 <div class="service2-outer">
-
+  <div class="service1">
+    <app-service-category (categoryEvent)="filterByCategory($event)"></app-service-category>
+  </div>
   <div class="service2">
-
     <mat-grid-list cols="3" rowHeight="280px">
       <mat-grid-tile *ngFor="let service of services; let i = index" [class.active]="i == currentIndex"
         (click)="setActiveService(service, i)">
@@ -16,8 +17,6 @@
         </mat-card>
       </mat-grid-tile>
     </mat-grid-list>
-
   </div>
-
   <app-service-request></app-service-request>
 </div>

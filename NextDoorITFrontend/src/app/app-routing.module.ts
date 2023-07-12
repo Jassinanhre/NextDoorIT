@@ -11,6 +11,9 @@ import { AboutUsComponent } from './modules/common/about-us/about-us.component';
 import { CareerComponent } from './modules/common/career/career.component';
 import { ContactUsComponent } from './modules/common/contact-us/contact-us.component';
 import { ServiceListComponent } from './modules/service/service-list/service-list.component';
+import { ProductComponent } from './modules/products/product.component';
+import { ProductListComponent } from './modules/products/product-list/product-list.component';
+import { ProductDetailsComponent } from './modules/products/product-details/product-details.component';
 
 const routes: Routes = [
   // otherwise redirect to Home Component
@@ -23,6 +26,16 @@ const routes: Routes = [
         children: [
           { path: 'list', component: ServiceListComponent },
           { path: ':id', component: ServiceDetailsComponent }
+        ]
+      }]
+  }, {
+    path: '', component: MainLayoutComponent,
+    children: [
+      {
+        path: 'product', component: ProductComponent,
+        children: [
+          { path: 'list', component: ProductListComponent },
+          { path: ':id', component: ProductDetailsComponent }
         ]
       }]
   }, {

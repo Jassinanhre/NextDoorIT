@@ -1,0 +1,7 @@
+<mat-form-field appearance="fill">
+  <mat-label>Search products by title</mat-label>
+  <input matInput placeholder="Search products by name" #searchTerm />
+  <mat-icon class='search-icon' color="primary" matPrefix (click)="onSearch(searchTerm.value)">search</mat-icon>
+  <mat-icon class='delete_forever' color="primary" matSuffix (click)="onClear()"></mat-icon>
+  <!-- <span matSuffix (click)="onClear()"></span> -->
+</mat-form-field>
