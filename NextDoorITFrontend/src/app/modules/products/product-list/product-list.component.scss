@@ -113,6 +113,9 @@ body {
   font-size: 15px;
 }
 
+.service-cat {
+  margin-left: 10px;
+}
 
 /* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 700px) {
@@ -266,7 +269,10 @@ a {
 
 /************Service css***********/
 .service1 {
-  padding-top: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
 }
 
 .serv1-left h2 {
@@ -277,6 +283,12 @@ a {
 
 .serv1-left p {
   font-size: 18px;
+}
+
+.filter-left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .service2 {
@@ -349,4 +361,94 @@ a {
 
 .service-form h2 {
   color: #000;
+}
+
+.productSearch {
+  margin-right: 10px;
+}
+
+.product-image img {
+  width: 100%;
+}
+
+.service-matcard .product-card {
+  margin-bottom: 20px;
+}
+
+.service-matcard .product-card p {
+  color: #787878;
+}
+
+.service-matcard .product-card h3 span {
+  font-weight: bold;
+}
+
+.customer-review h2 {
+  margin: 0;
+  font-size: 17px;
+}
+
+.customer-review p {
+  font-size: 17px;
+  margin: 0;
+  color: #11932e !important;
+}
+
+.rev-content {
+  margin-top: 10PX;
+  border: 1px solid #ebe7e7;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.rev-content h2 {
+  color: #645b5b;
+  font-size: 15px;
+}
+
+.rev-content p {
+  color: #787878 !important;
+  font-size: 13px;
+}
+
+.price-h2 {
+  margin-bottom: 0px;
+}
+
+.brdr-top {
+  border-top: 1px solid #cecece;
+  margin-top: 10px;
+  padding-top: 5px;
+}
+
+.sorted {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sorted>p {
+  margin-bottom: 0px;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.sorted span a {
+  color: #212121;
+  font-size: 13px;
+  margin-right: 10px;
+}
+
+.cart-dv {
+  margin-top: 15px;
+}
+
+.cart-dv button {
+  background: #7b1fa2;
+  color: #fff;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
 }
