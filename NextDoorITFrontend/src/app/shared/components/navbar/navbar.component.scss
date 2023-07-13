@@ -8,6 +8,11 @@
 .header-main ul a {
   color: #fff;
   padding: 5px;
+
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
 }
 
 .header-main {
@@ -20,4 +25,5 @@
   font-size: 20px;
   margin-top: 15px;
   margin-left: 10px;
+  cursor: pointer;
 }
