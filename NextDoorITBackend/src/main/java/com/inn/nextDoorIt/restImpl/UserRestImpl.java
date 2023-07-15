@@ -1,8 +1,10 @@
 package com.inn.nextDoorIt.restImpl;
 
+import com.inn.nextDoorIt.POJO.User;
 import com.inn.nextDoorIt.constants.NextDoorItConstants;
 import com.inn.nextDoorIt.rest.UserRest;
 import com.inn.nextDoorIt.service.UserService;
+import com.inn.nextDoorIt.utils.ApplicationResponse;
 import com.inn.nextDoorIt.utils.NextDoorItUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,23 +18,15 @@ public class UserRestImpl implements UserRest {
 
     @Autowired
     UserService userService;
+
     @Override
-    public ResponseEntity<String> signUp(Map<String, String> requestMap) {
-        try{
-            return userService.signUp(requestMap);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return NextDoorItUtils.getResponseEntity(NextDoorItConstants.wrong, HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<ApplicationResponse> signUp(Map<String, String> requestMap) {
+
+        return ResponseEntity.ok(new ApplicationResponse(userService.signUp(requestMap), HttpStatus.OK.value()));
     }
 
     @Override
-    public ResponseEntity<String> login(Map<String, String> requestMap){
-        try{
-            return userService.login(requestMap);
-    }catch(Exception e){
-            e.printStackTrace();
-    }
-        return null;
+    public ResponseEntity<ApplicationResponse> login(Map<String, String> requestMap) {
+        return ResponseEntity.ok(new ApplicationResponse(userService.login(requestMap), HttpStatus.OK.value()));
     }
 }

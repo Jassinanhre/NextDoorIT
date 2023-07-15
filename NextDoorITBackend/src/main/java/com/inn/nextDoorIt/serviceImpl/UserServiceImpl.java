@@ -2,14 +2,10 @@ package com.inn.nextDoorIt.serviceImpl;
 
 import com.inn.nextDoorIt.JWT.JwtUtil;
 import com.inn.nextDoorIt.POJO.User;
-import com.inn.nextDoorIt.constants.NextDoorItConstants;
 import com.inn.nextDoorIt.dao.UserDao;
 import com.inn.nextDoorIt.service.UserService;
-import com.inn.nextDoorIt.utils.NextDoorItUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -26,46 +22,45 @@ public class UserServiceImpl implements UserService {
     JwtUtil jwtUtil;
 
     @Override
-    public ResponseEntity<String> signUp(Map<String, String> requestMap) {
+    public User signUp(Map<String, String> requestMap) {
         log.info("Inside SignUp{}", requestMap);
         try {
             if (validateSignUpMap(requestMap)) {
                 User user = userDao.findByEmailId(requestMap.get("email"));
                 if (Objects.isNull(user)) {
-                    userDao.save(getUserFromMap(requestMap));// save the data into the database
-                    return NextDoorItUtils.getResponseEntity("User Successfully Registered", HttpStatus.OK);
+                    User savedUser = userDao.save(getUserFromMap(requestMap));// save the data into the database
+                    return savedUser;
                 } else {
-                    return NextDoorItUtils.getResponseEntity("Email already exist", HttpStatus.BAD_REQUEST);
+                    throw new RuntimeException("USER ALREADY EXISTS");
                 }
             } else {
-                return NextDoorItUtils.getResponseEntity(NextDoorItConstants.invalid_data, HttpStatus.BAD_REQUEST);
+                throw new RuntimeException("INVALID SIGNUP FIELDS");
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (RuntimeException ex) {
+            throw new RuntimeException("SOMETHING WENT WRONG");
         }
-        return NextDoorItUtils.getResponseEntity(NextDoorItConstants.wrong, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @Override
-    public ResponseEntity<String> login(Map<String, String> requestMap) {
+    public String login(Map<String, String> requestMap) {
         log.info("LOGIN REQUEST RECEIVED");
         try {
             if (validateLoginRequest(requestMap)) {
                 User user = userDao.findByEmailAndPassword(requestMap.get("email"), requestMap.get("password"));
                 if (Objects.isNull(user)) {
-                    return NextDoorItUtils.getTokenResponseEntity("UNAUTHORIZED_USER", HttpStatus.UNAUTHORIZED);
+                    throw new RuntimeException("NO USER FOUND");
                 } else {
                     // WRITE TOKEN HERE TO GENERATE TOKEN AND RETURN IT AFTER SUCCESSFUL LOGIN
                     String accessToken = jwtUtil.generateToken(requestMap.get("username"), "user");
-                    return NextDoorItUtils.getTokenResponseEntity(accessToken, HttpStatus.OK);
+                    return accessToken;
                 }
             } else {
-                return NextDoorItUtils.getResponseEntity(NextDoorItConstants.invalid_data, HttpStatus.BAD_REQUEST);
+                throw new RuntimeException("NOT A VALID USER");
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (RuntimeException ex) {
+            throw new RuntimeException("something went wrong");
         }
-        return NextDoorItUtils.getResponseEntity(NextDoorItConstants.wrong, HttpStatus.INTERNAL_SERVER_ERROR);
+
     }
 
 
