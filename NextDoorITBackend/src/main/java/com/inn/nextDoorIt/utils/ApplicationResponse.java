@@ -1,6 +1,7 @@
 package com.inn.nextDoorIt.utils;
 
 
+import com.inn.nextDoorIt.POJO.Category;
 import lombok.Data;
 
 @Data
@@ -22,4 +23,6 @@ public class ApplicationResponse {
     public ApplicationResponse(String error) {
         this.error = error;
     }
+
+
 }

@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface ServicesDao extends JpaRepository<ServiceModel, Integer> {
 
-    @Query(nativeQuery = true, value = "select * from services where category_id in (select id from categories where category_name=:category_name)")
-    List<ServiceModel> findServicesByCategories(@Param("category_name") String category);
+    @Query(nativeQuery = true, value = "select * from services where category_id=:category_id")
+    List<ServiceModel> findServicesByCategories(@Param("category_id") int category_id);
 }

@@ -1,6 +1,7 @@
 package com.inn.nextDoorIt.restImpl;
 
 import com.inn.nextDoorIt.POJO.ServiceModel;
+import com.inn.nextDoorIt.POJO.ServiceModelRequest;
 import com.inn.nextDoorIt.dao.ServicesDao;
 import com.inn.nextDoorIt.rest.ServicesRest;
 import com.inn.nextDoorIt.service.ServicesService;
@@ -18,12 +19,12 @@ public class ServiceRestImpl implements ServicesRest {
 
 
     @Override
-    public ResponseEntity<Object> getServices(String category) {
-        return ResponseEntity.ok(new ApplicationResponse(service.getServices(category), HttpStatus.OK.value()));
+    public ResponseEntity<Object> getServices(int categoryId) {
+        return ResponseEntity.ok(new ApplicationResponse(service.getServices(categoryId), HttpStatus.OK.value()));
     }
 
     @Override
-    public ResponseEntity<Object> saveService(ServiceModel serviceModel) {
+    public ResponseEntity<Object> saveService(ServiceModelRequest serviceModel) {
         return ResponseEntity.ok(new ApplicationResponse(service.saveService(serviceModel), HttpStatus.CREATED.value()));
     }
 

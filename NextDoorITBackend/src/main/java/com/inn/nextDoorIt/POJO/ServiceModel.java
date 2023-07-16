@@ -22,7 +22,7 @@ public class ServiceModel {
     private Integer id;
     private String serviceName;
     private String description;
-    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
     private Category category;
     private String userOverallRating;

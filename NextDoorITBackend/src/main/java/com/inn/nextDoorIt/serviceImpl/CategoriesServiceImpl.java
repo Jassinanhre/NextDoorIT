@@ -24,4 +24,13 @@ public class CategoriesServiceImpl implements CategoriesService {
             // custome exception handeling code will be here
         }
     }
+
+    @Override
+    public Category saveCategoryInDb(Category category) {
+        Category savedResponse = categoriesDao.save(category);
+        if (!Objects.isNull(savedResponse)) {
+            return savedResponse;
+        }
+        throw new RuntimeException("CATEGORY NOT SAVED IN DATABASE");
+    }
 }
