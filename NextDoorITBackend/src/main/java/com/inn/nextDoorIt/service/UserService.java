@@ -1,11 +1,13 @@
 package com.inn.nextDoorIt.service;
 
+import com.inn.nextDoorIt.POJO.User;
 import org.springframework.http.ResponseEntity;
 
 import java.util.Map;
 
 public interface UserService {
 
-    ResponseEntity<String> signUp(Map<String, String> requestMap);
+    User signUp(Map<String, String> requestMap);
 
+    String login(Map<String, String> requestMap);
 }
