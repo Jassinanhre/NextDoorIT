@@ -12,14 +12,21 @@ export class AuthService {
 
   signup(data: any) {
     return this.httpClient.post(this.url +
-      "/auth/signup", data, {
+      "/user/signup", data, {
       headers: new HttpHeaders().set('Content-Type', 'application/json')
     })
   }
 
   login(data: any) {
     return this.httpClient.post(this.url +
-      "/auth/login", data, {
+      "/user/login", data, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json')
+    })
+  }
+
+  logout() {
+    return this.httpClient.get(this.url +
+      "/user/logout", {
       headers: new HttpHeaders().set('Content-Type', 'application/json')
     })
   }

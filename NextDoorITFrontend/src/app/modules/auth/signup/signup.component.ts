@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 import { AuthService } from 'src/app/services/auth.service';
 import { GlobalConstants } from 'src/app/services/global-constants';
 import { SnackbarService } from 'src/app/services/snackbar.service';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-signup',
@@ -21,10 +21,10 @@ export class SignupComponent implements OnInit {
   responseMessage: any;
 
   constructor(private formBuilder: FormBuilder,
-    private router: Router,
     private authService: AuthService,
     private snackbarService: SnackbarService,
     public dialogRef: MatDialogRef<SignupComponent>,
+    private dialog: MatDialog,
     private ngxService: NgxUiLoaderService
   ) { }
 
@@ -56,13 +56,14 @@ export class SignupComponent implements OnInit {
       contactNumber: formData.contactNumber,
       password: formData.password,
     }
-
     this.authService.signup(data).subscribe((response: any) => {
       this.ngxService.stop();
       this.dialogRef.close();
       this.responseMessage = response?.message;
       this.snackbarService.openSnackBar(this.responseMessage, "");
-      this.router.navigate(['/']);
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.width = "550px";
+      this.dialog.open(LoginComponent, dialogConfig);
     }, (error) => {
       this.ngxService.stop();
       if (error.error?.message) {
