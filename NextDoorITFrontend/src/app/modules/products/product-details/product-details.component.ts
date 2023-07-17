@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/models/product.model';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { ProductService } from 'src/app/services/product/product.service';
 
 
@@ -11,21 +12,34 @@ import { ProductService } from 'src/app/services/product/product.service';
 })
 export class ProductDetailsComponent implements OnInit {
   currentProduct: Product = {
-    id: "3",
-    title: "Software Development",
-    description: "Whether it's web development, software development, or any other development-related inquiries, we are here to assist you.",
-    image: "assets/img/bulb.png",
+    id: "1",
+    title: "Computer Accessories",
+    description: "Laser printers are known for their fast print speeds and high-quality text prints. These printers use a laser to fuse toner onto the paper, creating sharp, crisp text ideal for documents and business materials.",
+    image: "assets/img/printer.png",
+    price: "1254",
+    reviewRatings: {
+      rating: "4.8",
+      reviews: [{
+        title: "Terrific purchase",
+        summary: "Its value for money for the price i paid for it. Suits my needs. Print quality is good for both monochrome and colour printing on A4 GSM 70 paper. Haven't tried printing pics yet so can't say how it'd be. Setup was easy. Just went through the manual and also the video."
+      }, {
+        title: "Terrific purchase",
+        summary: "Its value for money for the price i paid for it. Suits my needs. Print quality is good for both monochrome and colour printing on A4 GSM 70 paper. Haven't tried printing pics yet so can't say how it'd be. Setup was easy. Just went through the manual and also the video."
+      }]
+    },
     productCategory: ""
   };
   message = '';
-
+  isLogin: boolean = false;
   constructor(
     private productService: ProductService,
+    private localStorageService: LocalStorageService,
     private route: ActivatedRoute,
     private router: Router) { }
 
   ngOnInit(): void {
     this.message = '';
+    this.isLogin = this.localStorageService.getItem('isLoggedIn');
     this.getProduct(this.route.snapshot.params.id);
   }
 

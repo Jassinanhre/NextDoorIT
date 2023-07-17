@@ -1,22 +1,35 @@
-<div class="service-page">
-  PRODUCT DETAILS
-  <div class="service2-outer">
-    <div class="service2">
-
-      <mat-grid-list cols="3" rowHeight="280px">
-        <mat-grid-tile>
-          <mat-card class="service-matcard">
-            <mat-card-content>
-              <div class="card1 a">
-                <img src="{{currentProduct.image}}" />
-                <h2>{{currentProduct.title}} </h2>
-                <p>{{currentProduct.description}}</p>
+<div class="service2-outer a">
+  <div class="service2">
+    PRODUCT DETAILS
+    <mat-grid-list cols="1" rowHeight="950px">
+      <mat-grid-tile>
+        <mat-card class="service-matcard">
+          <mat-card-content>
+            <div class="card 1 product-card">
+              <div class="product-image">
+                <img src={{currentProduct.image}} />
               </div>
-            </mat-card-content>
-          </mat-card>
-        </mat-grid-tile>
-      </mat-grid-list>
-
-    </div>
+              <h2>{{currentProduct.title}}</h2>
+              <p>{{currentProduct.description}}</p>
+              <h3 class="price-h2"><span>Price:</span> ${{currentProduct.price}}</h3>
+              <div class="customer-review">
+                <h2>Ratings & Reviews:</h2>
+                <p>{{currentProduct.reviewRatings?.rating}} <span>★</span></p>
+                <div class="rev-content">
+                  <div class="con-rev1"
+                    *ngFor="let reviewRating of currentProduct.reviewRatings?.reviews; let ni = index">
+                    <h2>{{reviewRating.title}}</h2>
+                    <p>{{reviewRating.summary}}</p>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="isLogin" class="cart-dv">
+                <button mat-stroked-button color="primary">Addd to Cart</button>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
   </div>
 </div>

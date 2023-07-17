@@ -12,93 +12,227 @@ export class ProductListComponent implements OnInit {
   allProducts?: Product[] = [
     {
       id: "1",
-      title: "Hardware Sales",
-      description: "Our website offers a convenient online platform for individuals looking to purchase hardware parts.",
-      image: "assets/img/bulb.png",
+      title: "Computer Accessories",
+      description: "Laser printers are known for their fast print speeds and high-quality text prints. These printers use a laser to fuse toner onto the paper, creating sharp, crisp text ideal for documents and business materials.",
+      image: "assets/img/printer.png",
+      price: "1254",
+      reviewRatings: {
+        rating: "4.8",
+        reviews: [{
+          title: "Terrific purchase",
+          summary: "Its value for money for the price i paid for it. Suits my needs. Print quality is good for both monochrome and colour printing on A4 GSM 70 paper. Haven't tried printing pics yet so can't say how it'd be. Setup was easy. Just went through the manual and also the video."
+        }, {
+          title: "Terrific purchase",
+          summary: "Its value for money for the price i paid for it. Suits my needs. Print quality is good for both monochrome and colour printing on A4 GSM 70 paper. Haven't tried printing pics yet so can't say how it'd be. Setup was easy. Just went through the manual and also the video."
+        }]
+      },
       productCategory: ""
     },
     {
       id: "2",
-      title: "Home Services",
-      description: "Our skilled team offers on-site hardware services to address any technical issues you may encounter at your home.",
-      image: "assets/img/bulb.png",
+      title: "Computer Accessories",
+      description: "Laser printers are known for their fast print speeds and high-quality text prints. These printers use a laser to fuse toner onto the paper, creating sharp, crisp text ideal for documents and business materials.",
+      image: "assets/img/printer.png",
+      price: "1254",
+      reviewRatings: {
+        rating: "4.8",
+        reviews: [{
+          title: "Terrific purchase",
+          summary: "Its value for money for the price i paid for it. Suits my needs. Print quality is good for both monochrome and colour printing on A4 GSM 70 paper. Haven't tried printing pics yet so can't say how it'd be. Setup was easy. Just went through the manual and also the video."
+        }, {
+          title: "Terrific purchase",
+          summary: "Its value for money for the price i paid for it. Suits my needs. Print quality is good for both monochrome and colour printing on A4 GSM 70 paper. Haven't tried printing pics yet so can't say how it'd be. Setup was easy. Just went through the manual and also the video."
+        }]
+      },
       productCategory: ""
     },
     {
       id: "3",
-      title: "Software Development",
-      description: "Whether it's web development, software development, or any other development-related inquiries, we are here to assist you.",
-      image: "assets/img/bulb.png",
+      title: "Computer Accessories",
+      description: "Laser printers are known for their fast print speeds and high-quality text prints. These printers use a laser to fuse toner onto the paper, creating sharp, crisp text ideal for documents and business materials.",
+      image: "assets/img/printer.png",
+      price: "1254",
+      reviewRatings: {
+        rating: "4.8",
+        reviews: [{
+          title: "Terrific purchase",
+          summary: "Its value for money for the price i paid for it. Suits my needs. Print quality is good for both monochrome and colour printing on A4 GSM 70 paper. Haven't tried printing pics yet so can't say how it'd be. Setup was easy. Just went through the manual and also the video."
+        }, {
+          title: "Terrific purchase",
+          summary: "Its value for money for the price i paid for it. Suits my needs. Print quality is good for both monochrome and colour printing on A4 GSM 70 paper. Haven't tried printing pics yet so can't say how it'd be. Setup was easy. Just went through the manual and also the video."
+        }]
+      },
       productCategory: ""
     },
     {
       id: "4",
-      title: "Trouble shoot",
-      description: "Our team is ready to provide assistance and troubleshooting support for any issues you may encounter.",
-      image: "assets/img/bulb.png",
+      title: "Computer Accessories",
+      description: "Laser printers are known for their fast print speeds and high-quality text prints. These printers use a laser to fuse toner onto the paper, creating sharp, crisp text ideal for documents and business materials.",
+      image: "assets/img/printer.png",
+      price: "1254",
+      reviewRatings: {
+        rating: "4.8",
+        reviews: [{
+          title: "Terrific purchase",
+          summary: "Its value for money for the price i paid for it. Suits my needs. Print quality is good for both monochrome and colour printing on A4 GSM 70 paper. Haven't tried printing pics yet so can't say how it'd be. Setup was easy. Just went through the manual and also the video."
+        }, {
+          title: "Terrific purchase",
+          summary: "Its value for money for the price i paid for it. Suits my needs. Print quality is good for both monochrome and colour printing on A4 GSM 70 paper. Haven't tried printing pics yet so can't say how it'd be. Setup was easy. Just went through the manual and also the video."
+        }]
+      },
       productCategory: ""
     },
     {
       id: "5",
-      title: "App Development",
-      description: "Our team is skilled in developing custom applications tailored to your specific requirements.",
-      image: "assets/img/bulb.png",
+      title: "Computer Accessories",
+      description: "Laser printers are known for their fast print speeds and high-quality text prints. These printers use a laser to fuse toner onto the paper, creating sharp, crisp text ideal for documents and business materials.",
+      image: "assets/img/printer.png",
+      price: "1254",
+      reviewRatings: {
+        rating: "4.8",
+        reviews: [{
+          title: "Terrific purchase",
+          summary: "Its value for money for the price i paid for it. Suits my needs. Print quality is good for both monochrome and colour printing on A4 GSM 70 paper. Haven't tried printing pics yet so can't say how it'd be. Setup was easy. Just went through the manual and also the video."
+        }, {
+          title: "Terrific purchase",
+          summary: "Its value for money for the price i paid for it. Suits my needs. Print quality is good for both monochrome and colour printing on A4 GSM 70 paper. Haven't tried printing pics yet so can't say how it'd be. Setup was easy. Just went through the manual and also the video."
+        }]
+      },
       productCategory: ""
     },
     {
       id: "6",
-      title: "Trainings",
-      description: "Our services extend to providing training and online courses focused on various aspects of development.",
-      image: "assets/img/bulb.png",
+      title: "Computer Accessories",
+      description: "Laser printers are known for their fast print speeds and high-quality text prints. These printers use a laser to fuse toner onto the paper, creating sharp, crisp text ideal for documents and business materials.",
+      image: "assets/img/printer.png",
+      price: "1254",
+      reviewRatings: {
+        rating: "4.8",
+        reviews: [{
+          title: "Terrific purchase",
+          summary: "Its value for money for the price i paid for it. Suits my needs. Print quality is good for both monochrome and colour printing on A4 GSM 70 paper. Haven't tried printing pics yet so can't say how it'd be. Setup was easy. Just went through the manual and also the video."
+        }, {
+          title: "Terrific purchase",
+          summary: "Its value for money for the price i paid for it. Suits my needs. Print quality is good for both monochrome and colour printing on A4 GSM 70 paper. Haven't tried printing pics yet so can't say how it'd be. Setup was easy. Just went through the manual and also the video."
+        }]
+      },
       productCategory: ""
-    }
+    },
   ];
   products?: Product[] = [
     {
       id: "1",
-      title: "Hardware Sales",
-      description: "Our website offers a convenient online platform for individuals looking to purchase hardware parts.",
-      image: "assets/img/bulb.png",
+      title: "Computer Accessories",
+      description: "Laser printers are known for their fast print speeds and high-quality text prints. These printers use a laser to fuse toner onto the paper, creating sharp, crisp text ideal for documents and business materials.",
+      image: "assets/img/printer.png",
+      price: "1254",
+      reviewRatings: {
+        rating: "4.8",
+        reviews: [{
+          title: "Terrific purchase",
+          summary: "Its value for money for the price i paid for it. Suits my needs. Print quality is good for both monochrome and colour printing on A4 GSM 70 paper. Haven't tried printing pics yet so can't say how it'd be. Setup was easy. Just went through the manual and also the video."
+        }, {
+          title: "Terrific purchase",
+          summary: "Its value for money for the price i paid for it. Suits my needs. Print quality is good for both monochrome and colour printing on A4 GSM 70 paper. Haven't tried printing pics yet so can't say how it'd be. Setup was easy. Just went through the manual and also the video."
+        }]
+      },
       productCategory: ""
     },
     {
       id: "2",
-      title: "Home Services",
-      description: "Our skilled team offers on-site hardware services to address any technical issues you may encounter at your home.",
-      image: "assets/img/bulb.png",
+      title: "Computer Accessories",
+      description: "Laser printers are known for their fast print speeds and high-quality text prints. These printers use a laser to fuse toner onto the paper, creating sharp, crisp text ideal for documents and business materials.",
+      image: "assets/img/printer.png",
+      price: "1254",
+      reviewRatings: {
+        rating: "4.8",
+        reviews: [{
+          title: "Terrific purchase",
+          summary: "Its value for money for the price i paid for it. Suits my needs. Print quality is good for both monochrome and colour printing on A4 GSM 70 paper. Haven't tried printing pics yet so can't say how it'd be. Setup was easy. Just went through the manual and also the video."
+        }, {
+          title: "Terrific purchase",
+          summary: "Its value for money for the price i paid for it. Suits my needs. Print quality is good for both monochrome and colour printing on A4 GSM 70 paper. Haven't tried printing pics yet so can't say how it'd be. Setup was easy. Just went through the manual and also the video."
+        }]
+      },
       productCategory: ""
     },
     {
       id: "3",
-      title: "Software Development",
-      description: "Whether it's web development, software development, or any other development-related inquiries, we are here to assist you.",
-      image: "assets/img/bulb.png",
+      title: "Computer Accessories",
+      description: "Laser printers are known for their fast print speeds and high-quality text prints. These printers use a laser to fuse toner onto the paper, creating sharp, crisp text ideal for documents and business materials.",
+      image: "assets/img/printer.png",
+      price: "1254",
+      reviewRatings: {
+        rating: "4.8",
+        reviews: [{
+          title: "Terrific purchase",
+          summary: "Its value for money for the price i paid for it. Suits my needs. Print quality is good for both monochrome and colour printing on A4 GSM 70 paper. Haven't tried printing pics yet so can't say how it'd be. Setup was easy. Just went through the manual and also the video."
+        }, {
+          title: "Terrific purchase",
+          summary: "Its value for money for the price i paid for it. Suits my needs. Print quality is good for both monochrome and colour printing on A4 GSM 70 paper. Haven't tried printing pics yet so can't say how it'd be. Setup was easy. Just went through the manual and also the video."
+        }]
+      },
       productCategory: ""
     },
     {
       id: "4",
-      title: "Trouble shoot",
-      description: "Our team is ready to provide assistance and troubleshooting support for any issues you may encounter.",
-      image: "assets/img/bulb.png",
+      title: "Computer Accessories",
+      description: "Laser printers are known for their fast print speeds and high-quality text prints. These printers use a laser to fuse toner onto the paper, creating sharp, crisp text ideal for documents and business materials.",
+      image: "assets/img/printer.png",
+      price: "1254",
+      reviewRatings: {
+        rating: "4.8",
+        reviews: [{
+          title: "Terrific purchase",
+          summary: "Its value for money for the price i paid for it. Suits my needs. Print quality is good for both monochrome and colour printing on A4 GSM 70 paper. Haven't tried printing pics yet so can't say how it'd be. Setup was easy. Just went through the manual and also the video."
+        }, {
+          title: "Terrific purchase",
+          summary: "Its value for money for the price i paid for it. Suits my needs. Print quality is good for both monochrome and colour printing on A4 GSM 70 paper. Haven't tried printing pics yet so can't say how it'd be. Setup was easy. Just went through the manual and also the video."
+        }]
+      },
       productCategory: ""
     },
     {
       id: "5",
-      title: "App Development",
-      description: "Our team is skilled in developing custom applications tailored to your specific requirements.",
-      image: "assets/img/bulb.png",
+      title: "Computer Accessories",
+      description: "Laser printers are known for their fast print speeds and high-quality text prints. These printers use a laser to fuse toner onto the paper, creating sharp, crisp text ideal for documents and business materials.",
+      image: "assets/img/printer.png",
+      price: "1254",
+      reviewRatings: {
+        rating: "4.8",
+        reviews: [{
+          title: "Terrific purchase",
+          summary: "Its value for money for the price i paid for it. Suits my needs. Print quality is good for both monochrome and colour printing on A4 GSM 70 paper. Haven't tried printing pics yet so can't say how it'd be. Setup was easy. Just went through the manual and also the video."
+        }, {
+          title: "Terrific purchase",
+          summary: "Its value for money for the price i paid for it. Suits my needs. Print quality is good for both monochrome and colour printing on A4 GSM 70 paper. Haven't tried printing pics yet so can't say how it'd be. Setup was easy. Just went through the manual and also the video."
+        }]
+      },
       productCategory: ""
     },
     {
       id: "6",
-      title: "Trainings",
-      description: "Our services extend to providing training and online courses focused on various aspects of development.",
-      image: "assets/img/bulb.png",
+      title: "Computer Accessories",
+      description: "Laser printers are known for their fast print speeds and high-quality text prints. These printers use a laser to fuse toner onto the paper, creating sharp, crisp text ideal for documents and business materials.",
+      image: "assets/img/printer.png",
+      price: "1254",
+      reviewRatings: {
+        rating: "4.8",
+        reviews: [{
+          title: "Terrific purchase",
+          summary: "Its value for money for the price i paid for it. Suits my needs. Print quality is good for both monochrome and colour printing on A4 GSM 70 paper. Haven't tried printing pics yet so can't say how it'd be. Setup was easy. Just went through the manual and also the video."
+        }, {
+          title: "Terrific purchase",
+          summary: "Its value for money for the price i paid for it. Suits my needs. Print quality is good for both monochrome and colour printing on A4 GSM 70 paper. Haven't tried printing pics yet so can't say how it'd be. Setup was easy. Just went through the manual and also the video."
+        }]
+      },
       productCategory: ""
-    }
+    },
   ];
-  currentService?: Product;
+  currentProduct?: Product;
   currentIndex = -1;
+  sortKey: string = 'title';
+  sortValue: number = -1;
   title = '';
 
   constructor(private productService: ProductService) { }
@@ -121,12 +255,12 @@ export class ProductListComponent implements OnInit {
 
   refreshList(): void {
     this.retrieveProducts();
-    this.currentService = undefined;
+    this.currentProduct = undefined;
     this.currentIndex = -1;
   }
 
   setActiveProduct(product: Product, index: number): void {
-    this.currentService = product;
+    this.currentProduct = product;
     this.currentIndex = index;
   }
 
