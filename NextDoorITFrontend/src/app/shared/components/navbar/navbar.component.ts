@@ -31,6 +31,9 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkLoggedIn();
+    this.authService.getEmitter().subscribe((status) => {
+      this.isLogin = status;
+    });
   }
 
   checkLoggedIn() {
@@ -50,22 +53,24 @@ export class NavbarComponent implements OnInit {
   }
 
   handleLogoutAction() {
-    this.authService.logout().subscribe((response: any) => {
-      this.ngxService.stop();
-      this.localStorageService.removeItem('isLoggedIn');
-      this.isLogin = false;
-      this.responseMessage = response?.message;
-      this.snackbarService.openSnackBar(this.responseMessage, "");
-      this.router.navigate(['/']);
-    }, (error) => {
-      this.ngxService.stop();
-      if (error.error?.message) {
-        this.responseMessage = error.error?.message;
-      }
-      else {
-        this.responseMessage = GlobalConstants.genericError;
-      }
-      this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
-    })
+    // this.authService.logout().subscribe((response: any) => {
+    //   this.ngxService.stop();
+    this.localStorageService.removeItem('isLoggedIn');
+    this.localStorageService.removeItem('JWT');
+    this.authService.setLoginStatus(false);
+    this.router.navigate(['/']);
+    //   this.responseMessage = response?.message;
+    //   this.snackbarService.openSnackBar(this.responseMessage, "");
+    //   this.router.navigate(['/']);
+    // }, (error) => {
+    //   this.ngxService.stop();
+    //   if (error.error?.message) {
+    //     this.responseMessage = error.error?.message;
+    //   }
+    //   else {
+    //     this.responseMessage = GlobalConstants.genericError;
+    //   }
+    //   this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
+    // })
   }
 }

@@ -1,11 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
+
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  @Output() fireIsLoggedIn: EventEmitter<boolean> = new EventEmitter<boolean>();
   url = environment.apiUrl;
 
   constructor(private httpClient: HttpClient) { }
@@ -29,5 +31,13 @@ export class AuthService {
       "/user/logout", {
       headers: new HttpHeaders().set('Content-Type', 'application/json')
     })
+  }
+
+  setLoginStatus(status: boolean) {
+    this.fireIsLoggedIn.emit(status);
+  }
+
+  getEmitter() {
+    return this.fireIsLoggedIn;
   }
 }

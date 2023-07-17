@@ -1,5 +1,11 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+
 import { ServiceCategory } from 'src/app/models/serviceCategory.model';
+import { ServicesService } from 'src/app/services/service/services.service';
+import { SnackbarService } from 'src/app/services/snackbar.service';
+import { GlobalConstants } from 'src/app/services/global-constants';
 
 @Component({
   selector: 'app-service-category',
@@ -12,42 +18,66 @@ export class ServiceCategoryComponent implements OnInit {
   serviceCategory?: ServiceCategory[] = [
     {
       id: "1",
-      name: "Computer Repair",
+      categoryName: "Computer Repair",
       description: "Our website offers a convenient online platform for individuals looking to purchase hardware parts.",
       image: "assets/img/bulb.png",
     },
     {
       id: "2",
-      name: "LAN installation",
+      categoryName: "LAN installation",
       description: "Our website offers a convenient online platform for individuals looking to purchase hardware parts.",
       image: "assets/img/bulb.png",
     },
     {
       id: "3",
-      name: "Software installation",
+      categoryName: "Software installation",
       description: "Our website offers a convenient online platform for individuals looking to purchase hardware parts.",
       image: "assets/img/bulb.png",
     },
     {
       id: "4",
-      name: "Website",
+      categoryName: "Website",
       description: "Our website offers a convenient online platform for individuals looking to purchase hardware parts.",
       image: "assets/img/bulb.png",
     },
     {
       id: "5",
-      name: "App development",
+      categoryName: "App development",
       description: "Our website offers a convenient online platform for individuals looking to purchase hardware parts.",
       image: "assets/img/bulb.png",
     }
   ];
+  responseMessage: any;
 
-  constructor() { }
+  constructor(
+    private categoryService: ServicesService,
+    private snackbarService: SnackbarService,
+    private ngxService: NgxUiLoaderService,
+  ) { }
 
   ngOnInit(): void {
+    this.fetchCategories();
   }
 
-  onCategoryChange(item: any) {
+  fetchCategories(): void {
+    this.categoryService.getAllCategories().subscribe((response: any) => {
+      this.ngxService.stop();
+      this.serviceCategory = response.data;
+    }, (error) => {
+      this.ngxService.stop();
+      if (error.error?.message) {
+        this.responseMessage = error.error?.message;
+        this.snackbarService.openSnackBar(this.responseMessage, "");
+      }
+      else {
+        this.responseMessage = GlobalConstants.genericError;
+      }
+      this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
+    })
+  }
+
+
+  onCategoryChange(item: any): void {
     this.categoryEvent.emit(item?.id);
   }
 
