@@ -1,6 +1,6 @@
 export class ServiceCategory {
   id?: string;
-  name?: string;
+  categoryName?: string;
   description?: string;
   image?: string;
 }
