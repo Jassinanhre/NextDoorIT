@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 
-import { GlobalConstants } from 'src/app/services/global-constants';
+import { GlobalConstants } from 'src/app/global-constants';
 import { ServicesService } from 'src/app/services/service/services.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 

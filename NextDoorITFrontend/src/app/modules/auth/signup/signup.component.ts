@@ -4,8 +4,8 @@ import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dial
 
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 
-import { AuthService } from 'src/app/services/auth.service';
-import { GlobalConstants } from 'src/app/services/global-constants';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { GlobalConstants } from 'src/app/global-constants';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { LoginComponent } from '../login/login.component';
 
