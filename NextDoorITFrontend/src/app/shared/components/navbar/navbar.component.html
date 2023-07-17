@@ -5,12 +5,14 @@
   <ul>
     <li>
       <a routerLink="/product/list">Products</a>
-      <a routerLink="/service/list">Services</a>
-      <a routerLink="/career">Training</a>
-      <!-- <a routerLink="/aboutUs">About Us</a>
-      <a routerLink="/contactUs">Contact Us</a> -->
-      <a (click)="handleLoginAction()">Login</a>
-      <a (click)="handleSignupAction()">Sign Up</a>
+      <a *ngIf="isLogin" routerLink="/service/list">Services</a>
+      <a *ngIf="isLogin" routerLink="/career">Training</a>
+      <a routerLink="/career">Careers</a>
+      <a routerLink="/aboutUs">About Us</a>
+      <a routerLink="/contactUs">Contact Us</a>
+      <a *ngIf="!isLogin" (click)="handleLoginAction()">Login</a>
+      <a *ngIf="!isLogin" (click)="handleSignupAction()">Sign Up</a>
+      <a *ngIf="isLogin" (click)="handleLogoutAction()">Log out</a>
     </li>
   </ul>
 

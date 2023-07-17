@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { AccordionAnchorDirective, AccordionLinkDirective, AccordionDirective } from './accordion';
 
@@ -12,6 +13,7 @@ import { SearchComponent } from './search/search.component';
 
 @NgModule({
   imports: [
+    CommonModule,
     MaterialModule,
     AppRoutingModule
   ],

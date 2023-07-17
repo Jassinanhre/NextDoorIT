@@ -3,10 +3,21 @@
     <div class="sorted">
       <p>Sort By</p>
       <span>
-        <a>Popularity</a>
-        <a>Price -- High to Low</a>
-        <a>Price -- Low to High</a>
-        <a>Newest First</a>
+        <a>Popularity<mat-icon>{{sortValue === 1 ? 'vertical_align_bottom' : 'vertical_align_top'}}</mat-icon></a>
+        <a [matTooltip]="sortValue === 1 ? 'Low to High' : 'High to Low'">Price
+          <mat-icon>
+            {{sortValue === 1 ?
+            'vertical_align_bottom' :
+            'vertical_align_top'}}
+          </mat-icon>
+        </a>
+        <a [matTooltip]="sortValue === 1 ? 'Aa - Zz' : 'Zz - Aa'">Title
+          <mat-icon>
+            {{sortValue === -1 ?
+            'vertical_align_bottom' :
+            'vertical_align_top'}}
+          </mat-icon>
+        </a>
       </span>
     </div>
     <div class="filter-left">
@@ -15,7 +26,6 @@
       </div>
       <app-product-category (categoryEvent)="filterByCategory($event)"></app-product-category>
     </div>
-
   </div>
 
 
@@ -25,47 +35,13 @@
         (click)="setActiveProduct(product, i)">
         <mat-card class="service-matcard">
           <mat-card-content routerLink="/product/{{ product.id }}">
-            <!-- <div class="card1 a">
-              <img src="{{product.image}}" />
-              <h2>{{product.title}} </h2>
-              <p>{{product.description}}</p>
-            </div> -->
             <div class="card 1 product-card">
               <div class="product-image">
-                <img src="../../../../assets/img/printer.png" />
+                <img src={{product.image}} />
               </div>
-              <h2>Computer Accessories</h2>
-              <p>Laser printers are known for their fast print speeds and high-quality text prints. These printers use a
-                laser to fuse toner onto the paper, creating sharp, crisp text ideal for documents and business
-                materials.</p>
-              <h3 class="price-h2"><span>Price:</span> $1254</h3>
-              <div class="customer-review">
-                <h2>Ratings & Reviews:</h2>
-                <p>4.8 <span>★</span></p>
-                <div class="rev-content">
-                  <div class="con-rev1">
-                    <h2>Terrific purchase</h2>
-                    <p>Its value for money for the price i paid for it. Suits my needs. Print quality is good for both
-                      monochrome and colour printing on A4 GSM 70 paper. Haven't tried printing pics yet so can't say
-                      how
-                      it'd be.
-                      Setup was easy. Just went through the manual and also the video.</p>
-                  </div>
-                  <div class="con-rev1 brdr-top">
-                    <h2>Terrific purchase</h2>
-                    <p>Its value for money for the price i paid for it. Suits my needs. Print quality is good for both
-                      monochrome and colour printing on A4 GSM 70 paper. Haven't tried printing pics yet so can't say
-                      how
-                      it'd be.
-                      Setup was easy. Just went through the manual and also the video.</p>
-                  </div>
-
-                </div>
-
-              </div>
-              <div class="cart-dv">
-                <button mat-stroked-button color="primary">Addd to Cart</button>
-              </div>
+              <h2>{{product.title}}</h2>
+              <p>{{product.description}}</p>
+              <h3 class="price-h2"><span>Price:</span> ${{product.price}}</h3>
             </div>
           </mat-card-content>
         </mat-card>

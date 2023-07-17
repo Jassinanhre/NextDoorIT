@@ -4,9 +4,11 @@ import { Router } from '@angular/router';
 import { MatDialogRef } from '@angular/material/dialog';
 
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { AuthService } from 'src/app/services/auth.service';
-import { GlobalConstants } from 'src/app/services/global-constants';
+
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { GlobalConstants } from 'src/app/global-constants';
 import { SnackbarService } from 'src/app/services/snackbar.service';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 
 @Component({
@@ -25,8 +27,9 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private snackbarService: SnackbarService,
+    private localStorageService: LocalStorageService,
     public dialogRef: MatDialogRef<LoginComponent>,
-    private ngxService: NgxUiLoaderService
+    private ngxService: NgxUiLoaderService,
   ) { }
 
   ngOnInit(): void {
@@ -43,12 +46,14 @@ export class LoginComponent implements OnInit {
       email: formData.email,
       password: formData.password,
     }
-
-    this.authService.signup(data).subscribe((response: any) => {
+    this.authService.login(data).subscribe((response: any) => {
       this.ngxService.stop();
+      this.localStorageService.setItem('isLoggedIn', true);
+      this.localStorageService.setItem('JWT', response.data)
       this.dialogRef.close();
       this.responseMessage = response?.message;
       this.snackbarService.openSnackBar(this.responseMessage, "");
+      this.authService.setLoginStatus(true);
       this.router.navigate(['/home']);
     }, (error) => {
       this.ngxService.stop();
