@@ -47,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues()).and().csrf().disable().authorizeRequests().antMatchers("/user/login", "/user/signup", "/user/forgotPassword").permitAll().anyRequest().authenticated().and().exceptionHandling().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues()).and().csrf().disable().authorizeRequests().antMatchers("/user/login", "/user/signup", "/user/forgotPassword", "/service/save", "/service/*", "/categories/allCategories","/categories/save").permitAll().anyRequest().authenticated().and().exceptionHandling().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore((Filter) jwtFilter, (Class<? extends Filter>) UsernamePasswordAuthenticationFilter.class);
-        }
+    }
 }
