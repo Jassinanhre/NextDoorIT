@@ -2,8 +2,10 @@ package com.inn.nextDoorIt.serviceImpl;
 
 import com.inn.nextDoorIt.POJO.Category;
 import com.inn.nextDoorIt.dao.CategoriesDao;
+import com.inn.nextDoorIt.exception.ApplicationException;
 import com.inn.nextDoorIt.service.CategoriesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,8 +22,7 @@ public class CategoriesServiceImpl implements CategoriesService {
         if (!Objects.isNull(categoriesFromDb) && categoriesFromDb.size() > 0) {
             return categoriesFromDb;
         } else {
-            throw new RuntimeException("NO CATEGORIES FOUND IN DATABASE ");
-            // custome exception handeling code will be here
+            throw new ApplicationException("No data found for categories", HttpStatus.NOT_FOUND);
         }
     }
 
@@ -31,6 +32,6 @@ public class CategoriesServiceImpl implements CategoriesService {
         if (!Objects.isNull(savedResponse)) {
             return savedResponse;
         }
-        throw new RuntimeException("CATEGORY NOT SAVED IN DATABASE");
+        throw new ApplicationException("Error while saving category request", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
