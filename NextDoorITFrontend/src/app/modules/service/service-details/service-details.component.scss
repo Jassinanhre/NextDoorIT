@@ -370,3 +370,76 @@ a {
 .service2 .mat-grid-tile .mat-figure {
   display: block !important;
 }
+
+.card1.a.ser-detail-card {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #cecece;
+  margin-bottom: 10px;
+}
+
+.review-left {
+  width: 10%;
+}
+
+.review-right {
+  width: 90%;
+}
+
+.review-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.review-left span {
+  display: flex;
+  height: 50px;
+  width: 50px;
+  border: 1px solid #cecece;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  color: #7b1fa2;
+}
+
+.review-right h2 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 20px;
+  align-items: center;
+}
+
+.review-right h2 span {
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.review-dv {
+  background: #f2f5f7;
+  padding: 15px 0;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.review-dv p {
+  margin-bottom: 5px;
+}
+
+.r_rating i.fa {
+  font-size: 18px;
+  margin: 2px;
+  color: #dbdbdb;
+}
+
+.r_rating i.fa.green {
+  color: #61cb61;
+}
+
+.status-edit {
+  margin-top: 20px;
+  padding-right: 20px;
+}

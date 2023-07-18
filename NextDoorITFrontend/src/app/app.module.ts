@@ -32,6 +32,8 @@ import { ProductCategoryComponent } from './modules/products/product-category/pr
 import { ProductDetailsComponent } from './modules/products/product-details/product-details.component';
 import { ProductListComponent } from './modules/products/product-list/product-list.component';
 
+
+
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   text: "Loading...",
   textColor: "#FFFFFF",
