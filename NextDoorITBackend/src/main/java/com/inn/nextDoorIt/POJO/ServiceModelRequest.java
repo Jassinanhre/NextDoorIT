@@ -9,4 +9,6 @@ public class ServiceModelRequest {
     private int categoryId;
     private String userOverallRating;
     private String imageId;
+    private long price;
+    private long duration;
 }

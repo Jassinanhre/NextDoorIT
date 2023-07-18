@@ -28,10 +28,17 @@ public class CategoriesServiceImpl implements CategoriesService {
 
     @Override
     public Category saveCategoryInDb(Category category) {
+        validateCategoryRequest(category);
         Category savedResponse = categoriesDao.save(category);
         if (!Objects.isNull(savedResponse)) {
             return savedResponse;
         }
         throw new ApplicationException("Error while saving category request", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    private void validateCategoryRequest(Category category) {
+        if (category.getCategoryName().isBlank() || category.getDescription().isBlank()) {
+            throw new ApplicationException("Invalid category request", HttpStatus.BAD_REQUEST);
+        }
     }
 }
