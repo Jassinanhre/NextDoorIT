@@ -30,7 +30,7 @@
 
 
   <div class="service2">
-    <mat-grid-list cols="3" rowHeight="950px">
+    <mat-grid-list cols="3" rowHeight="500px">
       <mat-grid-tile *ngFor="let product of products; let i = index" [class.active]="i == currentIndex"
         (click)="setActiveProduct(product, i)">
         <mat-card class="service-matcard">

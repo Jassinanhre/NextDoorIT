@@ -282,16 +282,24 @@ a {
 
 
 /************Service css***********/
-
+.serv1-left {
+  min-height: 320px;
+  background: url("../../../assets/img/service.png");
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 
 .serv1-left h2 {
   font-weight: 500;
-  color: #000;
+  color: #fff;
   font-size: 30px;
 }
 
 .serv1-left p {
   font-size: 18px;
+  color: #fff;
 }
 
 .service2 {
