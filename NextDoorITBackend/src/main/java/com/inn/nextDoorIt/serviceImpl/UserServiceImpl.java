@@ -44,33 +44,32 @@ public class UserServiceImpl implements UserService {
     @Override
     public String login(Map<String, String> requestMap) {
         log.info("LOGIN REQUEST RECEIVED");
-            if (validateLoginRequest(requestMap)) {
-                User user = userDao.findByEmailAndPassword(requestMap.get("email"), requestMap.get("password"));
-                if (Objects.isNull(user)) {
-                    throw new ApplicationException("User with given credentials does not exists", HttpStatus.NOT_FOUND);
-                } else {
-                    // WRITE TOKEN HERE TO GENERATE TOKEN AND RETURN IT AFTER SUCCESSFUL LOGIN
-                    String accessToken = jwtUtil.generateToken(requestMap.get("username"), "user");
-                    return accessToken;
-                }
+        if (validateLoginRequest(requestMap)) {
+            User user = userDao.findByEmailAndPassword(requestMap.get("email"), requestMap.get("password"));
+            if (Objects.isNull(user)) {
+                throw new ApplicationException("User with given credentials does not exists", HttpStatus.NOT_FOUND);
             } else {
-                throw new ApplicationException("Invalid login request", HttpStatus.BAD_REQUEST);
+                // WRITE TOKEN HERE TO GENERATE TOKEN AND RETURN IT AFTER SUCCESSFUL LOGIN
+                String accessToken = jwtUtil.generateToken(requestMap.get("username"), "user");
+                return accessToken;
             }
+        } else {
+            throw new ApplicationException("Invalid login request", HttpStatus.BAD_REQUEST);
+        }
 
 
     }
 
 
     private boolean validateSignUpMap(Map<String, String> requestMap) {
-        if (requestMap.containsKey("name") && requestMap.containsKey("contactNumber")
-                && requestMap.containsKey("email") && requestMap.containsKey("password")) {
+        if ((requestMap.containsKey("name") && requestMap.containsKey("contactNumber") && requestMap.containsKey("email") && requestMap.containsKey("password")) && (!((String) requestMap.get("name")).isBlank() && !((String) requestMap.get("contactNumber")).isBlank() && !((String) requestMap.get("email")).isBlank() && !((String) requestMap.get("password")).isBlank())) {
             return true;
         }
         return false;
     }
 
     private boolean validateLoginRequest(Map<String, String> loginRequest) {
-        return loginRequest.containsKey("email") && loginRequest.containsKey("password");
+        return loginRequest.containsKey("email") && loginRequest.containsKey("password") && !((String) loginRequest.get("email")).isBlank() && !((String) loginRequest.get("password")).isBlank();
     }
 
     private User getUserFromMap(Map<String, String> requestMap) {

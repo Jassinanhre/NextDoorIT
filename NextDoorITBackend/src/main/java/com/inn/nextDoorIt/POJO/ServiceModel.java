@@ -27,4 +27,6 @@ public class ServiceModel {
     private Category category;
     private String userOverallRating;
     private String imageId;
+    private long price;
+    private long duration;
 }
