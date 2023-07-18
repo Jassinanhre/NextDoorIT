@@ -5,8 +5,11 @@ import com.inn.nextDoorIt.POJO.ServiceModel;
 import com.inn.nextDoorIt.POJO.ServiceModelRequest;
 import com.inn.nextDoorIt.dao.CategoriesDao;
 import com.inn.nextDoorIt.dao.ServicesDao;
+import com.inn.nextDoorIt.exception.ApplicationException;
 import com.inn.nextDoorIt.service.ServicesService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +17,7 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 
 @Service
+@Slf4j
 public class ServicesServiceImpl implements ServicesService {
     @Autowired
     private ServicesDao servicesDao;
@@ -27,7 +31,7 @@ public class ServicesServiceImpl implements ServicesService {
         if (!Objects.isNull(servicesFromDb) && servicesFromDb.size() > 0) {
             return servicesFromDb;
         } else {
-            throw new RuntimeException("No service is found for the given category name");
+            throw new ApplicationException("No service is found for the given category id", HttpStatus.NOT_FOUND);
         }
     }
 
@@ -37,14 +41,14 @@ public class ServicesServiceImpl implements ServicesService {
         try {
             category = categoriesDao.findById(serviceModel.getCategoryId()).get();
         } catch (NoSuchElementException e) {
-            e.printStackTrace();
+            log.error("NO CATEGORY FOUND FOR REQUESTED CATEGORY ID");
         }
         ServiceModel serviceModelObject = getServiceModelObject(serviceModel, category);
         ServiceModel savedResponse = servicesDao.save(serviceModelObject);
         if (savedResponse != null) {
             return savedResponse;
         } else {
-            throw new RuntimeException("SERVICE IS NOT SAVED");
+            throw new ApplicationException("Error saving service request : ", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -54,7 +58,7 @@ public class ServicesServiceImpl implements ServicesService {
         if (!Objects.isNull(servicesFromDatabase) && servicesFromDatabase.size() > 0) {
             return servicesFromDatabase;
         } else {
-            throw new RuntimeException("NO SERVICES FOUND");
+            throw new ApplicationException("No data found", HttpStatus.NOT_FOUND);
         }
     }
 

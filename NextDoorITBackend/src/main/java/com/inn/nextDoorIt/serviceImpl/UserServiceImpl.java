@@ -3,9 +3,11 @@ package com.inn.nextDoorIt.serviceImpl;
 import com.inn.nextDoorIt.JWT.JwtUtil;
 import com.inn.nextDoorIt.POJO.User;
 import com.inn.nextDoorIt.dao.UserDao;
+import com.inn.nextDoorIt.exception.ApplicationException;
 import com.inn.nextDoorIt.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -24,42 +26,37 @@ public class UserServiceImpl implements UserService {
     @Override
     public User signUp(Map<String, String> requestMap) {
         log.info("Inside SignUp{}", requestMap);
-        try {
-            if (validateSignUpMap(requestMap)) {
-                User user = userDao.findByEmailId(requestMap.get("email"));
-                if (Objects.isNull(user)) {
-                    User savedUser = userDao.save(getUserFromMap(requestMap));// save the data into the database
-                    return savedUser;
-                } else {
-                    throw new RuntimeException("USER ALREADY EXISTS");
-                }
+
+        if (validateSignUpMap(requestMap)) {
+            User user = userDao.findByEmailId(requestMap.get("email"));
+            if (Objects.isNull(user)) {
+                User savedUser = userDao.save(getUserFromMap(requestMap));// save the data into the database
+                return savedUser;
             } else {
-                throw new RuntimeException("INVALID SIGNUP FIELDS");
+                throw new ApplicationException("The user is already registered", HttpStatus.BAD_REQUEST);
             }
-        } catch (RuntimeException ex) {
-            throw new RuntimeException("SOMETHING WENT WRONG");
+        } else {
+            throw new ApplicationException("The signup request contains invalid data", HttpStatus.BAD_REQUEST);
         }
     }
+
 
     @Override
     public String login(Map<String, String> requestMap) {
         log.info("LOGIN REQUEST RECEIVED");
-        try {
             if (validateLoginRequest(requestMap)) {
                 User user = userDao.findByEmailAndPassword(requestMap.get("email"), requestMap.get("password"));
                 if (Objects.isNull(user)) {
-                    throw new RuntimeException("NO USER FOUND");
+                    throw new ApplicationException("User with given credentials does not exists", HttpStatus.NOT_FOUND);
                 } else {
                     // WRITE TOKEN HERE TO GENERATE TOKEN AND RETURN IT AFTER SUCCESSFUL LOGIN
                     String accessToken = jwtUtil.generateToken(requestMap.get("username"), "user");
                     return accessToken;
                 }
             } else {
-                throw new RuntimeException("NOT A VALID USER");
+                throw new ApplicationException("Invalid login request", HttpStatus.BAD_REQUEST);
             }
-        } catch (RuntimeException ex) {
-            throw new RuntimeException("something went wrong");
-        }
+
 
     }
 
