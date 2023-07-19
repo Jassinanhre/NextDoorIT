@@ -36,6 +36,9 @@ import { TrainingCategoryComponent } from './modules/training/training-category/
 import { TrainingDetailsComponent } from './modules/training/training-details/training-details.component';
 import { TrainingListComponent } from './modules/training/training-list/training-list.component';
 import { TrainingRequestComponent } from './modules/training/training-request/training-request.component';
+import { CartComponent } from './modules/cart/cart.component';
+import { OrderComponent } from './modules/order/order.component';
+import { PaymentComponent } from './modules/payment/payment.component';
 
 
 
@@ -76,11 +79,16 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     TrainingDetailsComponent,
     TrainingCategoryComponent,
     TrainingRequestComponent,
+    // Cart Components
+    CartComponent,
+    // Order Components
+    OrderComponent,
+    // Payment Components
+    PaymentComponent,
     // Common Components
     AboutUsComponent,
     ContactUsComponent,
     CareerComponent,
-
   ],
   imports: [
     SharedModule,
