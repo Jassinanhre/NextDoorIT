@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
                 throw new ApplicationException("User with given credentials does not exists", HttpStatus.NOT_FOUND);
             } else {
                 // WRITE TOKEN HERE TO GENERATE TOKEN AND RETURN IT AFTER SUCCESSFUL LOGIN
-                String accessToken = jwtUtil.generateToken(requestMap.get("username"), "user");
+                String accessToken = jwtUtil.generateToken(requestMap.get("email"), "user");
                 return accessToken;
             }
         } else {

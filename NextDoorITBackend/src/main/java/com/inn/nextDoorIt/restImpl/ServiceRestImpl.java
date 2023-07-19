@@ -1,11 +1,9 @@
 package com.inn.nextDoorIt.restImpl;
 
-import com.inn.nextDoorIt.POJO.ServiceModel;
 import com.inn.nextDoorIt.POJO.ServiceModelRequest;
-import com.inn.nextDoorIt.dao.ServicesDao;
+import com.inn.nextDoorIt.POJO.ServiceRequestRecord;
 import com.inn.nextDoorIt.rest.ServicesRest;
 import com.inn.nextDoorIt.service.ServicesService;
-import com.inn.nextDoorIt.serviceImpl.ServicesServiceImpl;
 import com.inn.nextDoorIt.utils.ApplicationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,7 +32,12 @@ public class ServiceRestImpl implements ServicesRest {
     }
 
     @Override
-    public ResponseEntity<Object> getServiceDetails() {
-        return ResponseEntity.ok(new ApplicationResponse(service.getServiceDetails(), HttpStatus.OK.value()));
+    public ResponseEntity<Object> getServiceDetails(int serviceId) {
+        return ResponseEntity.ok(new ApplicationResponse(service.getServiceDetails(serviceId), HttpStatus.OK.value()));
+    }
+
+    @Override
+    public ResponseEntity<Object> requestService(ServiceRequestRecord requestRecord) {
+        return ResponseEntity.ok(new ApplicationResponse(service.saveRequestedServiceRecord(requestRecord), HttpStatus.OK.value()));
     }
 }
