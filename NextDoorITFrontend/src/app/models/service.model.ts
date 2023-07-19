@@ -1,6 +1,6 @@
 export class Service {
   id?: string;
-  title?: string;
+  serviceName?: string;
   description?: string;
   image?: string;
   category?: string;

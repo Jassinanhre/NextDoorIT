@@ -16,7 +16,11 @@ export class ServicesService {
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<Service[]> {
-    return this.http.get<Service[]>(this.url);
+    return this.http.get<Service[]>(`${this.url}/all`);
+  }
+
+  getAllByCategory(categoryId: string): Observable<Service[]> {
+    return this.http.get<Service[]>(`${this.url}/category?categoryId=${categoryId}`);
   }
 
   get(id: any): Observable<Service> {

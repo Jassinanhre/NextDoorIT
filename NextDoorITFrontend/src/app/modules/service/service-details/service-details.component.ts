@@ -11,7 +11,7 @@ import { ServicesService } from 'src/app/services/service/services.service';
 export class ServiceDetailsComponent implements OnInit {
   currentService: Service = {
     id: "3",
-    title: "Software Development",
+    serviceName: "Software Development",
     description: "Whether it's web development, software development, or any other development-related inquiries, we are here to assist you.",
     image: "assets/img/bulb.png",
     category: ""
