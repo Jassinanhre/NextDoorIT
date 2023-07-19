@@ -34,8 +34,8 @@ export class ServiceCategoryComponent implements OnInit {
       this.serviceCategory = response.data;
     }, (error) => {
       this.ngxService.stop();
-      if (error.error?.message) {
-        this.responseMessage = error.error?.message;
+      if (error.error?.error) {
+        this.responseMessage = error.error?.error
         this.snackbarService.openSnackBar(this.responseMessage, "");
       }
       else {

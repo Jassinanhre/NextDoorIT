@@ -57,8 +57,8 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/home']);
     }, (error) => {
       this.ngxService.stop();
-      if (error.error?.message) {
-        this.responseMessage = error.error?.message;
+      if (error.error?.error) {
+        this.responseMessage = error.error?.error
       }
       else {
         this.responseMessage = GlobalConstants.genericError;

@@ -24,26 +24,10 @@ export class ServicesService {
   }
 
   get(id: any): Observable<Service> {
-    return this.http.get(`${this.url}/${id}`);
+    return this.http.get(`${this.url}/serviceDetails?serviceId=${id}`);
   }
 
   create(data: any): Observable<any> {
-    return this.http.post(this.url, data);
-  }
-
-  update(id: any, data: any): Observable<any> {
-    return this.http.put(`${this.url}/${id}`, data);
-  }
-
-  delete(id: any): Observable<any> {
-    return this.http.delete(`${this.url}/${id}`);
-  }
-
-  deleteAll(): Observable<any> {
-    return this.http.delete(this.url);
-  }
-
-  findByTitle(title: any): Observable<Service[]> {
-    return this.http.get<Service[]>(`${this.url}?title=${title}`);
+    return this.http.post(`${this.url}/requestService`, data);
   }
 }

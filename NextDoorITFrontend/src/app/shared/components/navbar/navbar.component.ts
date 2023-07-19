@@ -63,8 +63,8 @@ export class NavbarComponent implements OnInit {
     //   this.router.navigate(['/']);
     // }, (error) => {
     //   this.ngxService.stop();
-    //   if (error.error?.message) {
-    //     this.responseMessage = error.error?.message;
+    //   if (error.error?.error) {
+    //     this.responseMessage = error.error
     //   }
     //   else {
     //     this.responseMessage = GlobalConstants.genericError;

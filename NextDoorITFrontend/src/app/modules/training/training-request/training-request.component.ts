@@ -53,8 +53,8 @@ export class TrainingRequestComponent implements OnInit {
       this.router.navigate(['/training/list']);
     }, (error) => {
       this.ngxService.stop();
-      if (error.error?.message) {
-        this.responseMessage = error.error?.message;
+      if (error.error?.error) {
+        this.responseMessage = error.error?.error
       }
       else {
         this.responseMessage = GlobalConstants.genericError;

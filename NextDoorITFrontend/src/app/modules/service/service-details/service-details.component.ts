@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Service } from 'src/app/models/service.model';
 import { ServicesService } from 'src/app/services/service/services.service';
 
@@ -21,7 +21,7 @@ export class ServiceDetailsComponent implements OnInit {
   constructor(
     private servicesService: ServicesService,
     private route: ActivatedRoute,
-    private router: Router) { }
+  ) { }
 
   ngOnInit(): void {
     this.message = '';
@@ -39,29 +39,4 @@ export class ServiceDetailsComponent implements OnInit {
           console.log(error);
         });
   }
-
-  updateService(): void {
-    this.servicesService.update(this.currentService.id, this.currentService)
-      .subscribe(
-        response => {
-          console.log(response);
-          this.message = response.message;
-        },
-        error => {
-          console.log(error);
-        });
-  }
-
-  deleteService(): void {
-    this.servicesService.delete(this.currentService.id)
-      .subscribe(
-        response => {
-          console.log(response);
-          this.router.navigate(['/service']);
-        },
-        error => {
-          console.log(error);
-        });
-  }
-
 }
