@@ -32,4 +32,9 @@ public class ServiceRestImpl implements ServicesRest {
     public ResponseEntity<Object> allServices() {
         return ResponseEntity.ok(new ApplicationResponse(service.getAllServices(), HttpStatus.OK.value()));
     }
+
+    @Override
+    public ResponseEntity<Object> getServiceDetails() {
+        return ResponseEntity.ok(new ApplicationResponse(service.getServiceDetails(), HttpStatus.OK.value()));
+    }
 }
