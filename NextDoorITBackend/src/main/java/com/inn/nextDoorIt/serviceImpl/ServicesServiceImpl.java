@@ -1,10 +1,11 @@
 package com.inn.nextDoorIt.serviceImpl;
 
 import com.inn.nextDoorIt.POJO.Category;
-import com.inn.nextDoorIt.POJO.ServiceDetails;
 import com.inn.nextDoorIt.POJO.ServiceModel;
 import com.inn.nextDoorIt.POJO.ServiceModelRequest;
+import com.inn.nextDoorIt.POJO.ServiceRequestRecord;
 import com.inn.nextDoorIt.dao.CategoriesDao;
+import com.inn.nextDoorIt.dao.ServiceRequestRecordsDao;
 import com.inn.nextDoorIt.dao.ServicesDao;
 import com.inn.nextDoorIt.exception.ApplicationException;
 import com.inn.nextDoorIt.service.ServicesService;
@@ -16,7 +17,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -26,6 +26,9 @@ public class ServicesServiceImpl implements ServicesService {
 
     @Autowired
     private CategoriesDao categoriesDao;
+
+    @Autowired
+    private ServiceRequestRecordsDao requestRecordsDao;
 
     @Override
     public List<ServiceModel> getServices(int categoryId) {
@@ -68,20 +71,28 @@ public class ServicesServiceImpl implements ServicesService {
     }
 
     @Override
-    public List<ServiceDetails> getServiceDetails() {
-        List<ServiceModel> services = servicesDao.findAll();
-        if (!Objects.isNull(services) && services.size() > 0) {
-            List<ServiceDetails> serviceDetails = services.stream().map(serviceModel -> {
-                ServiceDetails details = new ServiceDetails();
-                details.setServiceName(serviceModel.getServiceName());
-                details.setDescription(serviceModel.getDescription());
-                details.setPrice(serviceModel.getPrice());
-                details.setDuration(serviceModel.getDuration());
-                return details;
-            }).collect(Collectors.toList());
-            return serviceDetails;
+    public ServiceModel getServiceDetails(int serviceId) {
+        ServiceModel service = servicesDao.findById(serviceId).get();
+        if (!Objects.isNull(service)) {
+            return service;
         } else {
             throw new ApplicationException("No data found for services in database", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @Override
+    public String saveRequestedServiceRecord(ServiceRequestRecord requestRecord) {
+        validateServiceRequestRecord(requestRecord);
+        ServiceRequestRecord savedRecord = requestRecordsDao.save(requestRecord);
+        if (savedRecord != null) {
+            return "Service request saved successfully";
+        }
+        throw new ApplicationException("Error requesting for service", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    private void validateServiceRequestRecord(ServiceRequestRecord serviceRequestRecord) {
+        if (serviceRequestRecord.getServiceName().isBlank() || serviceRequestRecord.getTrainingType().isBlank() || serviceRequestRecord.getUserQuery().isBlank() || serviceRequestRecord.getUserEmail().isBlank()) {
+            throw new ApplicationException("Invalid request for service request", HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -98,9 +109,7 @@ public class ServicesServiceImpl implements ServicesService {
     }
 
     private void validateServiceRequest(ServiceModelRequest serviceModelRequest) {
-        if (serviceModelRequest.getServiceName().isBlank() || serviceModelRequest.getDescription().isBlank() ||
-                Objects.isNull(serviceModelRequest.getCategoryId()) || serviceModelRequest.getImageId().isBlank() ||
-                Objects.isNull(serviceModelRequest.getDuration()) || Objects.isNull(serviceModelRequest.getPrice()))
+        if (serviceModelRequest.getServiceName().isBlank() || serviceModelRequest.getDescription().isBlank() || Objects.isNull(serviceModelRequest.getCategoryId()) || serviceModelRequest.getImageId().isBlank() || Objects.isNull(serviceModelRequest.getDuration()) || Objects.isNull(serviceModelRequest.getPrice()))
             throw new ApplicationException("Invalid Service Request", HttpStatus.BAD_REQUEST);
     }
 }

@@ -1,11 +1,9 @@
 package com.inn.nextDoorIt.rest;
 
 import com.inn.nextDoorIt.POJO.ServiceModelRequest;
+import com.inn.nextDoorIt.POJO.ServiceRequestRecord;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 
 @RequestMapping(path = "/service")
@@ -21,5 +19,8 @@ public interface ServicesRest {
     public ResponseEntity<Object> allServices();
 
     @GetMapping(path = "/serviceDetails")
-    public ResponseEntity<Object> getServiceDetails();
+    public ResponseEntity<Object> getServiceDetails(@RequestParam("serviceId") int serviceId);
+
+    @PostMapping(path = "/requestService")
+    public ResponseEntity<Object> requestService(@RequestBody ServiceRequestRecord requestRecord);
 }
