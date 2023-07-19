@@ -1,0 +1,46 @@
+<div class="service-form">
+  <h2>Have a Questions?</h2>
+  <form [formGroup]="requestForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" required>
+      <mat-error *ngIf="requestForm.controls.name.touched && requestForm.controls.name.invalid">
+        <span *ngIf="requestForm.controls.name.errors.required">This field is mandatory</span>
+        <span *ngIf="requestForm.controls.name.errors.pattern">This field is invalid</span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>address@yourmail.com</mat-label>
+      <input matInput formControlName="email" required>
+      <mat-error *ngIf="requestForm.controls.email.touched && requestForm.controls.email.invalid">
+        <span *ngIf="requestForm.controls.email.errors.required">This field is mandatory</span>
+        <span *ngIf="requestForm.controls.email.errors.pattern">This field is invalid</span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Training Type</mat-label>
+      <mat-select formControlName="category" required>
+        <mat-option value="Hardware">Hardware</mat-option>
+        <mat-option value="Trouble Shoot">Trouble Shoot</mat-option>
+        <mat-option value="Software Development">Software Development</mat-option>
+        <mat-option value="Training">Training</mat-option>
+        <mat-option value="Home Service">Home Service</mat-option>
+      </mat-select>
+      <mat-error *ngIf="requestForm.controls.category.touched && requestForm.controls.category.invalid">
+        <span *ngIf="requestForm.controls.category.errors.required">This field is mandatory</span>
+        <span *ngIf="requestForm.controls.category.errors.pattern">This field is invalid</span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Your Questions</mat-label>
+      <textarea matInput formControlName="query" required></textarea>
+      <mat-error *ngIf="requestForm.controls.query.touched && requestForm.controls.query.invalid">
+        <span *ngIf="requestForm.controls.query.errors.required">This field is mandatory</span>
+      </mat-error>
+    </mat-form-field>
+    <div class="submit-btn text-center">
+      <button mat-raised-button type="submit" [disabled]="!(requestForm.valid && requestForm.dirty)"
+        (click)="handleSubmit()">Submit</button>
+    </div>
+  </form>
+</div>

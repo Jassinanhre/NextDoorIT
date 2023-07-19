@@ -31,6 +31,11 @@ import { ProductComponent } from './modules/products/product.component';
 import { ProductCategoryComponent } from './modules/products/product-category/product-category.component';
 import { ProductDetailsComponent } from './modules/products/product-details/product-details.component';
 import { ProductListComponent } from './modules/products/product-list/product-list.component';
+import { TrainingComponent } from './modules/training/training.component';
+import { TrainingCategoryComponent } from './modules/training/training-category/training-category.component';
+import { TrainingDetailsComponent } from './modules/training/training-details/training-details.component';
+import { TrainingListComponent } from './modules/training/training-list/training-list.component';
+import { TrainingRequestComponent } from './modules/training/training-request/training-request.component';
 
 
 
@@ -65,6 +70,12 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     ProductListComponent,
     ProductDetailsComponent,
     ProductCategoryComponent,
+    // Training Components
+    TrainingComponent,
+    TrainingListComponent,
+    TrainingDetailsComponent,
+    TrainingCategoryComponent,
+    TrainingRequestComponent,
     // Common Components
     AboutUsComponent,
     ContactUsComponent,

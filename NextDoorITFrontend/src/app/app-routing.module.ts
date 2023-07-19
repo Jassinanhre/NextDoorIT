@@ -14,6 +14,9 @@ import { ServiceListComponent } from './modules/service/service-list/service-lis
 import { ProductComponent } from './modules/products/product.component';
 import { ProductListComponent } from './modules/products/product-list/product-list.component';
 import { ProductDetailsComponent } from './modules/products/product-details/product-details.component';
+import { TrainingComponent } from './modules/training/training.component';
+import { TrainingListComponent } from './modules/training/training-list/training-list.component';
+import { TrainingDetailsComponent } from './modules/training/training-details/training-details.component';
 
 const routes: Routes = [
   // otherwise redirect to Home Component
@@ -36,6 +39,16 @@ const routes: Routes = [
         children: [
           { path: 'list', component: ProductListComponent },
           { path: ':id', component: ProductDetailsComponent }
+        ]
+      }]
+  }, {
+    path: '', component: MainLayoutComponent,
+    children: [
+      {
+        path: 'training', component: TrainingComponent,
+        children: [
+          { path: 'list', component: TrainingListComponent },
+          { path: ':id', component: TrainingDetailsComponent }
         ]
       }]
   }, {
