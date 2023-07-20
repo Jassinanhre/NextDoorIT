@@ -1,33 +1,45 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Service } from 'src/app/models/service.model';
+import { LocalStorageService } from '../local-storage.service';
+
 import { environment } from 'src/environments/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class ServicesService {
   url = `${environment.apiUrl}/service`;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private localStorageService: LocalStorageService
+  ) { }
 
-  getAll(): Observable<Service[]> {
-    return this.http.get<Service[]>(`${this.url}/all`);
+  jwtToken: string = this.localStorageService.getItem('JWT')
+  requestOptions: any = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.jwtToken}`
+    })
   }
 
-  getAllByCategory(categoryId: string): Observable<Service[]> {
-    return this.http.get<Service[]>(`${this.url}/category?categoryId=${categoryId}`);
+  getAll() {
+    return this.http.get<Service[]>(`${this.url}/all`, this.requestOptions);
   }
 
-  get(id: any): Observable<Service> {
-    return this.http.get(`${this.url}/serviceDetails?serviceId=${id}`);
+  getAllByCategory(categoryId: string) {
+    return this.http.get<Service[]>(`${this.url}/category?categoryId=${categoryId}`, this.requestOptions);
   }
 
-  create(data: any): Observable<any> {
-    return this.http.post(`${this.url}/requestService`, data);
+  get(id: any) {
+    return this.http.get(`${this.url}/serviceDetails?serviceId=${id}`, this.requestOptions);
+  }
+
+  create(data: any) {
+    return this.http.post(`${this.url}/requestService`, data, this.requestOptions);
   }
 }

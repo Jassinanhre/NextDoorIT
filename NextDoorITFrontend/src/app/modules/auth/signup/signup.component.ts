@@ -59,8 +59,6 @@ export class SignupComponent implements OnInit {
     this.authService.signup(data).subscribe((response: any) => {
       this.ngxService.stop();
       this.dialogRef.close();
-      this.responseMessage = response?.message;
-      this.snackbarService.openSnackBar(this.responseMessage, "");
       const dialogConfig = new MatDialogConfig();
       dialogConfig.width = "550px";
       this.dialog.open(LoginComponent, dialogConfig);

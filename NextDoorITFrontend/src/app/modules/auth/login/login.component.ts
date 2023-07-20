@@ -51,8 +51,6 @@ export class LoginComponent implements OnInit {
       this.localStorageService.setItem('isLoggedIn', true);
       this.localStorageService.setItem('JWT', response.data)
       this.dialogRef.close();
-      this.responseMessage = response?.message;
-      this.snackbarService.openSnackBar(this.responseMessage, "");
       this.authService.setLoginStatus(true);
       this.router.navigate(['/home']);
     }, (error) => {

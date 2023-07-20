@@ -58,8 +58,6 @@ export class NavbarComponent implements OnInit {
     this.localStorageService.clear();
     this.authService.setLoginStatus(false);
     this.router.navigate(['/']);
-    //   this.responseMessage = response?.message;
-    //   this.snackbarService.openSnackBar(this.responseMessage, "");
     //   this.router.navigate(['/']);
     // }, (error) => {
     //   this.ngxService.stop();

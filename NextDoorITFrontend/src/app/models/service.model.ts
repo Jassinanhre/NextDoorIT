@@ -4,4 +4,6 @@ export class Service {
   description?: string;
   image?: string;
   category?: string;
+  duration?: string;
+  price?: string;
 }

@@ -48,8 +48,6 @@ export class TrainingRequestComponent implements OnInit {
 
     this.trainingService.create(data).subscribe((response: any) => {
       this.ngxService.stop();
-      this.responseMessage = response?.message;
-      this.snackbarService.openSnackBar(this.responseMessage, "");
       this.router.navigate(['/training/list']);
     }, (error) => {
       this.ngxService.stop();

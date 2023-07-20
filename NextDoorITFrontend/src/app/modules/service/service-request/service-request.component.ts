@@ -37,20 +37,24 @@ export class ServiceRequestComponent implements OnInit {
 
   handleSubmit() {
     const formData = this.requestForm.value;
-    console.log('Here service request form values are :', formData);
     this.ngxService.start();
     const data = {
-      name: formData.name,
-      email: formData.email,
-      category: formData.category,
-      query: formData.query,
+      serviceName: formData.name,
+      userEmail: formData.email,
+      trainingType: formData.category,
+      userQuery: formData.query,
     }
 
     this.servicesService.create(data).subscribe((response: any) => {
       this.ngxService.stop();
-      this.responseMessage = response?.message;
+      this.responseMessage = response?.data;
       this.snackbarService.openSnackBar(this.responseMessage, "");
       this.router.navigate(['/service/list']);
+      this.requestForm.reset();
+      this.requestForm.controls['name'].setErrors(null);
+      this.requestForm.controls['email'].setErrors(null);
+      this.requestForm.controls['category'].setErrors(null);
+      this.requestForm.controls['query'].setErrors(null);
     }, (error) => {
       this.ngxService.stop();
       if (error.error?.error) {
