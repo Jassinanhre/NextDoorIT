@@ -27,3 +27,18 @@
   margin-left: 10px;
   cursor: pointer;
 }
+
+span.drop-menu button {
+  /* margin: 0; */
+  padding: 0;
+  min-width: auto;
+  margin-left: 3px;
+}
+
+span.drop-menu {
+  color: #fff;
+}
+
+span.drop-menu button i.fa {
+  margin-right: 3px;
+}
