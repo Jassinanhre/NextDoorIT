@@ -18,6 +18,7 @@ import { TrainingComponent } from './modules/training/training.component';
 import { TrainingListComponent } from './modules/training/training-list/training-list.component';
 import { TrainingDetailsComponent } from './modules/training/training-details/training-details.component';
 import { CartComponent } from './modules/cart/cart.component';
+import { ShippingComponent } from './modules/shipping/shipping.component';
 import { OrderComponent } from './modules/order/order.component';
 import { PaymentComponent } from './modules/payment/payment.component';
 
@@ -50,6 +51,9 @@ const routes: Routes = [
       },
       {
         path: 'cart', component: CartComponent,
+      },
+      {
+        path: 'shipping', component: ShippingComponent,
       },
       {
         path: 'order', component: OrderComponent,

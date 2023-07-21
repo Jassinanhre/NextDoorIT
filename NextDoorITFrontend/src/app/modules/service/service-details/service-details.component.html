@@ -7,59 +7,29 @@
           <mat-card class="service-matcard">
             <mat-card-content>
               <div class="card1 a ser-detail-card">
-                <img src="{{currentService.image}}" />
+                <img src="assets/img/{{currentService.image}}" />
                 <h2>{{currentService.serviceName}} <span class="status-sp">Complete</span></h2>
                 <p>{{currentService.description}}</p>
                 <p><strong>Duration:</strong>{{currentService.duration}} Days</p>
                 <p><strong>Price:</strong>${{currentService.price}}</p>
                 <div class="r_rating">
-                  <i class="fa fa-star green"></i>
-                  <i class="fa fa-star green"></i>
-                  <i class="fa fa-star green"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star green" *ngFor="let e of [].constructor(currentService.userOverallRating)"></i>
                 </div>
               </div>
-              <div class="review-dv">
+              <div class="review-dv" *ngFor="let reviewRating of currentService.reviewRatings; let i = index">
                 <mat-grid-list cols="1" rowHeight="100px">
                   <mat-grid-tile>
                     <div class="review-left">
                       <span><i class="fa fa-user"></i></span>
                     </div>
                     <div class="review-right">
-                      <h2>Anonumous User1 <span class="progress">Pending</span></h2>
-                      <p>Its a good experience using these services.Very satisfied with the purchase. The generated
-                        Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic
-                        words etc.</p>
+                      <h2>{{reviewRating.username}} <span class="progress">Pending</span></h2>
+                      <p>{{reviewRating.summary}}</p>
                       <div class="r_rating">
-                        <i class="fa fa-star green"></i>
-                        <i class="fa fa-star green"></i>
-                        <i class="fa fa-star green"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star green" *ngFor="let e of [].constructor(reviewRating.rating)"></i>
+                        <!-- <i class="fa fa-star"></i> -->
                       </div>
 
-                    </div>
-                  </mat-grid-tile>
-                </mat-grid-list>
-              </div>
-
-              <div class="review-dv">
-                <mat-grid-list cols="1" rowHeight="80px">
-                  <mat-grid-tile>
-                    <div class="review-left">
-                      <span><i class="fa fa-user"></i></span>
-                    </div>
-                    <div class="review-right">
-                      <h2>Anonumous User2</h2>
-                      <p>Its a good experience using these services.Very satisfied with the purchase.</p>
-                      <div class="r_rating">
-                        <i class="fa fa-star green"></i>
-                        <i class="fa fa-star green"></i>
-                        <i class="fa fa-star green"></i>
-                        <i class="fa fa-star green"></i>
-                        <i class="fa fa-star"></i>
-                      </div>
                     </div>
                   </mat-grid-tile>
                 </mat-grid-list>
@@ -72,28 +42,13 @@
                       <span><i class="fa fa-user"></i></span>
                     </div>
                     <div class="review-right">
-                      <h2> User Name</h2>
-
                       <mat-form-field class="example-full-width">
                         <mat-label>Leave a comment</mat-label>
                         <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
                       </mat-form-field>
                       <div class="r_rating">
-                        <i class="fa fa-star green"></i>
-                        <i class="fa fa-star green"></i>
-                        <i class="fa fa-star green"></i>
-                        <i class="fa fa-star green"></i>
-                        <i class="fa fa-star"></i>
-                      </div>
-                      <div class="status-edit">
-                        <mat-form-field>
-                          <mat-label>Status </mat-label>
-                          <mat-select>
-                            <mat-option value="one">Pending</mat-option>
-                            <mat-option value="two">Complete</mat-option>
-                            <mat-option value="three">In Progress</mat-option>
-                          </mat-select>
-                        </mat-form-field>
+                        <!-- <i class="fa fa-star green" *ngFor="let e of [].constructor(newRating)"></i>
+                        <i class="fa fa-star" *ngFor="let e of [].constructor(reviewRating.rating)"></i> -->
                       </div>
                     </div>
                   </mat-grid-tile>

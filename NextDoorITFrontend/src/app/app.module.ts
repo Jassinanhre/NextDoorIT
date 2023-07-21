@@ -39,6 +39,7 @@ import { TrainingRequestComponent } from './modules/training/training-request/tr
 import { CartComponent } from './modules/cart/cart.component';
 import { OrderComponent } from './modules/order/order.component';
 import { PaymentComponent } from './modules/payment/payment.component';
+import { ShippingComponent } from './modules/shipping/shipping.component';
 
 
 
@@ -89,6 +90,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     AboutUsComponent,
     ContactUsComponent,
     CareerComponent,
+    ShippingComponent,
   ],
   imports: [
     SharedModule,
