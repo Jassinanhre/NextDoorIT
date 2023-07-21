@@ -13,7 +13,11 @@
                 <p><strong>Duration:</strong>{{currentService.duration}} Days</p>
                 <p><strong>Price:</strong>${{currentService.price}}</p>
                 <div class="r_rating">
-                  <i class="fa fa-star green" *ngFor="let e of [].constructor(currentService.userOverallRating)"></i>
+                  <!-- <i class="fa fa-star green" *ngFor="let e of [].constructor(currentService.userOverallRating)"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i> -->
+                  <star-rating [value]="currentService.userOverallRating || 0" [totalstars]="5" checkedcolor="green"
+                    uncheckedcolor="grey" size="24px" [readonly]="true"></star-rating>
                 </div>
               </div>
               <div class="review-dv" *ngFor="let reviewRating of currentService.reviewRatings; let i = index">
@@ -26,8 +30,8 @@
                       <h2>{{reviewRating.username}} <span class="progress">Pending</span></h2>
                       <p>{{reviewRating.summary}}</p>
                       <div class="r_rating">
-                        <i class="fa fa-star green" *ngFor="let e of [].constructor(reviewRating.rating)"></i>
-                        <!-- <i class="fa fa-star"></i> -->
+                        <star-rating [value]="reviewRating.rating || 0" [totalstars]="5" checkedcolor="green"
+                          uncheckedcolor="grey" size="24px" [readonly]="true"></star-rating>
                       </div>
 
                     </div>
@@ -42,19 +46,25 @@
                       <span><i class="fa fa-user"></i></span>
                     </div>
                     <div class="review-right">
-                      <mat-form-field class="example-full-width">
-                        <mat-label>Leave a comment</mat-label>
-                        <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
-                      </mat-form-field>
-                      <div class="r_rating">
-                        <!-- <i class="fa fa-star green" *ngFor="let e of [].constructor(newRating)"></i>
-                        <i class="fa fa-star" *ngFor="let e of [].constructor(reviewRating.rating)"></i> -->
-                      </div>
+                      <form [formGroup]="reviewRatingForm">
+                        <mat-form-field class="example-full-width">
+                          <mat-label>Leave a comment</mat-label>
+                          <textarea matInput placeholder="Ex. It makes me feel..." formControlName="review"></textarea>
+                        </mat-form-field>
+                        <div class="r_rating">
+                          <star-rating [value]="0" [totalstars]="5" checkedcolor="green" uncheckedcolor="grey"
+                            size="24px" [readonly]="false" (rate)="onRate($event.newValue)"></star-rating>
+                        </div>
+                        <div class="submit-btn text-center">
+                          <button mat-raised-button type="submit"
+                            [disabled]="!(reviewRatingForm.valid && reviewRatingForm.dirty)" (click)="handleSubmit()"
+                            mat-button color="primary">Submit</button>
+                        </div>
+                      </form>
                     </div>
                   </mat-grid-tile>
                 </mat-grid-list>
               </div>
-
             </mat-card-content>
           </mat-card>
         </mat-grid-tile>
