@@ -1,10 +1,8 @@
 package com.inn.nextDoorIt.serviceImpl;
 
-import com.inn.nextDoorIt.POJO.Category;
-import com.inn.nextDoorIt.POJO.ServiceModel;
-import com.inn.nextDoorIt.POJO.ServiceModelRequest;
-import com.inn.nextDoorIt.POJO.ServiceRequestRecord;
+import com.inn.nextDoorIt.POJO.*;
 import com.inn.nextDoorIt.dao.CategoriesDao;
+import com.inn.nextDoorIt.dao.ReviewAndRatingDao;
 import com.inn.nextDoorIt.dao.ServiceRequestRecordsDao;
 import com.inn.nextDoorIt.dao.ServicesDao;
 import com.inn.nextDoorIt.exception.ApplicationException;
@@ -14,9 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 @Slf4j
@@ -29,6 +25,9 @@ public class ServicesServiceImpl implements ServicesService {
 
     @Autowired
     private ServiceRequestRecordsDao requestRecordsDao;
+
+    @Autowired
+    private ReviewAndRatingDao reviewAndRatingDao;
 
     @Override
     public List<ServiceModel> getServices(int categoryId) {
@@ -71,13 +70,49 @@ public class ServicesServiceImpl implements ServicesService {
     }
 
     @Override
-    public ServiceModel getServiceDetails(int serviceId) {
-        ServiceModel service = servicesDao.findById(serviceId).get();
-        if (!Objects.isNull(service)) {
-            return service;
-        } else {
-            throw new ApplicationException("No data found for services in database", HttpStatus.NOT_FOUND);
+    public ServiceDetailsModel getServiceDetails(int serviceId) {
+        ServiceModel service = servicesDao.findById(serviceId).orElseThrow(() -> new ApplicationException("No service found for requested service id", HttpStatus.BAD_REQUEST));
+        List<ReviewAndRatingsRecord> reviewAndRatingsRecords = reviewAndRatingDao.findByServiceId(serviceId);
+        if (!Objects.isNull(reviewAndRatingsRecords) && reviewAndRatingsRecords.size() > 0) {
+            ServiceDetailsModel response = buildServiceDetailsResponse(service, reviewAndRatingsRecords);
+            return response;
         }
+        throw new ApplicationException("There are no reviews and records found for this service id", HttpStatus.BAD_REQUEST);
+    }
+
+    private ServiceDetailsModel buildServiceDetailsResponse(ServiceModel service, List<ReviewAndRatingsRecord> reviews) {
+        ServiceDetailsModel response = new ServiceDetailsModel();
+        response.setId(service.getId());
+        response.setServiceName(service.getServiceName());
+        response.setDescription(service.getDescription());
+        response.setDuration(service.getDuration());
+        response.setCategory(service.getCategory());
+        response.setUserOverallRating(calculateOverallRating(reviews));
+        response.setReviewRatings(reviews);
+        response.setPrice(service.getPrice());
+        response.setImageId(service.getImageId());
+        return response;
+    }
+
+    private float calculateOverallRating(List<ReviewAndRatingsRecord> reviews) {
+        int noOfReviews = reviews.size();
+        Map<Float, Integer> ratingsCounts = new HashMap<>();
+        reviews.forEach(record -> {
+            if (!ratingsCounts.containsKey(record.getRating())) { // if map does not contains key
+                ratingsCounts.put(record.getRating(), 1);
+            } else {
+                int temp = ratingsCounts.get(record.getRating()) + 1;
+                ratingsCounts.put(record.getRating(), temp);
+            }
+        });
+        List<Float> keySet = ratingsCounts.keySet().stream().toList();
+        float productSums = 0;
+        for (int i = 0; i < keySet.size(); i++) {
+            productSums += keySet.get(i) * ratingsCounts.get(keySet.get(i));
+        }
+        float ratingSum = ratingsCounts.values().stream().reduce((first, second) -> first + second).get();
+        float overallRating = productSums / ratingSum;
+        return overallRating;
     }
 
     @Override
