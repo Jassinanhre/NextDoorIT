@@ -4,6 +4,18 @@
       <div>
         <h2>Shipping Information</h2>
         <div class="example-container">
+          <div class="checkout1">
+            <mat-form-field>
+              <mat-label>First Name</mat-label>
+              <input matInput #input maxlength="10" placeholder="Eg John">
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Last Name</mat-label>
+              <input matInput #input maxlength="10" placeholder="Eg Michael">
+            </mat-form-field>
+
+          </div>
           <mat-form-field>
             <mat-label>Enter your email</mat-label>
             <input matInput placeholder="pat@example.com" required>
@@ -14,11 +26,20 @@
           <textarea matInput></textarea>
         </mat-form-field>
 
-        <mat-form-field appearance="outline">
-          <mat-label>0000 1235 1543</mat-label>
-          <input matInput placeholder="Placeholder">
 
-        </mat-form-field>
+
+        <div class="checkout1">
+          <mat-form-field>
+            <mat-label>Card Number</mat-label>
+            <input matInput #input maxlength="10" placeholder="0000 1234 5678">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>CVV</mat-label>
+            <input matInput #input maxlength="10" placeholder="222">
+          </mat-form-field>
+
+        </div>
         <div class="pay-dv">
           <button mat-button color="primary">Pay</button>
         </div>
