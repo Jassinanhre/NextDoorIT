@@ -312,6 +312,16 @@ a {
   font-size: 20px;
   font-weight: normal;
   margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+span.status-sp {
+  font-size: 12px;
+  background: #05c105;
+  color: #fff;
+  padding: 0px 9px;
+  border-radius: 33px;
 }
 
 .card1 i.fa {

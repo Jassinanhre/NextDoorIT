@@ -8,10 +8,17 @@
             <mat-card-content>
               <div class="card1 a ser-detail-card">
                 <img src="{{currentService.image}}" />
-                <h2>{{currentService.serviceName}} </h2>
+                <h2>{{currentService.serviceName}} <span class="status-sp">Complete</span></h2>
                 <p>{{currentService.description}}</p>
                 <p><strong>Duration:</strong>{{currentService.duration}} Days</p>
                 <p><strong>Price:</strong>${{currentService.price}}</p>
+                <div class="r_rating">
+                  <i class="fa fa-star green"></i>
+                  <i class="fa fa-star green"></i>
+                  <i class="fa fa-star green"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                </div>
               </div>
               <div class="review-dv">
                 <mat-grid-list cols="1" rowHeight="100px">
