@@ -10,7 +10,7 @@ public class ServiceDetailsModel {
     private String serviceName;
     private String description;
     private Category category;
-    private float userOverallRating;
+    private Float userOverallRating;
     private String imageId;
     private long price;
     private long duration;

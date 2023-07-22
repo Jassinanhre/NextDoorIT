@@ -27,6 +27,5 @@ public class Product {
     private String features;
     private String specifications;
 
-    @Column(name = "reviews")
-    private String customerReviews;
+
 }

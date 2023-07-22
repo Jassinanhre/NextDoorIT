@@ -7,11 +7,11 @@ import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "service_reviews_and_ratings")
+@Table(name = "product_review_and_ratings")
 @DynamicUpdate
 @DynamicInsert
 @Data
-public class ReviewAndRatingsRecord {
+public class ProductReviewAndRating {
     private static final long serialVersionUID = 1L;
 
 
@@ -20,8 +20,8 @@ public class ReviewAndRatingsRecord {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "service_id")
-    private int serviceId;
+    @Column(name = "product_id")
+    private int productId;
     private String username;
     private float rating;
     private String summery;

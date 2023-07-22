@@ -1,16 +1,19 @@
 package com.inn.nextDoorIt.serviceImpl;
 
-import com.inn.nextDoorIt.POJO.Product;
-import com.inn.nextDoorIt.POJO.ProductCategory;
-import com.inn.nextDoorIt.POJO.ProductRequest;
+import com.inn.nextDoorIt.POJO.*;
 import com.inn.nextDoorIt.dao.ProductCategoryDao;
 import com.inn.nextDoorIt.dao.ProductDao;
+import com.inn.nextDoorIt.dao.ProductReviewAndRatingDao;
+import com.inn.nextDoorIt.dao.ReviewAndRatingDao;
 import com.inn.nextDoorIt.exception.ApplicationException;
 import com.inn.nextDoorIt.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 @Service
@@ -19,6 +22,8 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductCategoryDao categoryDao;
 
+    @Autowired
+    private ProductReviewAndRatingDao productReviewAndRatingDao;
     @Autowired
     private ProductDao productDao;
 
@@ -44,6 +49,73 @@ public class ProductServiceImpl implements ProductService {
         throw new ApplicationException("Product not saved/created", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @Override
+    public List<Product> allProducts() {
+        List<Product> productsFromDb = productDao.findAll();
+        if (!Objects.isNull(productsFromDb) && productsFromDb.size() > 0) {
+            return productsFromDb;
+        } else {
+            throw new ApplicationException("No data found for products", HttpStatus.NO_CONTENT);
+        }
+    }
+
+    @Override
+    public ProductDetailsModel getProductDetails(int productId) {
+        Product product = productDao.findById(productId).orElseThrow(() -> new ApplicationException("No data found for given productId", HttpStatus.NO_CONTENT));
+        List<ProductReviewAndRating> productReviewAndRatingList = productReviewAndRatingDao.findAll();
+        ProductDetailsModel response = buildProductDetailsResponse(product, productReviewAndRatingList);
+        return response;
+    }
+
+    @Override
+    public List<Product> getProductFromCategory(int categoryId) {
+        List<Product> productFromDb = productDao.findProductsByCategoryId(categoryId);
+        if (!Objects.isNull(productFromDb) && productFromDb.size() > 0) {
+            return productFromDb;
+        }
+        throw new ApplicationException("No product found with given categoryId", HttpStatus.BAD_REQUEST);
+    }
+
+    private ProductDetailsModel buildProductDetailsResponse(Product product, List<ProductReviewAndRating> productReviewAndRatingList) {
+        ProductDetailsModel response = new ProductDetailsModel();
+        response.setId(product.getId());
+        response.setProductName(product.getProductName());
+        response.setProductDescription(product.getProductDescription());
+        response.setProductCategory(product.getProductCategory());
+        response.setFeatures(product.getFeatures());
+        response.setSpecifications(product.getSpecifications());
+        response.setProductReviewsAndRatings(productReviewAndRatingList);
+        if (!Objects.isNull(productReviewAndRatingList) && productReviewAndRatingList.size() > 0) {
+            response.setOverallRating(getProductOverallRating(productReviewAndRatingList));
+        } else {
+            response.setOverallRating(null);
+        }
+        return response;
+    }
+
+    private float getProductOverallRating(List<ProductReviewAndRating> productReviewAndRatingList) {
+
+        int noOfReviews = productReviewAndRatingList.size();
+        Map<Float, Integer> ratingsCounts = new HashMap<>();
+        productReviewAndRatingList.forEach(record -> {
+            if (!ratingsCounts.containsKey(record.getRating())) { // if map does not contains key
+                ratingsCounts.put(record.getRating(), 1);
+            } else {
+                int temp = ratingsCounts.get(record.getRating()) + 1;
+                ratingsCounts.put(record.getRating(), temp);
+            }
+        });
+        List<Float> keySet = ratingsCounts.keySet().stream().toList();
+        float productSums = 0;
+        for (int i = 0; i < keySet.size(); i++) {
+            productSums += keySet.get(i) * ratingsCounts.get(keySet.get(i));
+        }
+        float ratingSum = ratingsCounts.values().stream().reduce((first, second) -> first + second).get();
+        float overallRating = productSums / ratingSum;
+        return overallRating;
+    }
+
+
     private Product generateProductObject(ProductRequest request, ProductCategory category) {
         Product product = new Product();
         product.setProductName(request.getProductName());
@@ -51,7 +123,6 @@ public class ProductServiceImpl implements ProductService {
         product.setProductCategory(category);
         product.setFeatures(request.getFeatures());
         product.setSpecifications(request.getSpecifications());
-        product.setCustomerReviews(request.getCustomerReviews());
         return product;
     }
 
