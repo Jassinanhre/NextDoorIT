@@ -41,6 +41,7 @@ import { CartComponent } from './modules/cart/cart.component';
 import { OrderComponent } from './modules/order/order.component';
 import { PaymentComponent } from './modules/payment/payment.component';
 import { ShippingComponent } from './modules/shipping/shipping.component';
+import { CheckoutComponent } from './modules/checkout/checkout.component';
 
 
 
@@ -92,6 +93,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     ContactUsComponent,
     CareerComponent,
     ShippingComponent,
+    CheckoutComponent,
   ],
   imports: [
     SharedModule,
