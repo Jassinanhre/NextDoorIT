@@ -1,5 +1,6 @@
 package com.inn.nextDoorIt.restImpl;
 
+import com.inn.nextDoorIt.POJO.ProductReviewAndRating;
 import com.inn.nextDoorIt.POJO.ReviewAndRatingsRecord;
 import com.inn.nextDoorIt.rest.ReviewRatingsRest;
 import com.inn.nextDoorIt.service.ReviewAndRatingService;
@@ -17,5 +18,10 @@ public class ReviewAndRatingsRestImpl implements ReviewRatingsRest {
     @Override
     public ResponseEntity<Object> saveReviewAndRatingRecord(ReviewAndRatingsRecord record) {
         return ResponseEntity.status(HttpStatus.CREATED).body(new ApplicationResponse(service.saveRecord(record), HttpStatus.CREATED.value()));
+    }
+
+    @Override
+    public ResponseEntity<Object> saveProductReviewAndRating(ProductReviewAndRating record) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(new ApplicationResponse(service.saveProductReviewAndRatingRecord(record), HttpStatus.CREATED.value()));
     }
 }

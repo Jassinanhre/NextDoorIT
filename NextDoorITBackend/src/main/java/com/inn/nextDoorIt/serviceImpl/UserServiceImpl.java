@@ -1,7 +1,9 @@
 package com.inn.nextDoorIt.serviceImpl;
 
 import com.inn.nextDoorIt.JWT.JwtUtil;
+import com.inn.nextDoorIt.POJO.Cart;
 import com.inn.nextDoorIt.POJO.User;
+import com.inn.nextDoorIt.dao.CartDao;
 import com.inn.nextDoorIt.dao.UserDao;
 import com.inn.nextDoorIt.exception.ApplicationException;
 import com.inn.nextDoorIt.service.UserService;
@@ -18,6 +20,8 @@ import java.util.Objects;
 public class UserServiceImpl implements UserService {
 
     @Autowired
+    private CartDao cartDao;
+    @Autowired
     UserDao userDao;
 
     @Autowired
@@ -31,12 +35,26 @@ public class UserServiceImpl implements UserService {
             User user = userDao.findByEmailId(requestMap.get("email"));
             if (Objects.isNull(user)) {
                 User savedUser = userDao.save(getUserFromMap(requestMap));// save the data into the database
+                if (savedUser != null) {
+                    createCartForUser(savedUser);
+                }
                 return savedUser;
             } else {
                 throw new ApplicationException("The user is already registered", HttpStatus.BAD_REQUEST);
             }
         } else {
             throw new ApplicationException("The signup request contains invalid data", HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    private void createCartForUser(User user) {
+        Cart cart = new Cart();
+        cart.setProducts(null);
+        cart.setUsername(user.getEmail());
+        cart.setUserId(user.getId());
+        Cart savedCartRecord = cartDao.save(cart);
+        if (Objects.isNull(savedCartRecord)) {
+            throw new ApplicationException("Unable to create cart for user", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

@@ -73,11 +73,8 @@ public class ServicesServiceImpl implements ServicesService {
     public ServiceDetailsModel getServiceDetails(int serviceId) {
         ServiceModel service = servicesDao.findById(serviceId).orElseThrow(() -> new ApplicationException("No service found for requested service id", HttpStatus.BAD_REQUEST));
         List<ReviewAndRatingsRecord> reviewAndRatingsRecords = reviewAndRatingDao.findByServiceId(serviceId);
-        if (!Objects.isNull(reviewAndRatingsRecords) && reviewAndRatingsRecords.size() > 0) {
-            ServiceDetailsModel response = buildServiceDetailsResponse(service, reviewAndRatingsRecords);
-            return response;
-        }
-        throw new ApplicationException("There are no reviews and records found for this service id", HttpStatus.BAD_REQUEST);
+        ServiceDetailsModel response = buildServiceDetailsResponse(service, reviewAndRatingsRecords);
+        return response;
     }
 
     private ServiceDetailsModel buildServiceDetailsResponse(ServiceModel service, List<ReviewAndRatingsRecord> reviews) {
@@ -87,7 +84,11 @@ public class ServicesServiceImpl implements ServicesService {
         response.setDescription(service.getDescription());
         response.setDuration(service.getDuration());
         response.setCategory(service.getCategory());
-        response.setUserOverallRating(calculateOverallRating(reviews));
+        if (!Objects.isNull(reviews) && reviews.size() > 0) {
+            response.setUserOverallRating(calculateOverallRating(reviews));
+        } else {
+            response.setUserOverallRating(null);
+        }
         response.setReviewRatings(reviews);
         response.setPrice(service.getPrice());
         response.setImageId(service.getImageId());
