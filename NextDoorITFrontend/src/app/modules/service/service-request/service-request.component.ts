@@ -47,7 +47,7 @@ export class ServiceRequestComponent implements OnInit {
 
     this.servicesService.create(data).subscribe((response: any) => {
       this.ngxService.stop();
-      this.responseMessage = response?.data;
+      this.responseMessage = 'Feedback submitted successfully.';
       this.snackbarService.openSnackBar(this.responseMessage, "");
       this.router.navigate(['/service/list']);
       this.requestForm.reset();

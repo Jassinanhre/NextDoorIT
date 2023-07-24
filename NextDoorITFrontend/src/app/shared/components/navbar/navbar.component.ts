@@ -17,7 +17,7 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  public isLogin: boolean = true;
+  public isLogin: boolean = false;
   public responseMessage: any;
 
   constructor(
@@ -30,10 +30,10 @@ export class NavbarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.checkLoggedIn();
-    // this.authService.getEmitter().subscribe((status) => {
-    //   this.isLogin = status;
-    // });
+    this.checkLoggedIn();
+    this.authService.getEmitter().subscribe((status) => {
+      this.isLogin = status;
+    });
   }
 
   checkLoggedIn() {

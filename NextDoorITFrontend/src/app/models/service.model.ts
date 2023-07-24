@@ -8,7 +8,7 @@ export class Service {
   category?: any = ServiceCategory;
   userOverallRating?: number;
   reviewRatings?: any = ReviewRating;
-  image?: string;
+  imageId?: string;
   duration?: string;
   price?: string;
 }
