@@ -82,3 +82,9 @@ h2.cart-delete i.fa {
   display: flex;
   justify-content: space-between;
 }
+
+.disabled {
+  color: gray;
+  cursor: not-allowed;
+  text-decoration: underline;
+}

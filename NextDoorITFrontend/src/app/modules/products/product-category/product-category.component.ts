@@ -45,7 +45,7 @@ export class ProductCategoryComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.fetchCategories();
+    // this.fetchCategories();
   }
 
   fetchCategories(): void {

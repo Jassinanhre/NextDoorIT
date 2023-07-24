@@ -13,8 +13,8 @@ export class ProductListComponent implements OnInit {
     {
       id: "1",
       title: "Computer Accessories",
-      description: "Laser printers are known for their fast print speeds and high-quality text prints. These printers use a laser to fuse toner onto the paper, creating sharp, crisp text ideal for documents and business materials.",
-      image: "assets/img/printer.png",
+      description: "Equipment that supports other equipment. For example, smartphone accessories include phone cases, chargers and cables. Examples of computer accessories are laptop bags, cables, screen cleaners and USB drives, although the latter may also be considered a peripheral device.",
+      image: "assets/img/computer_acc.jpg",
       price: "1254",
       reviewRatings: {
         rating: "4.8",
@@ -30,7 +30,7 @@ export class ProductListComponent implements OnInit {
     },
     {
       id: "2",
-      title: "Computer Accessories",
+      title: "Printer",
       description: "Laser printers are known for their fast print speeds and high-quality text prints. These printers use a laser to fuse toner onto the paper, creating sharp, crisp text ideal for documents and business materials.",
       image: "assets/img/printer.png",
       price: "1254",
@@ -48,9 +48,9 @@ export class ProductListComponent implements OnInit {
     },
     {
       id: "3",
-      title: "Computer Accessories",
-      description: "Laser printers are known for their fast print speeds and high-quality text prints. These printers use a laser to fuse toner onto the paper, creating sharp, crisp text ideal for documents and business materials.",
-      image: "assets/img/printer.png",
+      title: "Category 5 Cable",
+      description: "Category 5 cable (Cat 5) is a twisted pair cable for computer networks. Since 2001, the variant commonly in use is the Category 5e specification (Cat 5e).",
+      image: "assets/img/cat5cable.jpg",
       price: "1254",
       reviewRatings: {
         rating: "4.8",
@@ -66,9 +66,9 @@ export class ProductListComponent implements OnInit {
     },
     {
       id: "4",
-      title: "Computer Accessories",
-      description: "Laser printers are known for their fast print speeds and high-quality text prints. These printers use a laser to fuse toner onto the paper, creating sharp, crisp text ideal for documents and business materials.",
-      image: "assets/img/printer.png",
+      title: "Home Theater",
+      description: "An audio/video entertainment center that has a large-screen TV and high fidelity audio system with at least three speakers in the front (left, right and center) and left and right speakers in the rear.",
+      image: "assets/img/theater.jpg",
       price: "1254",
       reviewRatings: {
         rating: "4.8",
@@ -84,9 +84,9 @@ export class ProductListComponent implements OnInit {
     },
     {
       id: "5",
-      title: "Computer Accessories",
-      description: "Laser printers are known for their fast print speeds and high-quality text prints. These printers use a laser to fuse toner onto the paper, creating sharp, crisp text ideal for documents and business materials.",
-      image: "assets/img/printer.png",
+      title: "Laptop",
+      description: "A laptop is a personal computer that can be easily moved and used in a variety of locations. Most laptops are designed to have all of the functionality of a desktop computer, which means they can generally run the same software and open the same types of files.",
+      image: "assets/img/laptop.webp",
       price: "1254",
       reviewRatings: {
         rating: "4.8",
@@ -102,9 +102,9 @@ export class ProductListComponent implements OnInit {
     },
     {
       id: "6",
-      title: "Computer Accessories",
-      description: "Laser printers are known for their fast print speeds and high-quality text prints. These printers use a laser to fuse toner onto the paper, creating sharp, crisp text ideal for documents and business materials.",
-      image: "assets/img/printer.png",
+      title: "HDMI Cable",
+      description: "HDMI stands for High Definition Multimedia Interface and is the most frequently used HD signal for transferring both high definition audio and video over a single cable.",
+      image: "assets/img/hdmi.jpg",
       price: "1254",
       reviewRatings: {
         rating: "4.8",
@@ -123,8 +123,8 @@ export class ProductListComponent implements OnInit {
     {
       id: "1",
       title: "Computer Accessories",
-      description: "Laser printers are known for their fast print speeds and high-quality text prints. These printers use a laser to fuse toner onto the paper, creating sharp, crisp text ideal for documents and business materials.",
-      image: "assets/img/printer.png",
+      description: "Equipment that supports other equipment. For example, smartphone accessories include phone cases, chargers and cables. Examples of computer accessories are laptop bags, cables, screen cleaners and USB drives, although the latter may also be considered a peripheral device.",
+      image: "assets/img/computer_acc.jpg",
       price: "1254",
       reviewRatings: {
         rating: "4.8",
@@ -140,7 +140,7 @@ export class ProductListComponent implements OnInit {
     },
     {
       id: "2",
-      title: "Computer Accessories",
+      title: "Printer",
       description: "Laser printers are known for their fast print speeds and high-quality text prints. These printers use a laser to fuse toner onto the paper, creating sharp, crisp text ideal for documents and business materials.",
       image: "assets/img/printer.png",
       price: "1254",
@@ -158,9 +158,9 @@ export class ProductListComponent implements OnInit {
     },
     {
       id: "3",
-      title: "Computer Accessories",
-      description: "Laser printers are known for their fast print speeds and high-quality text prints. These printers use a laser to fuse toner onto the paper, creating sharp, crisp text ideal for documents and business materials.",
-      image: "assets/img/printer.png",
+      title: "Category 5 Cable",
+      description: "Category 5 cable (Cat 5) is a twisted pair cable for computer networks. Since 2001, the variant commonly in use is the Category 5e specification (Cat 5e).",
+      image: "assets/img/cat5cable.jpg",
       price: "1254",
       reviewRatings: {
         rating: "4.8",
@@ -176,9 +176,9 @@ export class ProductListComponent implements OnInit {
     },
     {
       id: "4",
-      title: "Computer Accessories",
-      description: "Laser printers are known for their fast print speeds and high-quality text prints. These printers use a laser to fuse toner onto the paper, creating sharp, crisp text ideal for documents and business materials.",
-      image: "assets/img/printer.png",
+      title: "Home Theater",
+      description: "An audio/video entertainment center that has a large-screen TV and high fidelity audio system with at least three speakers in the front (left, right and center) and left and right speakers in the rear.",
+      image: "assets/img/theater.jpg",
       price: "1254",
       reviewRatings: {
         rating: "4.8",
@@ -194,9 +194,9 @@ export class ProductListComponent implements OnInit {
     },
     {
       id: "5",
-      title: "Computer Accessories",
-      description: "Laser printers are known for their fast print speeds and high-quality text prints. These printers use a laser to fuse toner onto the paper, creating sharp, crisp text ideal for documents and business materials.",
-      image: "assets/img/printer.png",
+      title: "Laptop",
+      description: "A laptop is a personal computer that can be easily moved and used in a variety of locations. Most laptops are designed to have all of the functionality of a desktop computer, which means they can generally run the same software and open the same types of files.",
+      image: "assets/img/laptop.webp",
       price: "1254",
       reviewRatings: {
         rating: "4.8",
@@ -212,9 +212,9 @@ export class ProductListComponent implements OnInit {
     },
     {
       id: "6",
-      title: "Computer Accessories",
-      description: "Laser printers are known for their fast print speeds and high-quality text prints. These printers use a laser to fuse toner onto the paper, creating sharp, crisp text ideal for documents and business materials.",
-      image: "assets/img/printer.png",
+      title: "HDMI Cable",
+      description: "HDMI stands for High Definition Multimedia Interface and is the most frequently used HD signal for transferring both high definition audio and video over a single cable.",
+      image: "assets/img/hdmi.jpg",
       price: "1254",
       reviewRatings: {
         rating: "4.8",
@@ -238,7 +238,7 @@ export class ProductListComponent implements OnInit {
   constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
-    this.retrieveProducts();
+    // this.retrieveProducts();
   }
 
   retrieveProducts(): void {

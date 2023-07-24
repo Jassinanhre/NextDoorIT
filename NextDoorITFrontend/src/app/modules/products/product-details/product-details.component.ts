@@ -14,8 +14,8 @@ export class ProductDetailsComponent implements OnInit {
   currentProduct: Product = {
     id: "1",
     title: "Computer Accessories",
-    description: "Laser printers are known for their fast print speeds and high-quality text prints. These printers use a laser to fuse toner onto the paper, creating sharp, crisp text ideal for documents and business materials.",
-    image: "assets/img/printer.png",
+    description: "Equipment that supports other equipment. For example, smartphone accessories include phone cases, chargers and cables. Examples of computer accessories are laptop bags, cables, screen cleaners and USB drives, although the latter may also be considered a peripheral device.",
+    image: "assets/img/computer_acc.jpg",
     price: "1254",
     reviewRatings: {
       rating: "4.8",
@@ -30,7 +30,7 @@ export class ProductDetailsComponent implements OnInit {
     productCategory: ""
   };
   message = '';
-  isLogin: boolean = false;
+  isLogin: boolean = true;
   constructor(
     private productService: ProductService,
     private localStorageService: LocalStorageService,
@@ -39,7 +39,7 @@ export class ProductDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.message = '';
-    this.isLogin = this.localStorageService.getItem('isLoggedIn');
+    // this.isLogin = this.localStorageService.getItem('isLoggedIn');
     this.getProduct(this.route.snapshot.params.id);
   }
 
