@@ -2,33 +2,52 @@
   <mat-card>
     <mat-card-content>
       <div>
-        <h2 class="payment-h2">Payment Information <span><img src="../../../assets/img/card.png" /></span></h2>
+        <h2 class="payment-h2">Payment Information<span><img src="../../../assets/img/card.png" /></span></h2>
         <div class="example-container">
-          <div class="checkout1">
-            <mat-form-field>
-              <mat-label>First Name</mat-label>
-              <input matInput #input maxlength="10" placeholder="Eg John">
-            </mat-form-field>
+          <div class="details-dv">
+            <div class="detail-left"><strong>Name: </strong> </div>
+            <div class="detail-right">Sam Fedrick</div>
+          </div>
+          <div class="details-dv">
+            <div class="detail-left"><strong>Address:</strong> </div>
+            <div class="detail-right">JOHN JONES MARKETING DEPARTMENT 10-123 1/2 MAIN STREET NW</div>
+          </div>
+          <div class="details-dv">
+            <div class="detail-left"><strong>Contact Info: </strong></div>
+            <div class="detail-right">325 5486 2156</div>
+          </div>
 
-            <mat-form-field>
-              <mat-label>Last Name</mat-label>
-              <input matInput #input maxlength="10" placeholder="Eg Michael">
-            </mat-form-field>
+          <div class="details-dv">
+            <div class="detail-left"><strong>Quantity:</strong> </div>
+            <div class="detail-right">32</div>
+          </div>
+
+          <div class="pay-method">
+            <p><strong>Payment Method:</strong></p>
+            <input type="radio" id="html" name="fav_language" value="HTML">
+              <label for="html">PayPal</label>
+            <input type="radio" id="html" name="fav_language" value="HTML">
+              <label for="html">MasterCard</label>
+            <input type="radio" id="html" name="fav_language" value="HTML">
+              <label for="html">VISA</label>
+            <input type="radio" id="html" name="fav_language" value="HTML">
+              <label for="html">Apple Pay</label>
 
           </div>
-          <mat-form-field>
-            <mat-label>Enter your email</mat-label>
-            <input matInput placeholder="pat@example.com" required>
-          </mat-form-field>
         </div>
-        <mat-form-field>
-          <mat-label>Shipping Address</mat-label>
-          <textarea matInput></textarea>
-        </mat-form-field>
 
         <div class="checkout1">
           <mat-form-field>
             <mat-label>Card Number</mat-label>
+            <input matInput #input maxlength="10" placeholder="0000 1234 5678">
+          </mat-form-field>
+
+
+
+        </div>
+        <div class="checkout1">
+          <mat-form-field>
+            <mat-label>Expiry Date</mat-label>
             <input matInput #input maxlength="10" placeholder="0000 1234 5678">
           </mat-form-field>
 
@@ -38,6 +57,7 @@
           </mat-form-field>
 
         </div>
+
         <div class="pay-dv">
           <button mat-button color="primary" routerLink="/order">Pay</button>
         </div>

@@ -1,5 +1,5 @@
 .checkout {
-  width: 40%;
+  width: 35%;
   margin: 30px auto;
 }
 
@@ -30,4 +30,31 @@ h2.payment-h2 {
 
 h2.payment-h2 img {
   width: 200px;
+}
+
+.pay-method {
+  display: flex;
+  align-items: center;
+}
+
+.pay-method p {
+  margin-bottom: 0px;
+}
+
+
+.pay-method input[type="radio" i] {
+  margin-top: 0px;
+}
+
+.details-dv {
+  display: flex;
+  padding-bottom: 10px;
+}
+
+.details-dv .detail-left {
+  width: 25%;
+}
+
+.detail-right {
+  width: 75%;
 }
