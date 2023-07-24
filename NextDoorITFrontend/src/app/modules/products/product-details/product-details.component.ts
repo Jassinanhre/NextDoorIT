@@ -30,7 +30,7 @@ export class ProductDetailsComponent implements OnInit {
     productCategory: ""
   };
   message = '';
-  isLogin: boolean = true;
+  isLogin: boolean = false;
   constructor(
     private productService: ProductService,
     private localStorageService: LocalStorageService,
@@ -39,7 +39,7 @@ export class ProductDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.message = '';
-    // this.isLogin = this.localStorageService.getItem('isLoggedIn');
+    this.isLogin = this.localStorageService.getItem('isLoggedIn');
     this.getProduct(this.route.snapshot.params.id);
   }
 
