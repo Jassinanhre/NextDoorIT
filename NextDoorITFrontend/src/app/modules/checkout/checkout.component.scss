@@ -1,0 +1,47 @@
+.checkout1 {
+  width: 70%;
+  margin: 20px auto;
+}
+
+.table1 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.table1 {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #cecece;
+  padding-top: 10px;
+}
+
+.table2 {
+  display: flex;
+}
+
+.table2-left {
+  width: 20%;
+  font-weight: 600;
+}
+
+.table2-right {
+  width: 80%;
+}
+
+.table2 {
+  padding-bottom: 5px;
+}
+
+.table1.table-head {
+  font-weight: 600;
+}
+
+.place-order {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.place-order button {
+  background-color: #7b1fa2;
+  color: #fff;
+}

@@ -23,6 +23,11 @@ img {
 
 .cart-main {
   display: flex;
+  border-bottom: 1px solid #cecece;
+}
+
+.service2 .cart-main:last-child {
+  border-bottom: none;
 }
 
 .quantity {
@@ -35,7 +40,8 @@ img {
 }
 
 .cart-btn {
-  width: 200px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .cart-btn button {
@@ -43,6 +49,36 @@ img {
   text-align: center;
   border-radius: 5px;
   background-color: #7b1fa2;
-  width: 100%;
+  width: 200px;
   padding: 1px 0;
+}
+
+.cart-btn p {
+  padding: 0;
+  font-size: 14px;
+}
+
+h2.cart-delete {
+  display: flex;
+  justify-content: space-between;
+}
+
+h2.cart-delete[_ngcontent-ttm-c199] {
+  display: flex;
+  justify-content: space-between;
+}
+
+h2.cart-delete i.fa {
+  font-size: 16px;
+  color: rgb(149 142 142 / 87%);
+}
+
+.subtotal {
+  padding: 15px 0;
+  font-size: 18px;
+}
+
+.subtotal p {
+  display: flex;
+  justify-content: space-between;
 }
