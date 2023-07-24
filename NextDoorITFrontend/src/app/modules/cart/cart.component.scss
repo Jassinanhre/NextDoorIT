@@ -13,12 +13,12 @@ img {
 
 .cart-left {
   width: 30%;
-  padding: 10px;
+  padding: 15px;
 }
 
 .cart-right {
   width: 70%;
-  padding: 10px;
+  padding: 15px;
 }
 
 .cart-main {
@@ -41,7 +41,7 @@ img {
 
 .cart-btn {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 
 .cart-btn button {
