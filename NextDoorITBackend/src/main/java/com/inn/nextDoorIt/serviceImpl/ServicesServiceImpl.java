@@ -9,10 +9,15 @@ import com.inn.nextDoorIt.exception.ApplicationException;
 import com.inn.nextDoorIt.service.ServicesService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.redis.core.TimeToLive;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 @Service
 @Slf4j
@@ -26,10 +31,12 @@ public class ServicesServiceImpl implements ServicesService {
     @Autowired
     private ServiceRequestRecordsDao requestRecordsDao;
 
+
     @Autowired
     private ReviewAndRatingDao reviewAndRatingDao;
 
     @Override
+    @Cacheable(value = "serviceCache", key = "#categoryId")
     public List<ServiceModel> getServices(int categoryId) {
         if (Objects.isNull(categoryId))
             throw new ApplicationException("No category id specified", HttpStatus.BAD_REQUEST);
@@ -60,6 +67,7 @@ public class ServicesServiceImpl implements ServicesService {
     }
 
     @Override
+    @Cacheable(value = "serviceCache")
     public List<ServiceModel> getAllServices() {
         List<ServiceModel> servicesFromDatabase = servicesDao.findAll();
         if (!Objects.isNull(servicesFromDatabase) && servicesFromDatabase.size() > 0) {
@@ -70,12 +78,26 @@ public class ServicesServiceImpl implements ServicesService {
     }
 
     @Override
-    public ServiceDetailsModel getServiceDetails(int serviceId) {
+    @Cacheable(value = "serviceDetailCache", key = "#serviceId")
+    public Map<String, Object> getServiceDetails(int serviceId) {
         ServiceModel service = servicesDao.findById(serviceId).orElseThrow(() -> new ApplicationException("No service found for requested service id", HttpStatus.BAD_REQUEST));
         List<ReviewAndRatingsRecord> reviewAndRatingsRecords = reviewAndRatingDao.findByServiceId(serviceId);
         ServiceDetailsModel response = buildServiceDetailsResponse(service, reviewAndRatingsRecords);
-        return response;
+        HashMap<String, Object> responseMap = new HashMap<>();
+        // RETURNING RESPONSE IN FORM OF MAP BECAUSE OF REDIS CACHE, BECAUSE
+        // REDIS CACHE IS CACHING RESPONSE IN FORM OF HASHMAP SO IT WILL GIVE CLASS CAST EXCEPTION OTHERWISE
+        responseMap.put("id", response.getId());
+        responseMap.put("serviceName", response.getServiceName());
+        responseMap.put("description", response.getDescription());
+        responseMap.put("category", response.getCategory());
+        responseMap.put("userOverallRating", response.getUserOverallRating());
+        responseMap.put("imageId", response.getImageId());
+        responseMap.put("price", response.getPrice());
+        responseMap.put("duration", response.getDuration());
+        responseMap.put("reviewRatings", response.getReviewRatings());
+        return responseMap;
     }
+
 
     private ServiceDetailsModel buildServiceDetailsResponse(ServiceModel service, List<ReviewAndRatingsRecord> reviews) {
         ServiceDetailsModel response = new ServiceDetailsModel();

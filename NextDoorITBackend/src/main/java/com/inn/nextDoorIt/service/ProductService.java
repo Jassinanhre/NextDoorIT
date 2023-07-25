@@ -7,6 +7,7 @@ import com.inn.nextDoorIt.POJO.ProductDetailsModel;
 import com.inn.nextDoorIt.POJO.ProductRequest;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ProductService {
     ProductCategory saveProductCategory(ProductCategory category);
@@ -15,7 +16,7 @@ public interface ProductService {
 
     List<Product> allProducts();
 
-    ProductDetailsModel getProductDetails(int productId);
+    Map<String,Object> getProductDetails(int productId);
 
     List<Product> getProductFromCategory(int categoryId);
 }

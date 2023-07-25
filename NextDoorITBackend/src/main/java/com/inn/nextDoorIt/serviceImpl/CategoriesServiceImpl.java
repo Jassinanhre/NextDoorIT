@@ -5,6 +5,7 @@ import com.inn.nextDoorIt.dao.CategoriesDao;
 import com.inn.nextDoorIt.exception.ApplicationException;
 import com.inn.nextDoorIt.service.CategoriesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ public class CategoriesServiceImpl implements CategoriesService {
     private CategoriesDao categoriesDao;
 
     @Override
+    @Cacheable(value = "categoryCache")
     public List<Category> getAllCategoriesFromDb() {
         List<Category> categoriesFromDb = categoriesDao.findAll();
         if (!Objects.isNull(categoriesFromDb) && categoriesFromDb.size() > 0) {

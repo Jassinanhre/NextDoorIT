@@ -7,13 +7,12 @@ import com.inn.nextDoorIt.dao.ProductDao;
 import com.inn.nextDoorIt.exception.ApplicationException;
 import com.inn.nextDoorIt.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 public class CartServiceImpl implements CartService {
@@ -45,11 +44,23 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public Cart getCart(int userId) {
+    @Cacheable(value = "cartCache", key = "#userId")
+    public Map<String, Object> getCart(int userId) {
         Cart savedCart = cartDao.findByUserId(userId);
         if (!Objects.isNull(savedCart)) {
-            return savedCart;
+            return buildMapResponse(savedCart);
         }
         throw new ApplicationException("No cart found with requested user id", HttpStatus.BAD_REQUEST);
+    }
+
+    // RETURNING THE MAP BECAUSE , REDIS CACHE STORES OUR OBJECT IN MAP FORM
+    // SO IT WILL GIVE CLASS CAST EXCEPTION
+    private Map<String, Object> buildMapResponse(Cart cart) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("id", cart.getId());
+        response.put("userId", cart.getUserId());
+        response.put("username", cart.getUsername());
+        response.put("products", cart.getProducts());
+        return response;
     }
 }

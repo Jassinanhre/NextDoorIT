@@ -5,13 +5,14 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "service_reviews_and_ratings")
 @DynamicUpdate
 @DynamicInsert
 @Data
-public class ReviewAndRatingsRecord {
+public class ReviewAndRatingsRecord implements Serializable {
     private static final long serialVersionUID = 1L;
 
 
@@ -24,5 +25,7 @@ public class ReviewAndRatingsRecord {
     private int serviceId;
     private String username;
     private float rating;
+
+
     private String summery;
 }
