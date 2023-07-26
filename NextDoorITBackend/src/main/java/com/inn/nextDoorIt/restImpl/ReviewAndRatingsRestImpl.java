@@ -1,7 +1,7 @@
 package com.inn.nextDoorIt.restImpl;
 
-import com.inn.nextDoorIt.POJO.ProductReviewAndRating;
-import com.inn.nextDoorIt.POJO.ReviewAndRatingsRecord;
+import com.inn.nextDoorIt.entity.ProductReviewAndRating;
+import com.inn.nextDoorIt.entity.ReviewAndRatingsRecord;
 import com.inn.nextDoorIt.rest.ReviewRatingsRest;
 import com.inn.nextDoorIt.service.ReviewAndRatingService;
 import com.inn.nextDoorIt.utils.ApplicationResponse;

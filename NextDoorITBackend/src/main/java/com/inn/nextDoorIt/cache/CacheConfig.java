@@ -18,7 +18,7 @@ public class CacheConfig {
     /*
      * Schedular for clearing all cache in system
      */
-    @Scheduled(fixedDelay = 30000) // Schedule to run every 1 hour (adjust as needed)
+    @Scheduled(fixedDelay = 120000) // Schedule to run every 1 hour (adjust as needed)
     public void clearCacheEntries() {
         log.info("CLEARING ALL CACHES IN SYSTEM ");
         Cache cache = cacheManager.getCache("serviceCache"); // Replace "cacheName" with your cache name

@@ -1,9 +1,8 @@
 package com.inn.nextDoorIt.service;
 
-import com.inn.nextDoorIt.POJO.ServiceDetailsModel;
-import com.inn.nextDoorIt.POJO.ServiceModel;
+import com.inn.nextDoorIt.entity.ServiceModel;
 import com.inn.nextDoorIt.POJO.ServiceModelRequest;
-import com.inn.nextDoorIt.POJO.ServiceRequestRecord;
+import com.inn.nextDoorIt.entity.ServiceRequestRecord;
 
 import java.util.List;
 import java.util.Map;

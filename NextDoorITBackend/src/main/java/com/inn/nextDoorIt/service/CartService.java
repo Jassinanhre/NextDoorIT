@@ -1,7 +1,6 @@
 package com.inn.nextDoorIt.service;
 
-import com.inn.nextDoorIt.POJO.Cart;
-import com.inn.nextDoorIt.POJO.Product;
+import com.inn.nextDoorIt.entity.Cart;
 
 import java.util.Map;
 

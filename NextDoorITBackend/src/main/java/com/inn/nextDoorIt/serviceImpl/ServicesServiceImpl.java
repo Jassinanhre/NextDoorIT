@@ -5,19 +5,19 @@ import com.inn.nextDoorIt.dao.CategoriesDao;
 import com.inn.nextDoorIt.dao.ReviewAndRatingDao;
 import com.inn.nextDoorIt.dao.ServiceRequestRecordsDao;
 import com.inn.nextDoorIt.dao.ServicesDao;
+import com.inn.nextDoorIt.entity.Category;
+import com.inn.nextDoorIt.entity.ReviewAndRatingsRecord;
+import com.inn.nextDoorIt.entity.ServiceModel;
+import com.inn.nextDoorIt.entity.ServiceRequestRecord;
 import com.inn.nextDoorIt.exception.ApplicationException;
 import com.inn.nextDoorIt.service.ServicesService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.CacheManager;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.data.redis.core.TimeToLive;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 @Service
 @Slf4j

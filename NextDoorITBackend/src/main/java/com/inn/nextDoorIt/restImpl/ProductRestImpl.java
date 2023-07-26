@@ -1,6 +1,6 @@
 package com.inn.nextDoorIt.restImpl;
 
-import com.inn.nextDoorIt.POJO.ProductCategory;
+import com.inn.nextDoorIt.entity.ProductCategory;
 import com.inn.nextDoorIt.POJO.ProductRequest;
 import com.inn.nextDoorIt.rest.ProductRest;
 import com.inn.nextDoorIt.service.ProductService;

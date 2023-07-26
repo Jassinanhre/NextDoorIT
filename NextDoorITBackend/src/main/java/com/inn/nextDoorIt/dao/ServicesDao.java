@@ -1,6 +1,6 @@
 package com.inn.nextDoorIt.dao;
 
-import com.inn.nextDoorIt.POJO.ServiceModel;
+import com.inn.nextDoorIt.entity.ServiceModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

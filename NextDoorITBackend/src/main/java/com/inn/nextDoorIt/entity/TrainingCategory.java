@@ -1,19 +1,18 @@
-package com.inn.nextDoorIt.POJO;
+package com.inn.nextDoorIt.entity;
 
 import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Data
 @Entity
 @DynamicUpdate
 @DynamicInsert
-@Table(name = "services")
+@Table(name = "training_category")
+public class TrainingCategory {
 
-public class ServiceModel {
     private static final long serialVersionUID = 1L;
 
 
@@ -21,13 +20,11 @@ public class ServiceModel {
     @Id
     @Column(name = "id")
     private Integer id;
-    private String serviceName;
+
+    @Column(name = "category_name")
+    private String categoryName;
+
+    @Column(name = "category_description")
     private String description;
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "category_id")
-    private Category category;
-    private String userOverallRating;
-    private String imageId;
-    private long price;
-    private long duration;
+
 }

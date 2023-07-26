@@ -1,7 +1,6 @@
 package com.inn.nextDoorIt.utils;
 
 
-import com.inn.nextDoorIt.POJO.Category;
 import lombok.Data;
 
 @Data

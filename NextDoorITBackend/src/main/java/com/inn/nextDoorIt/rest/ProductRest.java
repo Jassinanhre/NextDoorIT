@@ -1,6 +1,6 @@
 package com.inn.nextDoorIt.rest;
 
-import com.inn.nextDoorIt.POJO.ProductCategory;
+import com.inn.nextDoorIt.entity.ProductCategory;
 import com.inn.nextDoorIt.POJO.ProductRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

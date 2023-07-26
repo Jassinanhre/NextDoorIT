@@ -1,8 +1,8 @@
 package com.inn.nextDoorIt.serviceImpl;
 
 import com.inn.nextDoorIt.JWT.JwtUtil;
-import com.inn.nextDoorIt.POJO.Cart;
-import com.inn.nextDoorIt.POJO.User;
+import com.inn.nextDoorIt.entity.Cart;
+import com.inn.nextDoorIt.entity.User;
 import com.inn.nextDoorIt.dao.CartDao;
 import com.inn.nextDoorIt.dao.UserDao;
 import com.inn.nextDoorIt.exception.ApplicationException;

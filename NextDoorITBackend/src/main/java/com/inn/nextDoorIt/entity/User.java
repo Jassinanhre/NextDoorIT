@@ -1,4 +1,4 @@
-package com.inn.nextDoorIt.POJO;
+package com.inn.nextDoorIt.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;

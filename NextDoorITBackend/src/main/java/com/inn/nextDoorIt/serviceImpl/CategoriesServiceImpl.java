@@ -1,6 +1,6 @@
 package com.inn.nextDoorIt.serviceImpl;
 
-import com.inn.nextDoorIt.POJO.Category;
+import com.inn.nextDoorIt.entity.Category;
 import com.inn.nextDoorIt.dao.CategoriesDao;
 import com.inn.nextDoorIt.exception.ApplicationException;
 import com.inn.nextDoorIt.service.CategoriesService;
