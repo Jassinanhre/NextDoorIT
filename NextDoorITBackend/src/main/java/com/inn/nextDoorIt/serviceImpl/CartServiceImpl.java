@@ -1,7 +1,7 @@
 package com.inn.nextDoorIt.serviceImpl;
 
-import com.inn.nextDoorIt.POJO.Cart;
-import com.inn.nextDoorIt.POJO.Product;
+import com.inn.nextDoorIt.entity.Cart;
+import com.inn.nextDoorIt.entity.Product;
 import com.inn.nextDoorIt.dao.CartDao;
 import com.inn.nextDoorIt.dao.ProductDao;
 import com.inn.nextDoorIt.exception.ApplicationException;
@@ -9,7 +9,6 @@ import com.inn.nextDoorIt.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.util.*;

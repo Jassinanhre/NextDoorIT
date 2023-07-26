@@ -31,7 +31,6 @@ public class NextDoorItSolutionsApplication {
         RedisSerializationContext.SerializationPair<Object> serializationPair = RedisSerializationContext.SerializationPair.fromSerializer(jsonRedisSerializer);
         RedisCacheConfiguration cacheConfiguration = RedisCacheConfiguration.defaultCacheConfig().serializeValuesWith(serializationPair);
         cacheConfiguration.entryTtl(Duration.ofSeconds(30));
-        log.info("CACHE EVICTION TIME -> ", cacheConfiguration.getTtl().getSeconds());
         RedisCacheManager cacheManager = RedisCacheManager.builder(RedisCacheWriter.lockingRedisCacheWriter(redisConnectionFactory)).cacheDefaults(cacheConfiguration).build();
         return cacheManager;
     }

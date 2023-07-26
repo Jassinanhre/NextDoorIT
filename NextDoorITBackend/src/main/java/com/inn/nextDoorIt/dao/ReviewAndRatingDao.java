@@ -1,6 +1,6 @@
 package com.inn.nextDoorIt.dao;
 
-import com.inn.nextDoorIt.POJO.ReviewAndRatingsRecord;
+import com.inn.nextDoorIt.entity.ReviewAndRatingsRecord;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

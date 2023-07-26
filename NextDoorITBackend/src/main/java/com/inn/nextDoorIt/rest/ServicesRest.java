@@ -1,7 +1,7 @@
 package com.inn.nextDoorIt.rest;
 
 import com.inn.nextDoorIt.POJO.ServiceModelRequest;
-import com.inn.nextDoorIt.POJO.ServiceRequestRecord;
+import com.inn.nextDoorIt.entity.ServiceRequestRecord;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

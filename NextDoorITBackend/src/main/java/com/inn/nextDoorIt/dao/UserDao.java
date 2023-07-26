@@ -1,6 +1,6 @@
 package com.inn.nextDoorIt.dao;
 
-import com.inn.nextDoorIt.POJO.User;
+import com.inn.nextDoorIt.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;

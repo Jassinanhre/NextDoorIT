@@ -19,7 +19,7 @@ public class CustomerUsersDetailsService implements UserDetailsService {
     @Autowired
     UserDao userDao;
 
-    private com.inn.nextDoorIt.POJO.User userDetail;
+    private com.inn.nextDoorIt.entity.User userDetail;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -31,7 +31,7 @@ public class CustomerUsersDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("User not found");
     }
 
-    public com.inn.nextDoorIt.POJO.User getUserDetail() {
+    public com.inn.nextDoorIt.entity.User getUserDetail() {
         return userDetail;
     }
 }

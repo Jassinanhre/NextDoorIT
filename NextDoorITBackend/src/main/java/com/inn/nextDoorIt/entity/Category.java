@@ -1,4 +1,4 @@
-package com.inn.nextDoorIt.POJO;
+package com.inn.nextDoorIt.entity;
 
 import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;

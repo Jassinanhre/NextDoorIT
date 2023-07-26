@@ -1,7 +1,7 @@
 package com.inn.nextDoorIt.service;
 
-import com.inn.nextDoorIt.POJO.ProductReviewAndRating;
-import com.inn.nextDoorIt.POJO.ReviewAndRatingsRecord;
+import com.inn.nextDoorIt.entity.ProductReviewAndRating;
+import com.inn.nextDoorIt.entity.ReviewAndRatingsRecord;
 
 public interface ReviewAndRatingService {
     public ReviewAndRatingsRecord saveRecord(ReviewAndRatingsRecord record);

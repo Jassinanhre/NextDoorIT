@@ -1,6 +1,6 @@
 package com.inn.nextDoorIt.rest;
 
-import com.inn.nextDoorIt.POJO.Category;
+import com.inn.nextDoorIt.entity.Category;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

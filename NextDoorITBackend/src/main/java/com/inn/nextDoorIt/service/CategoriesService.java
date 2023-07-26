@@ -1,6 +1,6 @@
 package com.inn.nextDoorIt.service;
 
-import com.inn.nextDoorIt.POJO.Category;
+import com.inn.nextDoorIt.entity.Category;
 
 import java.util.List;
 

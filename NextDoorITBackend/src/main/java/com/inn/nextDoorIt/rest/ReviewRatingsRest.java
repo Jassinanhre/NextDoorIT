@@ -1,7 +1,7 @@
 package com.inn.nextDoorIt.rest;
 
-import com.inn.nextDoorIt.POJO.ProductReviewAndRating;
-import com.inn.nextDoorIt.POJO.ReviewAndRatingsRecord;
+import com.inn.nextDoorIt.entity.ProductReviewAndRating;
+import com.inn.nextDoorIt.entity.ReviewAndRatingsRecord;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

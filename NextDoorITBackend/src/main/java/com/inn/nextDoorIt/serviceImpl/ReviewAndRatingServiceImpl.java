@@ -1,7 +1,7 @@
 package com.inn.nextDoorIt.serviceImpl;
 
-import com.inn.nextDoorIt.POJO.ProductReviewAndRating;
-import com.inn.nextDoorIt.POJO.ReviewAndRatingsRecord;
+import com.inn.nextDoorIt.entity.ProductReviewAndRating;
+import com.inn.nextDoorIt.entity.ReviewAndRatingsRecord;
 import com.inn.nextDoorIt.dao.ProductReviewAndRatingDao;
 import com.inn.nextDoorIt.dao.ReviewAndRatingDao;
 import com.inn.nextDoorIt.exception.ApplicationException;
