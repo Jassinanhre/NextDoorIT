@@ -7,6 +7,10 @@ import org.springframework.cache.CacheManager;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+
 @Component
 @Slf4j
 public class CacheConfig {
@@ -18,32 +22,16 @@ public class CacheConfig {
     /*
      * Schedular for clearing all cache in system
      */
-    @Scheduled(fixedDelay = 120000) // Schedule to run every 1 hour (adjust as needed)
+    @Scheduled(fixedDelay = 120000) // will clear all cache after 2 minutes
     public void clearCacheEntries() {
         log.info("CLEARING ALL CACHES IN SYSTEM ");
-        Cache cache = cacheManager.getCache("serviceCache"); // Replace "cacheName" with your cache name
-        Cache serviceDetailCache = cacheManager.getCache("serviceDetailCache");
-        Cache cartCache = cacheManager.getCache("cartCache");
-        Cache categoryCache = cacheManager.getCache("categoryCache");
-        Cache productCache = cacheManager.getCache("productCache");
-        Cache productDetailCache = cacheManager.getCache("productDetailCache");
-        if (cache != null) {
-            cache.clear();
-        }
-        if (serviceDetailCache != null) {
-            serviceDetailCache.clear();
-        }
-        if (cartCache != null) {
-            cartCache.clear();
-        }
-        if (categoryCache != null) {
-            categoryCache.clear();
-        }
-        if (productCache != null) {
-            productCache.clear();
-        }
-        if (productDetailCache != null) {
-            productDetailCache.clear();
-        }
+
+        List<String> cacheList = Arrays.asList("trainingCache", "serviceCache", "serviceDetailCache", "cartCache", "categoryCache", "productCache", "productDetailCache");
+        cacheList.forEach(currentCache -> {
+            Cache myCache = cacheManager.getCache(currentCache);
+            if (!Objects.isNull(myCache)) { // if something in cache then clear it
+                myCache.clear();
+            }
+        });
     }
 }

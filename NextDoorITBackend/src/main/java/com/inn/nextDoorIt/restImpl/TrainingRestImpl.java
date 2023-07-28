@@ -25,4 +25,19 @@ public class TrainingRestImpl implements TrainingRest {
     public ResponseEntity<Object> saveTraining(ITTrainingRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED.value()).body(new ApplicationResponse(service.saveItTraining(request), HttpStatus.CREATED.value()));
     }
+
+    @Override
+    public ResponseEntity<Object> getAllTraining() {
+        return ResponseEntity.status(HttpStatus.OK).body(new ApplicationResponse(service.getAllItTraining(), HttpStatus.OK.value()));
+    }
+
+    @Override
+    public ResponseEntity<Object> getTrainingDetails(int trainingId) {
+        return ResponseEntity.ok(new ApplicationResponse(service.getTrainingDetails(trainingId), HttpStatus.OK.value()));
+    }
+
+    @Override
+    public ResponseEntity<Object> enrollTraining(int userId, int trainingId) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(new ApplicationResponse(service.enrollTraining(userId, trainingId), HttpStatus.CREATED.value()));
+    }
 }

@@ -2,13 +2,16 @@ package com.inn.nextDoorIt.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Builder;
 import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.NamedQuery;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @NamedQuery(name = "User.findByEmailId", query = "select u from User u where u.email=:email")
 @Data
@@ -40,9 +43,11 @@ public class User implements Serializable {
     private String password;
 
     @Column(name = "status")
-    private String status;
+    private String status = "active";
 
     @Column(name = "role")
     private String role;
 
+    @OneToMany
+    private List<ITTraining> userTakenTrainings;
 }
