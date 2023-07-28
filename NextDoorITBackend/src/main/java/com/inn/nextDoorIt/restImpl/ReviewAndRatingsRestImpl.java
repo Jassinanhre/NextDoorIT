@@ -2,6 +2,7 @@ package com.inn.nextDoorIt.restImpl;
 
 import com.inn.nextDoorIt.entity.ProductReviewAndRating;
 import com.inn.nextDoorIt.entity.ReviewAndRatingsRecord;
+import com.inn.nextDoorIt.entity.TrainingReviewRatings;
 import com.inn.nextDoorIt.rest.ReviewRatingsRest;
 import com.inn.nextDoorIt.service.ReviewAndRatingService;
 import com.inn.nextDoorIt.utils.ApplicationResponse;
@@ -23,5 +24,10 @@ public class ReviewAndRatingsRestImpl implements ReviewRatingsRest {
     @Override
     public ResponseEntity<Object> saveProductReviewAndRating(ProductReviewAndRating record) {
         return ResponseEntity.status(HttpStatus.CREATED).body(new ApplicationResponse(service.saveProductReviewAndRatingRecord(record), HttpStatus.CREATED.value()));
+    }
+
+    @Override
+    public ResponseEntity<Object> saveTrainingReviewAndRating(TrainingReviewRatings record) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(new ApplicationResponse(service.saveTrainingReviewAndRating(record), HttpStatus.CREATED.value()));
     }
 }

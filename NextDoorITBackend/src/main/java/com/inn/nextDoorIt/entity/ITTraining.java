@@ -27,10 +27,16 @@ public class ITTraining {
     @JoinColumn(name = "training_category")
     private TrainingCategory trainingCategory;
 
-    private String userOverallRating;
-
+    @Column(name = "image_id")
     private String imageId;
+
+
     private long price;
+
     private long duration;
 
+    private String objective;
+
+    private String syllabus;
+    private String prerequisites;
 }

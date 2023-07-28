@@ -10,4 +10,7 @@ public class ITTrainingRequest {
     private String imageId;
     private long price;
     private long duration;
+    private String objective;
+    private String syllabus;
+    private String prerequisites;
 }
