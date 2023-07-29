@@ -4,6 +4,7 @@ package com.inn.nextDoorIt.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Data;
+import lombok.ToString;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.NamedQuery;
@@ -48,6 +49,13 @@ public class User implements Serializable {
     @Column(name = "role")
     private String role;
 
-    @OneToMany
+    @JsonIgnore
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "user_trainings",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id")
+    )
+    @ToString.Exclude
     private List<ITTraining> userTakenTrainings;
 }
