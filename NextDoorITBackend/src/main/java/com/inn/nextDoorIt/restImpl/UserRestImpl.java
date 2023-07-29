@@ -26,4 +26,9 @@ public class UserRestImpl implements UserRest {
     public ResponseEntity<ApplicationResponse> login(Map<String, String> requestMap) {
         return ResponseEntity.ok(new ApplicationResponse(userService.login(requestMap), HttpStatus.OK.value()));
     }
+
+    @Override
+    public ResponseEntity<ApplicationResponse> logout() {
+        return ResponseEntity.ok(new ApplicationResponse("User successfully logged out", HttpStatus.OK.value()));
+    }
 }

@@ -14,4 +14,7 @@ public interface UserRest {
 
     @RequestMapping(path = "/login")
     public ResponseEntity<ApplicationResponse> login(@RequestBody(required = true) Map<String, String> requestMap);
+
+    @RequestMapping(path = "/logout")
+    public ResponseEntity<ApplicationResponse> logout();
 }
