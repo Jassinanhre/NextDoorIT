@@ -79,8 +79,11 @@ public class TrainingServiceImpl implements TrainingService {
         User user = userDao.findById(userId).orElseThrow(() -> new ApplicationException("No user found for requested userId", HttpStatus.BAD_REQUEST));
         ITTraining training = trainingDao.findById(trainingId).orElseThrow(() -> new ApplicationException("No IT Training found for requested trainingId", HttpStatus.BAD_REQUEST));
         List<ITTraining> alreadyEnrolled = user.getUserTakenTrainings();
-        verifyDuplicateEnrollment(alreadyEnrolled, trainingId);
+//        List<User> enrolledUsersForTraining = training.getUsers();
+
+
         List<ITTraining> updatedTraining = null;
+        List<User> updatedUserList = null;
         if (Objects.isNull(alreadyEnrolled) || alreadyEnrolled.size() == 0) { // IF THERE IS NO TRAINING ENROLLED ALREADY
             updatedTraining = new ArrayList<>();
             updatedTraining.add(training);
@@ -91,7 +94,9 @@ public class TrainingServiceImpl implements TrainingService {
             updatedTraining.add(training);
             user.setUserTakenTrainings(updatedTraining);
         }
-        User updatedUserResponse = userDao.save(user);
+
+        User updatedUserResponse = userDao.save(user);// saved user
+        ITTraining trainingResponse = trainingDao.save(training);
         if (!Objects.isNull(updatedUserResponse)) {
             EnrollmentResponse response = new EnrollmentResponse();
             response.setUserName(updatedUserResponse.getName());

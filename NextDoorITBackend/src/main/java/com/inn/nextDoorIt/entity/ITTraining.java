@@ -1,10 +1,12 @@
 package com.inn.nextDoorIt.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -39,4 +41,9 @@ public class ITTraining {
 
     private String syllabus;
     private String prerequisites;
+
+
+    @ManyToMany(mappedBy = "userTakenTrainings")
+    @JsonIgnore
+    private List<User> users;
 }
