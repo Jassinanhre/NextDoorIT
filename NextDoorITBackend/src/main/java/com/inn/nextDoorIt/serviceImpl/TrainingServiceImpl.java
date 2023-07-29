@@ -18,6 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class TrainingServiceImpl implements TrainingService {
@@ -78,6 +79,7 @@ public class TrainingServiceImpl implements TrainingService {
         User user = userDao.findById(userId).orElseThrow(() -> new ApplicationException("No user found for requested userId", HttpStatus.BAD_REQUEST));
         ITTraining training = trainingDao.findById(trainingId).orElseThrow(() -> new ApplicationException("No IT Training found for requested trainingId", HttpStatus.BAD_REQUEST));
         List<ITTraining> alreadyEnrolled = user.getUserTakenTrainings();
+        verifyDuplicateEnrollment(alreadyEnrolled, trainingId);
         List<ITTraining> updatedTraining = null;
         if (Objects.isNull(alreadyEnrolled) || alreadyEnrolled.size() == 0) { // IF THERE IS NO TRAINING ENROLLED ALREADY
             updatedTraining = new ArrayList<>();
@@ -98,6 +100,15 @@ public class TrainingServiceImpl implements TrainingService {
             return response;
         }
         throw new ApplicationException("Unable to enroll the it training for the requested user", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    private void verifyDuplicateEnrollment(List<ITTraining> alreadyEnrolled, int trainingId) {
+        List<ITTraining> matchingRecords = alreadyEnrolled.stream().filter(itTraining -> {
+            return itTraining.getId() == trainingId;
+        }).collect(Collectors.toList());
+        if (!Objects.isNull(matchingRecords) && matchingRecords.size() > 0) {
+            throw new ApplicationException("This it training is already enrolled by candidate", HttpStatus.BAD_REQUEST);
+        }
     }
 
     private Map<String, Object> generateTrainingDetailsResponse(ITTraining training, List<TrainingReviewRatings> reviewAndRatings) {
