@@ -54,7 +54,7 @@ public class User implements Serializable {
     @JoinTable(
             name = "user_trainings",
             joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "course_id")
+            inverseJoinColumns = @JoinColumn(name = "training_id")
     )
     @ToString.Exclude
     private List<ITTraining> userTakenTrainings;
