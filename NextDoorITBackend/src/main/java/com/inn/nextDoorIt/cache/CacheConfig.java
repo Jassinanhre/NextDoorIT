@@ -26,7 +26,7 @@ public class CacheConfig {
     public void clearCacheEntries() {
         log.info("CLEARING ALL CACHES IN SYSTEM ");
 
-        List<String> cacheList = Arrays.asList("trainingCache", "serviceCache", "serviceDetailCache", "cartCache", "categoryCache", "productCache", "productDetailCache");
+        List<String> cacheList = Arrays.asList("trainingCache", "serviceCache", "serviceDetailCache", "cartCache", "categoryCache", "productCache", "productDetailCache", "reviewRatingCache");
         cacheList.forEach(currentCache -> {
             Cache myCache = cacheManager.getCache(currentCache);
             if (!Objects.isNull(myCache)) { // if something in cache then clear it

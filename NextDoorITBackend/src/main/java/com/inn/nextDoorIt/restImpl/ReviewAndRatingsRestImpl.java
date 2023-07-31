@@ -30,4 +30,6 @@ public class ReviewAndRatingsRestImpl implements ReviewRatingsRest {
     public ResponseEntity<Object> saveTrainingReviewAndRating(TrainingReviewRatings record) {
         return ResponseEntity.status(HttpStatus.CREATED).body(new ApplicationResponse(service.saveTrainingReviewAndRating(record), HttpStatus.CREATED.value()));
     }
+
+
 }

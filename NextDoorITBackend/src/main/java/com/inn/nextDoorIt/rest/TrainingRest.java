@@ -23,4 +23,6 @@ public interface TrainingRest {
     @PutMapping(path = "/enroll")
     public ResponseEntity<Object> enrollTraining(@RequestParam("userId") int userId, @RequestParam("trainingId") int trainingId);
 
+    @GetMapping(path = "/reviewRatings")
+    public ResponseEntity<Object> getTrainingReviewAndRatings(@RequestParam("trainingId") int trainingId);
 }

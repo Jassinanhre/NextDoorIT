@@ -40,4 +40,11 @@ public class TrainingRestImpl implements TrainingRest {
     public ResponseEntity<Object> enrollTraining(int userId, int trainingId) {
         return ResponseEntity.status(HttpStatus.CREATED).body(new ApplicationResponse(service.enrollTraining(userId, trainingId), HttpStatus.CREATED.value()));
     }
+
+    @Override
+    public ResponseEntity<Object> getTrainingReviewAndRatings(int trainingId) {
+        return ResponseEntity.ok(new ApplicationResponse(service.getTrainingReviewAndRatings(trainingId), HttpStatus.OK.value()));
+    }
+
+
 }
