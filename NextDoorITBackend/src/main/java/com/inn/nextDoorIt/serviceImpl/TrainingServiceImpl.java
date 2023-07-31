@@ -107,6 +107,17 @@ public class TrainingServiceImpl implements TrainingService {
         throw new ApplicationException("Unable to enroll the it training for the requested user", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @Override
+    @Cacheable(value = "reviewRatingCache", key = "#trainingId")
+    public List<TrainingReviewRatings> getTrainingReviewAndRatings(int trainingId) {
+        // getting all the review and ratings for the training with requested training id
+        List<TrainingReviewRatings> reviewRatings = reviewAndRatingsDao.findByTrainingId(trainingId);
+        if (!Objects.isNull(reviewRatings) && reviewRatings.size() > 0) {
+            return reviewRatings;
+        }
+        throw new ApplicationException("No review and rating found for the requested trainingId", HttpStatus.BAD_REQUEST);
+    }
+
     private void verifyDuplicateEnrollment(List<ITTraining> alreadyEnrolled, int trainingId) {
         List<ITTraining> matchingRecords = alreadyEnrolled.stream().filter(itTraining -> {
             return itTraining.getId() == trainingId;
