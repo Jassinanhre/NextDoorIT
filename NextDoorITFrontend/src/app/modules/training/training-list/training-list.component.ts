@@ -49,7 +49,7 @@ export class TrainingListComponent implements OnInit {
     {
       id: "3",
       trainingName: "Programming Language",
-      description: "Category 5 cable (Cat 5) is a twisted pair cable for computer networks. Since 2001, the variant commonly in use is the Category 5e specification (Cat 5e).",
+      description: "A programming language is a language used to write computer programs, which instruct a computer to perform some kind of computation, and/or organize the flow of control between external devices (such as a printer, a robot, or any peripheral).",
       image: "assets/img/programming-language.png",
       price: "1254",
       reviewRatings: {

@@ -10,10 +10,21 @@ import { TrainingService } from 'src/app/services/training/training.service';
 })
 export class TrainingDetailsComponent implements OnInit {
   currentTraining: Training = {
-    id: "3",
-    trainingName: "Software Development",
-    description: "Whether it's web development, software development, or any other development-related inquiries, we are here to assist you.",
-    image: "assets/img/bulb.png",
+    id: "1",
+    trainingName: "Programming Language",
+    description: "A programming language is a language used to write computer programs, which instruct a computer to perform some kind of computation, and/or organize the flow of control between external devices (such as a printer, a robot, or any peripheral).",
+    image: "assets/img/programming-language.png",
+    price: "1254",
+    reviewRatings: {
+      rating: "4.8",
+      reviews: [{
+        trainingName: "Terrific purchase",
+        summary: "Its value for money for the price i paid for it. Suits my needs. Print quality is good for both monochrome and colour printing on A4 GSM 70 paper. Haven't tried printing pics yet so can't say how it'd be. Setup was easy. Just went through the manual and also the video."
+      }, {
+        trainingName: "Terrific purchase",
+        summary: "Its value for money for the price i paid for it. Suits my needs. Print quality is good for both monochrome and colour printing on A4 GSM 70 paper. Haven't tried printing pics yet so can't say how it'd be. Setup was easy. Just went through the manual and also the video."
+      }]
+    },
     category: ""
   };
   message = '';
