@@ -12,9 +12,9 @@ export class TrainingListComponent implements OnInit {
   trainings?: Training[] = [
     {
       id: "1",
-      trainingName: "Computer Accessories",
+      trainingName: "Softwares",
       description: "Equipment that supports other equipment. For example, smartphone accessories include phone cases, chargers and cables. Examples of computer accessories are laptop bags, cables, screen cleaners and USB drives, although the latter may also be considered a peripheral device.",
-      image: "assets/img/computer_acc.jpg",
+      image: "assets/img/train1.png",
       price: "1254",
       reviewRatings: {
         rating: "4.8",
@@ -30,9 +30,9 @@ export class TrainingListComponent implements OnInit {
     },
     {
       id: "2",
-      trainingName: "Printer",
+      trainingName: "Network Administration",
       description: "Laser printers are known for their fast print speeds and high-quality text prints. These printers use a laser to fuse toner onto the paper, creating sharp, crisp text ideal for documents and business materials.",
-      image: "assets/img/printer.png",
+      image: "assets/img/database.png",
       price: "1254",
       reviewRatings: {
         rating: "4.8",
@@ -48,7 +48,7 @@ export class TrainingListComponent implements OnInit {
     },
     {
       id: "3",
-      trainingName: "Category 5 Cable",
+      trainingName: "Programming Language",
       description: "Category 5 cable (Cat 5) is a twisted pair cable for computer networks. Since 2001, the variant commonly in use is the Category 5e specification (Cat 5e).",
       image: "assets/img/cat5cable.jpg",
       price: "1254",
@@ -66,7 +66,7 @@ export class TrainingListComponent implements OnInit {
     },
     {
       id: "4",
-      trainingName: "Home Theater",
+      trainingName: "Database",
       description: "An audio/video entertainment center that has a large-screen TV and high fidelity audio system with at least three speakers in the front (left, right and center) and left and right speakers in the rear.",
       image: "assets/img/theater.jpg",
       price: "1254",
@@ -84,7 +84,7 @@ export class TrainingListComponent implements OnInit {
     },
     {
       id: "5",
-      trainingName: "Laptop",
+      trainingName: "Frontend",
       description: "A laptop is a personal computer that can be easily moved and used in a variety of locations. Most laptops are designed to have all of the functionality of a desktop computer, which means they can generally run the same software and open the same types of files.",
       image: "assets/img/laptop.webp",
       price: "1254",
@@ -102,7 +102,7 @@ export class TrainingListComponent implements OnInit {
     },
     {
       id: "6",
-      trainingName: "HDMI Cable",
+      trainingName: "Web Developer",
       description: "HDMI stands for High Definition Multimedia Interface and is the most frequently used HD signal for transferring both high definition audio and video over a single cable.",
       image: "assets/img/hdmi.jpg",
       price: "1254",

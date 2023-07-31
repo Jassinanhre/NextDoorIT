@@ -306,8 +306,15 @@ a {
 .card1 p {
   color: #777;
   font-size: 16px;
-  height: 120px;
+}
 
+.price-dv {
+  display: flex;
+  justify-content: space-between;
+}
+
+.training-p {
+  height: 130px;
 }
 
 .card1.a i.fa {

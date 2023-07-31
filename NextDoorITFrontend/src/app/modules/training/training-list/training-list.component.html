@@ -3,7 +3,7 @@
     <app-training-category (categoryEvent)="filterByCategory($event)"></app-training-category>
   </div>
   <div class="service2">
-    <mat-grid-list cols="3" rowHeight="350px">
+    <mat-grid-list cols="3" rowHeight="380px">
       <mat-grid-tile *ngFor="let trainings of trainings; let i = index" [class.active]="i == currentIndex"
         (click)="setActiveService(trainings, i)">
         <mat-card class="service-matcard">
@@ -11,7 +11,15 @@
             <div class="card1 a">
               <img src="assets/img/bulb.png" />
               <h2>{{trainings.trainingName}} </h2>
-              <p>{{trainings.description}}</p>
+              <p class="training-p">{{trainings.description}}</p>
+              <div class="price-dv">
+                <div class="left-price">
+                  <p><strong>Duration:</strong>25 Days</p>
+                </div>
+                <div class="right-price">
+                  <p><strong>Price:</strong>$ 1000</p>
+                </div>
+              </div>
             </div>
           </mat-card-content>
         </mat-card>
