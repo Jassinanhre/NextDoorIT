@@ -17,14 +17,16 @@
 
 .header-main {
   background: #7b1fa2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .logo-head {
   float: left;
   color: #fff;
   font-size: 20px;
-  margin-top: 15px;
-  margin-left: 10px;
+  margin-left: 15px;
   cursor: pointer;
 }
 

@@ -3,7 +3,7 @@
     <app-training-category (categoryEvent)="filterByCategory($event)"></app-training-category>
   </div>
   <div class="service2">
-    <mat-grid-list cols="3" rowHeight="280px">
+    <mat-grid-list cols="3" rowHeight="350px">
       <mat-grid-tile *ngFor="let trainings of trainings; let i = index" [class.active]="i == currentIndex"
         (click)="setActiveService(trainings, i)">
         <mat-card class="service-matcard">
