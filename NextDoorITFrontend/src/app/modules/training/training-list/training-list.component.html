@@ -7,7 +7,7 @@
       <mat-grid-tile *ngFor="let trainings of trainings; let i = index" [class.active]="i == currentIndex"
         (click)="setActiveService(trainings, i)">
         <mat-card class="service-matcard">
-          <mat-card-content routerLink="/trainings/{{ trainings.id }}">
+          <mat-card-content routerLink="/training/{{ trainings.id }}">
             <div class="card1 a">
               <img src="assets/img/bulb.png" />
               <h2>{{trainings.trainingName}} </h2>

@@ -27,7 +27,7 @@ export class TrainingService {
     return this.http.get(`${this.url}/${id}`);
   }
 
-  create(data: any): Observable<any> {
+  enroll(data: any): Observable<any> {
     return this.http.post(this.url, data);
   }
 
