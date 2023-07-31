@@ -15,7 +15,26 @@ import { GlobalConstants } from 'src/app/global-constants';
 export class TrainingCategoryComponent implements OnInit {
   @Output() categoryEvent = new EventEmitter<string>();
 
-  trainingCategory?: TrainingCategory[] = [];
+  trainingCategory?: TrainingCategory[] = [
+    {
+      id: "1",
+      name: "Computer Accessories",
+      description: "Our website offers a convenient online platform for individuals looking to purchase hardware parts.",
+      image: "assets/img/bulb.png",
+    },
+    {
+      id: "2",
+      name: "Printer Supplies",
+      description: "Our website offers a convenient online platform for individuals looking to purchase hardware parts.",
+      image: "assets/img/bulb.png",
+    },
+    {
+      id: "3",
+      name: "Networking Equipment",
+      description: "Our website offers a convenient online platform for individuals looking to purchase hardware parts.",
+      image: "assets/img/bulb.png",
+    }
+  ];
   responseMessage: any;
 
   constructor(

@@ -5,7 +5,7 @@
       <mat-select (selectionChange)="onCategoryChange($event.value)">
         <mat-option>None</mat-option>
         <mat-option *ngFor="let selectedCategory of trainingCategory; let i = index" [value]="selectedCategory">
-          {{selectedCategory.categoryName}}
+          {{selectedCategory.name}}
         </mat-option>
       </mat-select>
     </mat-form-field>

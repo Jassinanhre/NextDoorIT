@@ -1,6 +1,6 @@
 export class TrainingCategory {
   id?: string;
-  categoryName?: string;
+  name?: string;
   description?: string;
   image?: string;
 }
