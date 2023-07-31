@@ -19,6 +19,11 @@ public class CartRestImpl implements CartRest {
     }
 
     @Override
+    public ResponseEntity<Object> removeCartProduct(int productId, int userId) {
+        return ResponseEntity.ok(new ApplicationResponse(service.removeCartProduct(productId, userId), HttpStatus.OK.value()));
+    }
+
+    @Override
     public ResponseEntity<Object> allProductsInCart(int userId) {
         return ResponseEntity.ok(new ApplicationResponse(service.getCart(userId), HttpStatus.OK.value()));
     }

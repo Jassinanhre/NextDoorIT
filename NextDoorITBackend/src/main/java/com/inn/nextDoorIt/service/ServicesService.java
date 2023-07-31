@@ -1,11 +1,11 @@
 package com.inn.nextDoorIt.service;
 
-import com.inn.nextDoorIt.POJO.ServiceDetailsModel;
-import com.inn.nextDoorIt.POJO.ServiceModel;
+import com.inn.nextDoorIt.entity.ServiceModel;
 import com.inn.nextDoorIt.POJO.ServiceModelRequest;
-import com.inn.nextDoorIt.POJO.ServiceRequestRecord;
+import com.inn.nextDoorIt.entity.ServiceRequestRecord;
 
 import java.util.List;
+import java.util.Map;
 
 
 public interface ServicesService {
@@ -15,7 +15,7 @@ public interface ServicesService {
 
     List<ServiceModel> getAllServices();
 
-    ServiceDetailsModel getServiceDetails(int serviceId);
+    Map<String, Object> getServiceDetails(int serviceId);
 
     String saveRequestedServiceRecord(ServiceRequestRecord requestRecord);
 }

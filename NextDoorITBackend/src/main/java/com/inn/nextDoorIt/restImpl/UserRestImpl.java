@@ -1,11 +1,8 @@
 package com.inn.nextDoorIt.restImpl;
 
-import com.inn.nextDoorIt.POJO.User;
-import com.inn.nextDoorIt.constants.NextDoorItConstants;
 import com.inn.nextDoorIt.rest.UserRest;
 import com.inn.nextDoorIt.service.UserService;
 import com.inn.nextDoorIt.utils.ApplicationResponse;
-import com.inn.nextDoorIt.utils.NextDoorItUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,5 +25,10 @@ public class UserRestImpl implements UserRest {
     @Override
     public ResponseEntity<ApplicationResponse> login(Map<String, String> requestMap) {
         return ResponseEntity.ok(new ApplicationResponse(userService.login(requestMap), HttpStatus.OK.value()));
+    }
+
+    @Override
+    public ResponseEntity<ApplicationResponse> logout() {
+        return ResponseEntity.ok(new ApplicationResponse("User successfully logged out", HttpStatus.OK.value()));
     }
 }

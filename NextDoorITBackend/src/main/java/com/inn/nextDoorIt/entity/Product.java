@@ -1,8 +1,11 @@
-package com.inn.nextDoorIt.POJO;
+package com.inn.nextDoorIt.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -27,5 +30,9 @@ public class Product {
     private String features;
     private String specifications;
 
+    @ToString.Exclude
+    @JsonIgnore
+    @ManyToMany(mappedBy = "products")
+    private List<Cart> cartList;
 
 }

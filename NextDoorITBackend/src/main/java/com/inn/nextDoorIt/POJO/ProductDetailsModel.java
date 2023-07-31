@@ -1,5 +1,7 @@
 package com.inn.nextDoorIt.POJO;
 
+import com.inn.nextDoorIt.entity.ProductCategory;
+import com.inn.nextDoorIt.entity.ProductReviewAndRating;
 import lombok.Data;
 
 import java.util.List;

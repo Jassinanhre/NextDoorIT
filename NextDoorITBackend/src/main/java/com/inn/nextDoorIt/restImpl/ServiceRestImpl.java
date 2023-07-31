@@ -1,11 +1,12 @@
 package com.inn.nextDoorIt.restImpl;
 
 import com.inn.nextDoorIt.POJO.ServiceModelRequest;
-import com.inn.nextDoorIt.POJO.ServiceRequestRecord;
+import com.inn.nextDoorIt.entity.ServiceRequestRecord;
 import com.inn.nextDoorIt.rest.ServicesRest;
 import com.inn.nextDoorIt.service.ServicesService;
 import com.inn.nextDoorIt.utils.ApplicationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +16,9 @@ public class ServiceRestImpl implements ServicesRest {
     @Autowired
     private ServicesService service;
 
+
+    @Autowired
+    private CacheManager cacheManager;
 
     @Override
     public ResponseEntity<Object> getServices(int categoryId) {

@@ -1,11 +1,15 @@
 package com.inn.nextDoorIt.POJO;
 
+import com.inn.nextDoorIt.entity.Category;
+import com.inn.nextDoorIt.entity.ReviewAndRatingsRecord;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Data
-public class ServiceDetailsModel {
+public class ServiceDetailsModel implements Serializable {
+    private static final long serialVersionUID = 1L;
     private Integer id;
     private String serviceName;
     private String description;

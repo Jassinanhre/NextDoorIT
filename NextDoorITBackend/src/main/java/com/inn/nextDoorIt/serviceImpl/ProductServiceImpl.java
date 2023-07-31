@@ -4,10 +4,13 @@ import com.inn.nextDoorIt.POJO.*;
 import com.inn.nextDoorIt.dao.ProductCategoryDao;
 import com.inn.nextDoorIt.dao.ProductDao;
 import com.inn.nextDoorIt.dao.ProductReviewAndRatingDao;
-import com.inn.nextDoorIt.dao.ReviewAndRatingDao;
+import com.inn.nextDoorIt.entity.Product;
+import com.inn.nextDoorIt.entity.ProductCategory;
+import com.inn.nextDoorIt.entity.ProductReviewAndRating;
 import com.inn.nextDoorIt.exception.ApplicationException;
 import com.inn.nextDoorIt.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -50,6 +53,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Cacheable(value = "productCache")
     public List<Product> allProducts() {
         List<Product> productsFromDb = productDao.findAll();
         if (!Objects.isNull(productsFromDb) && productsFromDb.size() > 0) {
@@ -60,14 +64,29 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductDetailsModel getProductDetails(int productId) {
+    @Cacheable(value = "productDetailCache", key = "#productId")
+    public Map<String, Object> getProductDetails(int productId) {
         Product product = productDao.findById(productId).orElseThrow(() -> new ApplicationException("No data found for given productId", HttpStatus.NO_CONTENT));
         List<ProductReviewAndRating> productReviewAndRatingList = productReviewAndRatingDao.findAll();
         ProductDetailsModel response = buildProductDetailsResponse(product, productReviewAndRatingList);
+        return buildMapResponse(response);
+    }
+
+    private Map<String, Object> buildMapResponse(ProductDetailsModel request) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("id", request.getId());
+        response.put("productName", request.getProductName());
+        response.put("productDescription", request.getProductDescription());
+        response.put("productCategory", request.getProductCategory());
+        response.put("features", request.getFeatures());
+        response.put("specifications", request.getSpecifications());
+        response.put("overallRating", request.getOverallRating());
+        response.put("productReviewsAndRatings", request.getProductReviewsAndRatings());
         return response;
     }
 
     @Override
+    @Cacheable(value = "productCache", key = "#categoryId")
     public List<Product> getProductFromCategory(int categoryId) {
         List<Product> productFromDb = productDao.findProductsByCategoryId(categoryId);
         if (!Objects.isNull(productFromDb) && productFromDb.size() > 0) {

@@ -1,7 +1,6 @@
 package com.inn.nextDoorIt.service;
 
-import com.inn.nextDoorIt.POJO.User;
-import org.springframework.http.ResponseEntity;
+import com.inn.nextDoorIt.entity.User;
 
 import java.util.Map;
 
