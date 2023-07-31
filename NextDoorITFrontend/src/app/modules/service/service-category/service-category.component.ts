@@ -3,9 +3,9 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 import { ServiceCategory } from 'src/app/models/serviceCategory.model';
-import { ServicesService } from 'src/app/services/service/services.service';
+import { ServiceCategoryService } from 'src/app/services/service/service-category.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
-import { GlobalConstants } from 'src/app/services/global-constants';
+import { GlobalConstants } from 'src/app/global-constants';
 
 @Component({
   selector: 'app-service-category',
@@ -15,42 +15,11 @@ import { GlobalConstants } from 'src/app/services/global-constants';
 export class ServiceCategoryComponent implements OnInit {
   @Output() categoryEvent = new EventEmitter<string>();
 
-  serviceCategory?: ServiceCategory[] = [
-    {
-      id: "1",
-      categoryName: "Computer Repair",
-      description: "Our website offers a convenient online platform for individuals looking to purchase hardware parts.",
-      image: "assets/img/bulb.png",
-    },
-    {
-      id: "2",
-      categoryName: "LAN installation",
-      description: "Our website offers a convenient online platform for individuals looking to purchase hardware parts.",
-      image: "assets/img/bulb.png",
-    },
-    {
-      id: "3",
-      categoryName: "Software installation",
-      description: "Our website offers a convenient online platform for individuals looking to purchase hardware parts.",
-      image: "assets/img/bulb.png",
-    },
-    {
-      id: "4",
-      categoryName: "Website",
-      description: "Our website offers a convenient online platform for individuals looking to purchase hardware parts.",
-      image: "assets/img/bulb.png",
-    },
-    {
-      id: "5",
-      categoryName: "App development",
-      description: "Our website offers a convenient online platform for individuals looking to purchase hardware parts.",
-      image: "assets/img/bulb.png",
-    }
-  ];
+  serviceCategory?: ServiceCategory[] = [];
   responseMessage: any;
 
   constructor(
-    private categoryService: ServicesService,
+    private categoryService: ServiceCategoryService,
     private snackbarService: SnackbarService,
     private ngxService: NgxUiLoaderService,
   ) { }
@@ -60,13 +29,13 @@ export class ServiceCategoryComponent implements OnInit {
   }
 
   fetchCategories(): void {
-    this.categoryService.getAllCategories().subscribe((response: any) => {
+    this.categoryService.getAll().subscribe((response: any) => {
       this.ngxService.stop();
       this.serviceCategory = response.data;
     }, (error) => {
       this.ngxService.stop();
-      if (error.error?.message) {
-        this.responseMessage = error.error?.message;
+      if (error.error?.error) {
+        this.responseMessage = error.error?.error
         this.snackbarService.openSnackBar(this.responseMessage, "");
       }
       else {

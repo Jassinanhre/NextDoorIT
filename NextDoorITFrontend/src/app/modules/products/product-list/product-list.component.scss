@@ -273,7 +273,15 @@ a {
   align-items: center;
   justify-content: space-between;
   padding: 10px;
+  width: 90%;
+  margin: 0 auto;
+
 }
+
+.productSearch .mat-form-field-flex {
+  background-color: transparent;
+}
+
 
 .serv1-left h2 {
   font-weight: 500;
@@ -284,6 +292,7 @@ a {
 .serv1-left p {
   font-size: 18px;
 }
+
 
 .filter-left {
   display: flex;
@@ -342,6 +351,7 @@ a {
 
 .service-matcard {
   margin: 10px;
+  margin-bottom: 30px;
 }
 
 .service-form {
@@ -368,7 +378,12 @@ a {
 }
 
 .product-image img {
-  width: 100%;
+  width: 70%;
+}
+
+.product-image {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .service-matcard .product-card {
@@ -377,42 +392,11 @@ a {
 
 .service-matcard .product-card p {
   color: #787878;
+  min-height: 100px;
 }
 
 .service-matcard .product-card h3 span {
   font-weight: bold;
-}
-
-.customer-review h2 {
-  margin: 0;
-  font-size: 17px;
-}
-
-.customer-review p {
-  font-size: 17px;
-  margin: 0;
-  color: #11932e !important;
-}
-
-.rev-content {
-  margin-top: 10PX;
-  border: 1px solid #ebe7e7;
-  padding: 10px;
-  border-radius: 10px;
-}
-
-.rev-content h2 {
-  color: #645b5b;
-  font-size: 15px;
-}
-
-.rev-content p {
-  color: #787878 !important;
-  font-size: 13px;
-}
-
-.price-h2 {
-  margin-bottom: 0px;
 }
 
 .brdr-top {
@@ -439,15 +423,6 @@ a {
   margin-right: 10px;
 }
 
-.cart-dv {
-  margin-top: 15px;
-}
-
-.cart-dv button {
-  background: #7b1fa2;
-  color: #fff;
-  width: 100%;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
+.productSearch .mat-form-field-appearance-fill .mat-form-field-flex {
+  padding: 0 0.75em;
 }

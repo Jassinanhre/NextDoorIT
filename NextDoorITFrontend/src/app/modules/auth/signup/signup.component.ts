@@ -4,8 +4,8 @@ import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dial
 
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 
-import { AuthService } from 'src/app/services/auth.service';
-import { GlobalConstants } from 'src/app/services/global-constants';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { GlobalConstants } from 'src/app/global-constants';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { LoginComponent } from '../login/login.component';
 
@@ -59,15 +59,13 @@ export class SignupComponent implements OnInit {
     this.authService.signup(data).subscribe((response: any) => {
       this.ngxService.stop();
       this.dialogRef.close();
-      this.responseMessage = response?.message;
-      this.snackbarService.openSnackBar(this.responseMessage, "");
       const dialogConfig = new MatDialogConfig();
       dialogConfig.width = "550px";
       this.dialog.open(LoginComponent, dialogConfig);
     }, (error) => {
       this.ngxService.stop();
-      if (error.error?.message) {
-        this.responseMessage = error.error?.message;
+      if (error.error?.error) {
+        this.responseMessage = error.error?.error
       }
       else {
         this.responseMessage = GlobalConstants.genericError;

@@ -17,13 +17,44 @@
 
 .header-main {
   background: #7b1fa2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .logo-head {
   float: left;
   color: #fff;
   font-size: 20px;
-  margin-top: 15px;
-  margin-left: 10px;
+  margin-left: 15px;
   cursor: pointer;
+}
+
+span.drop-menu button {
+  /* margin: 0; */
+  padding: 0;
+  min-width: auto;
+  margin-left: 3px;
+}
+
+span.drop-menu {
+  color: #fff;
+}
+
+span.drop-menu button i.fa {
+  margin-right: 3px;
+}
+
+.item-sp {
+  background: #7b1fa2;
+  color: #fff;
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  display: flex;
+  align-items: center;
+  top: 0;
+  right: 31%;
+  border-radius: 50%;
+  justify-content: center;
 }

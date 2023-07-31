@@ -1,0 +1,60 @@
+.checkout {
+  width: 35%;
+  margin: 30px auto;
+}
+
+.pay-dv {
+  width: 40%;
+  margin: 0px auto;
+}
+
+.pay-dv button {
+  background: #7b1fa2;
+  color: #fff;
+  width: 100%;
+}
+
+.checkout1 {
+  display: flex;
+}
+
+.checkout1 mat-form-field+mat-form-field {
+  margin-left: 8px;
+}
+
+h2.payment-h2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h2.payment-h2 img {
+  width: 200px;
+}
+
+.pay-method {
+  display: flex;
+  align-items: center;
+}
+
+.pay-method p {
+  margin-bottom: 0px;
+}
+
+
+.pay-method input[type="radio" i] {
+  margin-top: 0px;
+}
+
+.details-dv {
+  display: flex;
+  padding-bottom: 10px;
+}
+
+.details-dv .detail-left {
+  width: 25%;
+}
+
+.detail-right {
+  width: 75%;
+}

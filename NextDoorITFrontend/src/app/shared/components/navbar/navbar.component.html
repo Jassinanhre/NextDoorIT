@@ -6,13 +6,21 @@
     <li>
       <a routerLink="/product/list">Products</a>
       <a *ngIf="isLogin" routerLink="/service/list">Services</a>
-      <a *ngIf="isLogin" routerLink="/career">Training</a>
-      <a routerLink="/career">Careers</a>
-      <a routerLink="/aboutUs">About Us</a>
-      <a routerLink="/contactUs">Contact Us</a>
+      <a *ngIf="isLogin" routerLink="/training/list">Training</a>
       <a *ngIf="!isLogin" (click)="handleLoginAction()">Login</a>
       <a *ngIf="!isLogin" (click)="handleSignupAction()">Sign Up</a>
-      <a *ngIf="isLogin" (click)="handleLogoutAction()">Log out</a>
+      <span *ngIf="isLogin" class="drop-menu">
+        <button mat-button [matMenuTriggerFor]="beforeMenu"> <i class="fa fa-user-o"
+            aria-hidden="true"></i>User</button>
+        <mat-menu #beforeMenu="matMenu" xPosition="before">
+          <button mat-menu-item style="position: relative;" routerLink="/cart"><i class="fa fa-cart-arrow-down"
+              aria-hidden="true"></i>
+            Cart<span class="item-sp">2</span></button>
+          <button mat-menu-item routerLink="/order"><i class="fa fa-file-text-o" aria-hidden="true"></i> Order</button>
+          <button mat-menu-item (click)="handleLogoutAction()"><i class="fa fa-sign-out" aria-hidden="true"></i> Log
+            out</button>
+        </mat-menu>
+      </span>
     </li>
   </ul>
 </div>

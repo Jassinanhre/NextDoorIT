@@ -1,23 +1,66 @@
 <div class="service-page">
-  SERVICE DETAILS
   <div class="service2-outer">
     <div class="service2">
 
-      <mat-grid-list cols="3" rowHeight="280px">
-        <mat-grid-tile>
-          <mat-card class="service-matcard">
-            <mat-card-content>
-              <div class="card1 a">
-                <img src="{{currentService.image}}" />
-                <h2>{{currentService.title}} </h2>
-                <p>{{currentService.description}}</p>
-                <p><strong>Duration:</strong>25 Days</p>
-                <p><strong>Price:</strong>$1000</p>
-              </div>
-            </mat-card-content>
-          </mat-card>
-        </mat-grid-tile>
-      </mat-grid-list>
+      <mat-card class="service-matcard">
+        <mat-card-content>
+          <div class="card1 a ser-detail-card">
+            <img src="assets/img/{{currentService.imageId}}" />
+            <h2>{{currentService.serviceName}} <span class="status-sp">Complete</span></h2>
+            <p>{{currentService.description}}</p>
+            <p><strong>Duration:</strong>{{currentService.duration}} Days</p>
+            <p><strong>Price:</strong>${{currentService.price}}</p>
+            <div class="r_rating">
+              <star-rating [value]="currentService.userOverallRating || 0" [totalstars]="5" checkedcolor="green"
+                uncheckedcolor="grey" size="24px" [readonly]="true"></star-rating>
+            </div>
+          </div>
+          <div class="review-dv" *ngFor="let reviewRating of currentService.reviewRatings; let i = index">
+            <mat-grid-list cols="1" rowHeight="100px">
+              <mat-grid-tile>
+                <div class="review-left">
+                  <span><i class="fa fa-user"></i></span>
+                </div>
+                <div class="review-right">
+                  <h2>{{reviewRating.username}} <span class="progress"></span></h2>
+                  <p>{{reviewRating.summary}}</p>
+                  <div class="r_rating">
+                    <star-rating [value]="reviewRating.rating || 0" [totalstars]="5" checkedcolor="green"
+                      uncheckedcolor="grey" size="24px" [readonly]="true"></star-rating>
+                  </div>
+                </div>
+              </mat-grid-tile>
+            </mat-grid-list>
+          </div>
+
+          <div class="review-dv review-edit">
+            <mat-grid-list cols="1" rowHeight="180px">
+              <mat-grid-tile>
+                <div class="review-left">
+                  <span><i class="fa fa-user"></i></span>
+                </div>
+                <div class="review-right">
+                  <form [formGroup]="reviewRatingForm">
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Leave a comment</mat-label>
+                      <textarea matInput placeholder="Ex. It makes me feel..." formControlName="review"></textarea>
+                    </mat-form-field>
+                    <div class="r_rating">
+                      <star-rating [value]="0" [totalstars]="5" checkedcolor="green" uncheckedcolor="grey" size="24px"
+                        [readonly]="false" (rate)="onRate($event.newValue)"></star-rating>
+                    </div>
+                    <div class="submit-btn text-center">
+                      <button mat-raised-button type="submit"
+                        [disabled]="!(reviewRatingForm.valid && reviewRatingForm.dirty)" (click)="handleSubmit()"
+                        mat-button color="primary">Submit</button>
+                    </div>
+                  </form>
+                </div>
+              </mat-grid-tile>
+            </mat-grid-list>
+          </div>
+        </mat-card-content>
+      </mat-card>
 
     </div>
   </div>

@@ -6,8 +6,8 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 import { LoginComponent } from 'src/app/modules/auth/login/login.component';
 import { SignupComponent } from 'src/app/modules/auth/signup/signup.component';
-import { AuthService } from 'src/app/services/auth.service';
-import { GlobalConstants } from 'src/app/services/global-constants';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { GlobalConstants } from 'src/app/global-constants';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 
@@ -55,17 +55,14 @@ export class NavbarComponent implements OnInit {
   handleLogoutAction() {
     // this.authService.logout().subscribe((response: any) => {
     //   this.ngxService.stop();
-    this.localStorageService.removeItem('isLoggedIn');
-    this.localStorageService.removeItem('JWT');
+    this.localStorageService.clear();
     this.authService.setLoginStatus(false);
     this.router.navigate(['/']);
-    //   this.responseMessage = response?.message;
-    //   this.snackbarService.openSnackBar(this.responseMessage, "");
     //   this.router.navigate(['/']);
     // }, (error) => {
     //   this.ngxService.stop();
-    //   if (error.error?.message) {
-    //     this.responseMessage = error.error?.message;
+    //   if (error.error?.error) {
+    //     this.responseMessage = error.error
     //   }
     //   else {
     //     this.responseMessage = GlobalConstants.genericError;

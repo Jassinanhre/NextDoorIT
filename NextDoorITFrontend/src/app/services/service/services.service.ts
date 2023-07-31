@@ -1,49 +1,45 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Service } from '../../models/service.model';
-import { ServiceCategory } from 'src/app/models/serviceCategory.model';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-const baseUrl = 'http://localhost:8080/service';
-const categoryBaseUrl = 'http://localhost:8080/categories';
+import { Service } from 'src/app/models/service.model';
+import { LocalStorageService } from '../local-storage.service';
+
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class ServicesService {
+  url = `${environment.apiUrl}/service`;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private localStorageService: LocalStorageService
+  ) { }
 
-  getAll(): Observable<Service[]> {
-    return this.http.get<Service[]>(baseUrl);
+  jwtToken: string = this.localStorageService.getItem('JWT')
+  requestOptions: any = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.jwtToken}`
+    })
   }
 
-  getAllCategories(): Observable<ServiceCategory[]> {
-    return this.http.get<ServiceCategory[]>(categoryBaseUrl + '/allCategories');
+  getAll() {
+    return this.http.get<Service[]>(`${this.url}/all`, this.requestOptions);
   }
 
-  get(id: any): Observable<Service> {
-    return this.http.get(`${baseUrl}/${id}`);
+  getAllByCategory(categoryId: string) {
+    return this.http.get<Service[]>(`${this.url}/category?categoryId=${categoryId}`, this.requestOptions);
   }
 
-  create(data: any): Observable<any> {
-    return this.http.post(baseUrl, data);
+  get(id: any) {
+    return this.http.get(`${this.url}/serviceDetails?serviceId=${id}`, this.requestOptions);
   }
 
-  update(id: any, data: any): Observable<any> {
-    return this.http.put(`${baseUrl}/${id}`, data);
-  }
-
-  delete(id: any): Observable<any> {
-    return this.http.delete(`${baseUrl}/${id}`);
-  }
-
-  deleteAll(): Observable<any> {
-    return this.http.delete(baseUrl);
-  }
-
-  findByTitle(title: any): Observable<Service[]> {
-    return this.http.get<Service[]>(`${baseUrl}?title=${title}`);
+  create(data: any) {
+    return this.http.post(`${this.url}/requestService`, data, this.requestOptions);
   }
 }

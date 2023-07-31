@@ -8,27 +8,24 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthService {
   @Output() fireIsLoggedIn: EventEmitter<boolean> = new EventEmitter<boolean>();
-  url = environment.apiUrl;
+  url = `${environment.apiUrl}/user`;
 
   constructor(private httpClient: HttpClient) { }
 
   signup(data: any) {
-    return this.httpClient.post(this.url +
-      "/user/signup", data, {
+    return this.httpClient.post(`${this.url}/signup`, data, {
       headers: new HttpHeaders().set('Content-Type', 'application/json')
     })
   }
 
   login(data: any) {
-    return this.httpClient.post(this.url +
-      "/user/login", data, {
+    return this.httpClient.post(`${this.url}/login`, data, {
       headers: new HttpHeaders().set('Content-Type', 'application/json')
     })
   }
 
   logout() {
-    return this.httpClient.get(this.url +
-      "/user/logout", {
+    return this.httpClient.get(`${this.url}/logout`, {
       headers: new HttpHeaders().set('Content-Type', 'application/json')
     })
   }

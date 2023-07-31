@@ -1,6 +1,11 @@
 {
-  "name": "frontend",
-  "version": "0.0.0",
+  "name": "next_door_it_solution",
+  "version": "1.0.0",
+  "author": {
+    "name": "Dikshit",
+    "email": "dixitdreamer@gmail.com",
+    "url": "https://www.linkedin.com/in/dixit-a7b627105/"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -22,6 +27,7 @@
     "@angular/platform-browser": "~11.2.10",
     "@angular/platform-browser-dynamic": "~11.2.10",
     "@angular/router": "~11.2.10",
+    "ng-starrating": "^1.0.20",
     "ngx-ui-loader": "^11.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",

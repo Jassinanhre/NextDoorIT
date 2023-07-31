@@ -14,6 +14,14 @@ import { ServiceListComponent } from './modules/service/service-list/service-lis
 import { ProductComponent } from './modules/products/product.component';
 import { ProductListComponent } from './modules/products/product-list/product-list.component';
 import { ProductDetailsComponent } from './modules/products/product-details/product-details.component';
+import { TrainingComponent } from './modules/training/training.component';
+import { TrainingListComponent } from './modules/training/training-list/training-list.component';
+import { TrainingDetailsComponent } from './modules/training/training-details/training-details.component';
+import { CartComponent } from './modules/cart/cart.component';
+import { CheckoutComponent } from './modules/checkout/checkout.component';
+import { ShippingComponent } from './modules/shipping/shipping.component';
+import { OrderComponent } from './modules/order/order.component';
+import { PaymentComponent } from './modules/payment/payment.component';
 
 const routes: Routes = [
   // otherwise redirect to Home Component
@@ -27,17 +35,37 @@ const routes: Routes = [
           { path: 'list', component: ServiceListComponent },
           { path: ':id', component: ServiceDetailsComponent }
         ]
-      }]
-  }, {
-    path: '', component: MainLayoutComponent,
-    children: [
+      },
       {
         path: 'product', component: ProductComponent,
         children: [
           { path: 'list', component: ProductListComponent },
           { path: ':id', component: ProductDetailsComponent }
         ]
-      }]
+      },
+      {
+        path: 'training', component: TrainingComponent,
+        children: [
+          { path: 'list', component: TrainingListComponent },
+          { path: ':id', component: TrainingDetailsComponent }
+        ]
+      },
+      {
+        path: 'cart', component: CartComponent,
+      },
+      {
+        path: 'checkout', component: CheckoutComponent,
+      },
+      {
+        path: 'shipping', component: ShippingComponent,
+      },
+      {
+        path: 'order', component: OrderComponent,
+      },
+      {
+        path: 'payment', component: PaymentComponent,
+      }
+    ]
   }, {
     path: '', component: DefaultLayoutComponent,
     children: [
