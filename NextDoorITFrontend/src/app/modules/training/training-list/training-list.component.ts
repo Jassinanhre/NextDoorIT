@@ -14,7 +14,7 @@ export class TrainingListComponent implements OnInit {
       id: "1",
       trainingName: "Softwares",
       description: "Equipment that supports other equipment. For example, smartphone accessories include phone cases, chargers and cables. Examples of computer accessories are laptop bags, cables, screen cleaners and USB drives, although the latter may also be considered a peripheral device.",
-      image: "assets/img/train1.png",
+      image: "assets/img/software.png",
       price: "1254",
       reviewRatings: {
         rating: "4.8",
@@ -32,7 +32,7 @@ export class TrainingListComponent implements OnInit {
       id: "2",
       trainingName: "Network Administration",
       description: "Laser printers are known for their fast print speeds and high-quality text prints. These printers use a laser to fuse toner onto the paper, creating sharp, crisp text ideal for documents and business materials.",
-      image: "assets/img/database.png",
+      image: "assets/img/network-admin.png",
       price: "1254",
       reviewRatings: {
         rating: "4.8",
@@ -50,7 +50,7 @@ export class TrainingListComponent implements OnInit {
       id: "3",
       trainingName: "Programming Language",
       description: "Category 5 cable (Cat 5) is a twisted pair cable for computer networks. Since 2001, the variant commonly in use is the Category 5e specification (Cat 5e).",
-      image: "assets/img/cat5cable.jpg",
+      image: "assets/img/programming-language.png",
       price: "1254",
       reviewRatings: {
         rating: "4.8",
@@ -68,7 +68,7 @@ export class TrainingListComponent implements OnInit {
       id: "4",
       trainingName: "Database",
       description: "An audio/video entertainment center that has a large-screen TV and high fidelity audio system with at least three speakers in the front (left, right and center) and left and right speakers in the rear.",
-      image: "assets/img/theater.jpg",
+      image: "assets/img/database.png",
       price: "1254",
       reviewRatings: {
         rating: "4.8",
@@ -86,7 +86,7 @@ export class TrainingListComponent implements OnInit {
       id: "5",
       trainingName: "Frontend",
       description: "A laptop is a personal computer that can be easily moved and used in a variety of locations. Most laptops are designed to have all of the functionality of a desktop computer, which means they can generally run the same software and open the same types of files.",
-      image: "assets/img/laptop.webp",
+      image: "assets/img/frontend.png",
       price: "1254",
       reviewRatings: {
         rating: "4.8",
@@ -104,7 +104,7 @@ export class TrainingListComponent implements OnInit {
       id: "6",
       trainingName: "Web Developer",
       description: "HDMI stands for High Definition Multimedia Interface and is the most frequently used HD signal for transferring both high definition audio and video over a single cable.",
-      image: "assets/img/hdmi.jpg",
+      image: "assets/img/web.png",
       price: "1254",
       reviewRatings: {
         rating: "4.8",
@@ -127,7 +127,7 @@ export class TrainingListComponent implements OnInit {
   constructor(private trainingService: TrainingService) { }
 
   ngOnInit(): void {
-    this.retrieveServices();
+    // this.retrieveServices();
   }
 
   retrieveServices(): void {

@@ -4,14 +4,14 @@
   </div>
   <div class="service2">
     <mat-grid-list cols="3" rowHeight="380px">
-      <mat-grid-tile *ngFor="let trainings of trainings; let i = index" [class.active]="i == currentIndex"
-        (click)="setActiveService(trainings, i)">
+      <mat-grid-tile *ngFor="let training of trainings; let i = index" [class.active]="i == currentIndex"
+        (click)="setActiveService(training, i)">
         <mat-card class="service-matcard">
-          <mat-card-content routerLink="/training/{{ trainings.id }}">
+          <mat-card-content routerLink="/training/{{ training.id }}">
             <div class="card1 a">
-              <img src="assets/img/bulb.png" />
-              <h2>{{trainings.trainingName}} </h2>
-              <p class="training-p">{{trainings.description}}</p>
+              <img src={{training.image}} />
+              <h2>{{training.trainingName}} </h2>
+              <p class="training-p">{{training.description}}</p>
               <div class="price-dv">
                 <div class="left-price">
                   <p><strong>Duration:</strong>25 Days</p>
