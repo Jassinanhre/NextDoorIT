@@ -20,11 +20,9 @@
     <mat-form-field appearance="fill">
       <mat-label>Training Type</mat-label>
       <mat-select formControlName="category" required>
-        <mat-option value="Hardware">Hardware</mat-option>
-        <mat-option value="Trouble Shoot">Trouble Shoot</mat-option>
-        <mat-option value="Software Development">Software Development</mat-option>
-        <mat-option value="Training">Training</mat-option>
-        <mat-option value="Home Service">Home Service</mat-option>
+        <mat-option value="Network Administration">Network Administration</mat-option>
+        <mat-option value="Programming Language">Programming Language</mat-option>
+        <mat-option value="Office Software">Office Software</mat-option>
       </mat-select>
       <mat-error *ngIf="requestForm.controls.category.touched && requestForm.controls.category.invalid">
         <span *ngIf="requestForm.controls.category.errors.required">This field is mandatory</span>
@@ -32,7 +30,7 @@
       </mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill">
-      <mat-label>Your Questions</mat-label>
+      <mat-label>Your objective</mat-label>
       <textarea matInput formControlName="query" required></textarea>
       <mat-error *ngIf="requestForm.controls.query.touched && requestForm.controls.query.invalid">
         <span *ngIf="requestForm.controls.query.errors.required">This field is mandatory</span>

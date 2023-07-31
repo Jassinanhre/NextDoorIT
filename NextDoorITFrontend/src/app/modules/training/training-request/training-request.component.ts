@@ -37,7 +37,7 @@ export class TrainingRequestComponent implements OnInit {
 
   handleSubmit() {
     const formData = this.requestForm.value;
-    console.log('Here Training request form values are :', formData);
+    console.log('Here Training enroll form values are :', formData);
     this.ngxService.start();
     const data = {
       name: formData.name,
@@ -46,7 +46,7 @@ export class TrainingRequestComponent implements OnInit {
       query: formData.query,
     }
 
-    this.trainingService.create(data).subscribe((response: any) => {
+    this.trainingService.enroll(data).subscribe((response: any) => {
       this.ngxService.stop();
       this.router.navigate(['/training/list']);
     }, (error) => {
