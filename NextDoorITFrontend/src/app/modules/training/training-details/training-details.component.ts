@@ -10,10 +10,10 @@ import { TrainingService } from 'src/app/services/training/training.service';
 })
 export class TrainingDetailsComponent implements OnInit {
   currentTraining: Training = {
-    id: "1",
-    trainingName: "Programming Language",
-    description: "A programming language is a language used to write computer programs, which instruct a computer to perform some kind of computation, and/or organize the flow of control between external devices (such as a printer, a robot, or any peripheral).",
-    image: "assets/img/programming-language.png",
+    id: "2",
+    trainingName: "Network Administration",
+    description: "Laser printers are known for their fast print speeds and high-quality text prints. These printers use a laser to fuse toner onto the paper, creating sharp, crisp text ideal for documents and business materials.",
+    image: "assets/img/network-admin.png",
     price: "1254",
     reviewRatings: {
       rating: "4.8",
