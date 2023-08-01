@@ -314,7 +314,7 @@ a {
 }
 
 .training-p {
-  height: 130px;
+  height: 140px;
 }
 
 .card1.a i.fa {
@@ -363,4 +363,13 @@ a {
 .training-image img {
   width: 100%;
   height: 100%;
+}
+
+.training-image {
+  height: 205px;
+}
+
+.left-price p,
+.right-price p {
+  margin-bottom: 0px;
 }
