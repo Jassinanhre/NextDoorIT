@@ -40,4 +40,9 @@ public class ProductRestImpl implements ProductRest {
     public ResponseEntity<Object> getProductByCategory(int categoryId) {
         return ResponseEntity.ok(new ApplicationResponse(service.getProductFromCategory(categoryId), HttpStatus.OK.value()));
     }
+
+    @Override
+    public ResponseEntity<Object> getAllProductCategories() {
+        return ResponseEntity.ok(new ApplicationResponse(service.getAllProductCategory(), HttpStatus.OK.value()));
+    }
 }

@@ -18,4 +18,6 @@ public interface ProductService {
     Map<String,Object> getProductDetails(int productId);
 
     List<Product> getProductFromCategory(int categoryId);
+
+    List<ProductCategory> getAllProductCategory();
 }
