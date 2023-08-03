@@ -7,7 +7,8 @@ public class ProductRequest {
     private String productName;
     private String productDescription;
     private int categoryId;
+    private String imageId;
     private String features;
     private String specifications;
-    private String customerReviews;
+    private long price;
 }

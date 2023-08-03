@@ -1,6 +1,5 @@
 package com.inn.nextDoorIt.entity;
 
-import com.inn.nextDoorIt.entity.Category;
 import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -8,25 +7,26 @@ import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.*;
 
 @Data
-@Entity
-@DynamicUpdate
 @DynamicInsert
-@Table(name = "services")
+@DynamicUpdate
+@Entity
+@Table(name = "cart_quantity")
+// THIS TABLE WILL CONTAIN THE INFORMATION OF CART PRODUCT AND ITS QUANTITY
+public class CartQuantity {
 
-public class ServiceModel {
     private static final long serialVersionUID = 1L;
-
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
     private Integer id;
-    private String serviceName;
-    private String description;
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "category_id")
-    private Category category;
-    private String imageId;
-    private long price;
-    private long duration;
+
+    @Column(name = "user_id")
+    private int userId;
+
+    @JoinColumn(name = "product_id")
+    @OneToOne
+    private Product product;
+
+    private int quantity;
 }
