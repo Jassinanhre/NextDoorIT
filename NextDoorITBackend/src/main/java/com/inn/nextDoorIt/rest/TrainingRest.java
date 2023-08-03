@@ -25,4 +25,7 @@ public interface TrainingRest {
 
     @GetMapping(path = "/reviewRatings")
     public ResponseEntity<Object> getTrainingReviewAndRatings(@RequestParam("trainingId") int trainingId);
+
+    @GetMapping(path = "/byCategory")
+    public ResponseEntity<Object> getTrainingByCategory(@RequestParam("categoryId") int categoryId);
 }

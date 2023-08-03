@@ -21,4 +21,6 @@ public interface TrainingService {
     public EnrollmentResponse enrollTraining(int userId, int trainingId);
 
     public List<TrainingReviewRatings> getTrainingReviewAndRatings(int trainingId);
+
+    public List<ITTraining> trainingByCategoryId(int categoryId);
 }

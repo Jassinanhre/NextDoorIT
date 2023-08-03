@@ -118,6 +118,15 @@ public class TrainingServiceImpl implements TrainingService {
         throw new ApplicationException("No review and rating found for the requested trainingId", HttpStatus.BAD_REQUEST);
     }
 
+    @Override
+    public List<ITTraining> trainingByCategoryId(int categoryId) {
+        List<ITTraining> itTrainings = trainingDao.getByTrainingCategory(categoryId);
+        if (!Objects.isNull(itTrainings) && itTrainings.size() > 0) {
+            return itTrainings;
+        }
+        throw new ApplicationException("No data found for given categoryId", HttpStatus.BAD_REQUEST);
+    }
+
     private void verifyDuplicateEnrollment(List<ITTraining> alreadyEnrolled, int trainingId) {
         List<ITTraining> matchingRecords = alreadyEnrolled.stream().filter(itTraining -> {
             return itTraining.getId() == trainingId;
