@@ -95,6 +95,15 @@ public class ProductServiceImpl implements ProductService {
         throw new ApplicationException("No product found with given categoryId", HttpStatus.BAD_REQUEST);
     }
 
+    @Override
+    public List<ProductCategory> getAllProductCategory() {
+        List<ProductCategory> allProductCategory = categoryDao.findAll();
+        if (!Objects.isNull(allProductCategory) && allProductCategory.size() > 0) {
+            return allProductCategory;
+        }
+        throw new ApplicationException("No product category found in database", HttpStatus.NO_CONTENT);
+    }
+
     private ProductDetailsModel buildProductDetailsResponse(Product product, List<ProductReviewAndRating> productReviewAndRatingList) {
         ProductDetailsModel response = new ProductDetailsModel();
         response.setId(product.getId());
@@ -153,7 +162,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     private void validateProductRequest(ProductRequest productRequest) {
-        if (Objects.isNull(productRequest) || productRequest.getProductName().isBlank() || productRequest.getProductDescription().isBlank() || productRequest.getSpecifications().isBlank() || productRequest.getFeatures().isBlank() )
+        if (Objects.isNull(productRequest) || productRequest.getProductName().isBlank() || productRequest.getProductDescription().isBlank() || productRequest.getSpecifications().isBlank() || productRequest.getFeatures().isBlank())
             throw new ApplicationException("Invalid request for creating product", HttpStatus.BAD_REQUEST);
     }
 }

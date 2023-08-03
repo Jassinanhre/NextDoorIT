@@ -22,4 +22,7 @@ public interface ProductRest {
 
     @GetMapping("/category")
     public ResponseEntity<Object> getProductByCategory(@RequestParam("categoryId") int categoryId);
+
+    @GetMapping("/allCategory")
+    public ResponseEntity<Object> getAllProductCategories();
 }
