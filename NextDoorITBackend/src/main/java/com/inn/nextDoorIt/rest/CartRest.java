@@ -1,5 +1,6 @@
 package com.inn.nextDoorIt.rest;
 
+import com.inn.nextDoorIt.entity.AddToCartRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -7,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 public interface CartRest {
 
     @PostMapping("/addProduct")
-    public ResponseEntity<Object> addProductToCart(@RequestParam("productId") int productId, @RequestParam("userId") int userId, @RequestParam("quantity") int quantity);
+    public ResponseEntity<Object> addProductToCart(@RequestBody AddToCartRequest addToCartRequest);
 
     @PutMapping("/removeProduct")
     public ResponseEntity<Object> removeCartProduct(@RequestParam("productId") int productId, @RequestParam("userId") int userId);

@@ -1,5 +1,6 @@
 package com.inn.nextDoorIt.restImpl;
 
+import com.inn.nextDoorIt.entity.AddToCartRequest;
 import com.inn.nextDoorIt.rest.CartRest;
 import com.inn.nextDoorIt.service.CartService;
 import com.inn.nextDoorIt.utils.ApplicationResponse;
@@ -14,8 +15,8 @@ public class CartRestImpl implements CartRest {
     private CartService service;
 
     @Override
-    public ResponseEntity<Object> addProductToCart(int productId, int userId, int quantity) {
-        return ResponseEntity.ok(new ApplicationResponse(service.addProductToCart(productId, userId, quantity), HttpStatus.OK.value()));
+    public ResponseEntity<Object> addProductToCart(AddToCartRequest addToCartRequest) {
+        return ResponseEntity.ok(new ApplicationResponse(service.addProductToCart(addToCartRequest), HttpStatus.OK.value()));
     }
 
     @Override
