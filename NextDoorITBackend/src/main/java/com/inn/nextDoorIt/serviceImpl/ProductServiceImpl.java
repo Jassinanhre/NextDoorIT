@@ -142,6 +142,8 @@ public class ProductServiceImpl implements ProductService {
         product.setProductCategory(category);
         product.setFeatures(request.getFeatures());
         product.setSpecifications(request.getSpecifications());
+        product.setImageId(request.getImageId());
+        product.setPrice(request.getPrice());
         return product;
     }
 
@@ -151,7 +153,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     private void validateProductRequest(ProductRequest productRequest) {
-        if (Objects.isNull(productRequest) || productRequest.getProductName().isBlank() || productRequest.getProductDescription().isBlank() || productRequest.getSpecifications().isBlank() || productRequest.getFeatures().isBlank() || productRequest.getCustomerReviews().isBlank())
+        if (Objects.isNull(productRequest) || productRequest.getProductName().isBlank() || productRequest.getProductDescription().isBlank() || productRequest.getSpecifications().isBlank() || productRequest.getFeatures().isBlank() )
             throw new ApplicationException("Invalid request for creating product", HttpStatus.BAD_REQUEST);
     }
 }

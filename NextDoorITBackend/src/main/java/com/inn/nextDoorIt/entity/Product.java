@@ -30,6 +30,9 @@ public class Product {
     private String features;
     private String specifications;
 
+    private long price;
+    @Column(name = "image_id")
+    private String imageId;
     @ToString.Exclude
     @JsonIgnore
     @ManyToMany(mappedBy = "products")

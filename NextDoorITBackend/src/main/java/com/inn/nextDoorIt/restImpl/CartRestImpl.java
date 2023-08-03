@@ -14,8 +14,8 @@ public class CartRestImpl implements CartRest {
     private CartService service;
 
     @Override
-    public ResponseEntity<Object> addProductToCart(int productId, int userId) {
-        return ResponseEntity.ok(new ApplicationResponse(service.addProductToCart(productId, userId), HttpStatus.OK.value()));
+    public ResponseEntity<Object> addProductToCart(int productId, int userId, int quantity) {
+        return ResponseEntity.ok(new ApplicationResponse(service.addProductToCart(productId, userId, quantity), HttpStatus.OK.value()));
     }
 
     @Override

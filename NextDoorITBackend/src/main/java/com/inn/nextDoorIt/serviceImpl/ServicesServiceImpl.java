@@ -160,7 +160,6 @@ public class ServicesServiceImpl implements ServicesService {
         response.setCategory(category);
         response.setDescription(request.getDescription());
         response.setImageId(request.getImageId());
-        response.setUserOverallRating(request.getUserOverallRating());
         response.setPrice(request.getPrice());
         response.setDuration(request.getDuration());
         return response;
