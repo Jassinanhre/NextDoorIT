@@ -8,8 +8,11 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface CartQuantityDao extends JpaRepository<CartQuantity, Integer> {
-    @Query(value = "delete from cart_quantity where user_id=:userId && product_id=:productId", nativeQuery = true)
+    @Query(value = "delete from cart_quantity where user_id=:userId and product_id=:productId", nativeQuery = true)
     public void deleteWithUserIdAndProductId(@Param("userId") int userId, @Param("productId") int productId);
 
     List<CartQuantity> findByUserId(int userId);
+
+    @Query(value = "select * from cart_quantity where user_id=:userId and product_id=:productId", nativeQuery = true)
+    CartQuantity findByUserIdAndProductId(int userId, int productId);
 }

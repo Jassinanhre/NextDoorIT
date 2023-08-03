@@ -4,6 +4,7 @@ import com.inn.nextDoorIt.POJO.CartDetails;
 import com.inn.nextDoorIt.dao.CartDao;
 import com.inn.nextDoorIt.dao.CartQuantityDao;
 import com.inn.nextDoorIt.dao.ProductDao;
+import com.inn.nextDoorIt.entity.AddToCartRequest;
 import com.inn.nextDoorIt.entity.Cart;
 import com.inn.nextDoorIt.entity.CartQuantity;
 import com.inn.nextDoorIt.entity.Product;
@@ -31,72 +32,70 @@ public class CartServiceImpl implements CartService {
     private CartQuantityDao cartQuantityDao;
 
     @Override
-    public List<CartQuantity> addProductToCart(int productId, int userId, int quantity) {
-        Product productFromDb = productDao.findById(productId).orElseThrow(() -> new ApplicationException("No product found with requested product id", HttpStatus.BAD_REQUEST));
-        // create record for cart quantity dao
-        Cart cart = cartDao.findByUserId(userId);
+    public List<CartQuantity> addProductToCart(AddToCartRequest addToCartRequest) {
+        Product productFromDb = productDao.findById(addToCartRequest.getProductId()).orElseThrow(() -> new ApplicationException("No product found with requested product id", HttpStatus.BAD_REQUEST));
+        Cart cart = cartDao.findByUserId(addToCartRequest.getUserId());
         List<Product> productsInCart = cart.getProducts();
-        // CHECKING IF THE PRODUCT IS ALREADY PRESENT IN CART THEN THROW THE EXCEPTION
-        productsInCart.forEach(product -> {
-            if (product.getId() == productId) { // IF PRODUCT ID MATCHES WITH REQUESTED PRODUCT ID
-                throw new ApplicationException("The product is already present in cart with specific quantity", HttpStatus.BAD_REQUEST);
+        List<Product> alreadyPresent = productsInCart.stream().filter(product -> product.getId() == addToCartRequest.getProductId()).collect(Collectors.toList());
+        if (!Objects.isNull(alreadyPresent) && alreadyPresent.size() > 0) {
+            CartQuantity cartQuantityFromDb = cartQuantityDao.findByUserIdAndProductId(addToCartRequest.getUserId(), addToCartRequest.getProductId());
+            cartQuantityFromDb.setQuantity(addToCartRequest.getQuantity());
+            CartQuantity savedCartQuantity = cartQuantityDao.save(cartQuantityFromDb);
+            if (Objects.isNull(savedCartQuantity)) {
+                throw new ApplicationException("Error while changing product quantity", HttpStatus.INTERNAL_SERVER_ERROR);
             }
-        });
-        CartQuantity cartQuantity = new CartQuantity();
-        cartQuantity.setQuantity(quantity);
-        cartQuantity.setUserId(userId);
-        cartQuantity.setProduct(productFromDb);
-        // IF PRODUCT ALREADY NOT PRESENT IN CART THEN ONLY YOU HAVE TO CREATE THIS RECORD
-        if (Objects.isNull(productsInCart) || productsInCart.size() == 0) {
-            List<Product> productToAdd = new ArrayList<>();
-            productToAdd.add(productFromDb);
-            cart.setProducts(productToAdd);
-        } else {
-            productsInCart.add(productFromDb);
-            cart.setProducts(productsInCart);
-        }
-        // write code here to save the quantity of product in specific cart
-
-        Cart savedCartResponse = cartDao.save(cart);
-        if (!Objects.isNull(savedCartResponse)) {
-            CartQuantity savedCartQuantity = cartQuantityDao.save(cartQuantity);
-            List<CartQuantity> response = cartQuantityDao.findByUserId(userId);
+            List<CartQuantity> response = cartQuantityDao.findByUserId(addToCartRequest.getUserId());
+            if (Objects.isNull(response) || response.size() == 0) {
+                throw new ApplicationException("No record found in response", HttpStatus.NO_CONTENT);
+            }
             return response;
+        } else { // IF PRODUCT IS NOT PRESENT IN CART THEN WE NEED TO ADD THAT PRODUCT TO CART
+            // THIS IS THE FIRST TIME PROCESS
+            CartQuantity cartQuantity = new CartQuantity();
+            cartQuantity.setQuantity(addToCartRequest.getQuantity());
+            cartQuantity.setUserId(addToCartRequest.getUserId());
+            cartQuantity.setProduct(productFromDb);
+
+            if (Objects.isNull(productsInCart) || productsInCart.size() == 0) {
+                List<Product> productToAdd = new ArrayList<>();
+                productToAdd.add(productFromDb);
+                cart.setProducts(productToAdd);
+            } else {
+                productsInCart.add(productFromDb);
+                cart.setProducts(productsInCart);
+            }
+            Cart savedCartResponse = cartDao.save(cart);
+            if (!Objects.isNull(savedCartResponse)) {
+                CartQuantity savedCartQuantity = cartQuantityDao.save(cartQuantity);
+                List<CartQuantity> response = cartQuantityDao.findByUserId(addToCartRequest.getUserId());
+                return response;
+            }
         }
         throw new ApplicationException("Error saving cart record in database", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @Override
-    public Cart removeCartProduct(int productId, int userId) {
+    public List<CartQuantity> removeCartProduct(int productId, int userId) {
         Product productFromDb = productDao.findById(productId).orElseThrow(() -> new ApplicationException("No product found with requested product id", HttpStatus.BAD_REQUEST));
         Cart cart = cartDao.findByUserId(userId);
         List<Product> productsInCart = cart.getProducts();
-
-        if (Objects.isNull(productsInCart) || productsInCart.size() == 0) {
-            throw new ApplicationException("No product is present for cart for requested user", HttpStatus.BAD_REQUEST);
+        List<Product> alreadyAvailable = productsInCart.stream().filter(product -> product.getId() == productId).collect(Collectors.toList());
+        if (Objects.isNull(alreadyAvailable) || alreadyAvailable.size() == 0) {
+            throw new ApplicationException("No product with requested product id is present in cart", HttpStatus.BAD_REQUEST);
         }
-        List<Product> productsToRemove = productsInCart.stream().filter(product -> {
-            return product.getId() == productId;
-        }).collect(Collectors.toList());
-        if (Objects.isNull(productsToRemove) || productsToRemove.size() == 0) {
-            throw new ApplicationException("No product is present in cart which is requested to remove", HttpStatus.BAD_REQUEST);
-        }
-        int removeIndex = 0;
-        // REMOVE THE PRODUCT FROM THE CART
-        for (int i = 0; i < productsInCart.size(); i++) {
-            if (productsInCart.get(i).getId() == productId) {
-                removeIndex = i;
-                break;
-            }
-        }
-        productsInCart.remove(removeIndex);
-        cart.setProducts(productsInCart);
+        // ALL PRODUCTS EXCLUDING PRODUCT TO REMOVE
+        List<Product> updatedListOfProducts = productsInCart.stream().filter(product -> product.getId() != productId).collect(Collectors.toList());
+        cart.setProducts(updatedListOfProducts);
         Cart savedCartResponse = cartDao.save(cart);
-        if (!Objects.isNull(savedCartResponse)) {
-            cartQuantityDao.deleteWithUserIdAndProductId(userId, productId);
-            return savedCartResponse;
+        if (Objects.isNull(savedCartResponse)) {
+            throw new ApplicationException("Error while saving cart record in database", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        throw new ApplicationException("Error while saving product to cart", HttpStatus.INTERNAL_SERVER_ERROR);
+        cartQuantityDao.deleteWithUserIdAndProductId(userId, productId);
+        List<CartQuantity> response = cartQuantityDao.findByUserId(userId);
+        if (Objects.isNull(response) || response.size() == 0) {
+            throw new ApplicationException("No data found", HttpStatus.NO_CONTENT);
+        }
+        return response;
     }
 
     @Override
