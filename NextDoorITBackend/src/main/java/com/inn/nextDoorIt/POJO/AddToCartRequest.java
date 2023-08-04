@@ -1,4 +1,4 @@
-package com.inn.nextDoorIt.entity;
+package com.inn.nextDoorIt.POJO;
 
 import lombok.Data;
 

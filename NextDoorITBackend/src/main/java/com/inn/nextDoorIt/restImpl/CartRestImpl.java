@@ -1,6 +1,6 @@
 package com.inn.nextDoorIt.restImpl;
 
-import com.inn.nextDoorIt.entity.AddToCartRequest;
+import com.inn.nextDoorIt.POJO.AddToCartRequest;
 import com.inn.nextDoorIt.rest.CartRest;
 import com.inn.nextDoorIt.service.CartService;
 import com.inn.nextDoorIt.utils.ApplicationResponse;
