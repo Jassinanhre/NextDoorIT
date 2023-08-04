@@ -1,12 +1,14 @@
+import { ReviewRating } from "./reviewRating.model";
+
 export class Product {
   id?: string;
-  title?: string;
-  description?: string;
+  productName?: string;
+  productDescription?: string;
   price?: string;
-  image?: string;
+  imageId?: string;
+  specifications?: string;
   productCategory?: string;
-  reviewRatings?: {
-    rating?: string,
-    reviews?: any
-  };
+  overallRating?: number;
+  productReviewsAndRatings?: any = ReviewRating;
+
 }

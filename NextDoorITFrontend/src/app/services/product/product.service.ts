@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 
 import { Product } from 'src/app/models/product.model';
+import { LocalStorageService } from '../local-storage.service';
+
 import { environment } from 'src/environments/environment';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -12,33 +15,36 @@ import { environment } from 'src/environments/environment';
 export class ProductService {
   url = `${environment.apiUrl}/product`;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private localStorageService: LocalStorageService
+  ) { }
 
-  getAll(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.url);
+  jwtToken: string = this.localStorageService.getItem('JWT')
+  requestOptions: any = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.jwtToken}`
+    })
   }
 
-  get(id: any): Observable<Product> {
-    return this.http.get(`${this.url}/${id}`);
+  getAll() {
+    return this.http.get<Product[]>(`${this.url}/all`, this.requestOptions)
   }
 
-  create(data: any): Observable<any> {
-    return this.http.post(this.url, data);
+  getAllByCategory(categoryId: string) {
+    return this.http.get<Product[]>(`${this.url}/category?categoryId=${categoryId}`, this.requestOptions);
   }
 
-  update(id: any, data: any): Observable<any> {
-    return this.http.put(`${this.url}/${id}`, data);
+  get(id: any) {
+    return this.http.get(`${this.url}/productDetails?productId=${id}`, this.requestOptions);
   }
 
-  delete(id: any): Observable<any> {
-    return this.http.delete(`${this.url}/${id}`);
+  create(data: any) {
+    return this.http.post(this.url, data, this.requestOptions);
   }
 
-  deleteAll(): Observable<any> {
-    return this.http.delete(this.url);
-  }
-
-  findByTitle(title: any): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.url}?title=${title}`);
+  findByTitle(title: any) {
+    return this.http.get<Product[]>(`${this.url}?title=${title}`, this.requestOptions);
   }
 }

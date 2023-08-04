@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class ProductCategoryService {
-  url = `${environment.apiUrl}/product/categories`;
+  url = `${environment.apiUrl}/product`;
 
   constructor(
     private http: HttpClient,
@@ -28,6 +28,6 @@ export class ProductCategoryService {
   }
 
   getAll() {
-    return this.http.get<ProductCategory[]>(`${this.url}/allCategories`, this.requestOptions);
+    return this.http.get<ProductCategory[]>(`${this.url}/allCategory`, this.requestOptions);
   }
 }

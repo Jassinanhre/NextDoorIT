@@ -24,7 +24,12 @@ export class FeedbackService {
     })
   }
 
-  create(data: any) {
+  createServiceRating(data: any) {
     return this.http.post(`${this.url}/save`, data, this.requestOptions);
   }
+
+  createProductRating(data: any) {
+    return this.http.post(`${this.url}/save/productReview`, data, this.requestOptions);
+  }
+
 }

@@ -16,26 +16,27 @@ import { GlobalConstants } from 'src/app/global-constants';
 export class ProductCategoryComponent implements OnInit {
   @Output() categoryEvent = new EventEmitter<string>();
 
-  productCategory?: ProductCategory[] = [
-    {
-      id: "1",
-      name: "Computer Accessories",
-      description: "Our website offers a convenient online platform for individuals looking to purchase hardware parts.",
-      image: "assets/img/bulb.png",
-    },
-    {
-      id: "2",
-      name: "Printer Supplies",
-      description: "Our website offers a convenient online platform for individuals looking to purchase hardware parts.",
-      image: "assets/img/bulb.png",
-    },
-    {
-      id: "3",
-      name: "Networking Equipment",
-      description: "Our website offers a convenient online platform for individuals looking to purchase hardware parts.",
-      image: "assets/img/bulb.png",
-    }
-  ];
+  // [
+  //   {
+  //     id: "1",
+  //     name: "Computer Accessories",
+  //     description: "Our website offers a convenient online platform for individuals looking to purchase hardware parts.",
+  //     image: "assets/img/bulb.png",
+  //   },
+  //   {
+  //     id: "2",
+  //     name: "Printer Supplies",
+  //     description: "Our website offers a convenient online platform for individuals looking to purchase hardware parts.",
+  //     image: "assets/img/bulb.png",
+  //   },
+  //   {
+  //     id: "3",
+  //     name: "Networking Equipment",
+  //     description: "Our website offers a convenient online platform for individuals looking to purchase hardware parts.",
+  //     image: "assets/img/bulb.png",
+  //   }
+  // ]
+  productCategory?: ProductCategory[] = [];
   responseMessage: any;
 
   constructor(
@@ -45,7 +46,7 @@ export class ProductCategoryComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.fetchCategories();
+    this.fetchCategories();
   }
 
   fetchCategories(): void {

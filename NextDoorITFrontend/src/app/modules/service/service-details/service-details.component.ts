@@ -37,10 +37,11 @@ export class ServiceDetailsComponent implements OnInit {
     this.reviewRatingForm = this.formBuilder.group({
       review: [null, [Validators.required]],
     })
-    this.getService(this.route.snapshot.params.id);
+    this.getService();
   }
 
-  getService(id: string): void {
+  getService(): void {
+    const id: string = this.route.snapshot.params.id;
     this.servicesService.get(id)
       .subscribe(
         (response: any) => {
@@ -62,15 +63,16 @@ export class ServiceDetailsComponent implements OnInit {
       serviceId: this.route.snapshot.params.id,
       userId: 1,
       rating: this.newRating,
-      review: formData.review,
+      summery: formData.review,
     }
 
-    this.feedbackService.create(data).subscribe((response: any) => {
+    this.feedbackService.createServiceRating(data).subscribe((response: any) => {
       this.ngxService.stop();
       this.responseMessage = response?.data;
-      this.snackbarService.openSnackBar(this.responseMessage, "");
+      // this.snackbarService.openSnackBar(this.responseMessage, "");
       this.reviewRatingForm.reset();
       this.reviewRatingForm.controls['review'].setErrors(null);
+      this.getService();
     }, (error) => {
       this.ngxService.stop();
       if (error.error?.error) {
