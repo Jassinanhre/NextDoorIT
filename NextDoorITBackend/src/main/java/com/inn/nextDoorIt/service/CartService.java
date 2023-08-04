@@ -1,7 +1,6 @@
 package com.inn.nextDoorIt.service;
 
-import com.inn.nextDoorIt.entity.AddToCartRequest;
-import com.inn.nextDoorIt.entity.Cart;
+import com.inn.nextDoorIt.POJO.AddToCartRequest;
 import com.inn.nextDoorIt.entity.CartQuantity;
 
 import java.util.List;

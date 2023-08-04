@@ -1,6 +1,6 @@
 package com.inn.nextDoorIt.rest;
 
-import com.inn.nextDoorIt.entity.AddToCartRequest;
+import com.inn.nextDoorIt.POJO.AddToCartRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
