@@ -1,13 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Observable, throwError } from 'rxjs';
-
 import { Product } from 'src/app/models/product.model';
 import { LocalStorageService } from '../local-storage.service';
 
 import { environment } from 'src/environments/environment';
-import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -40,8 +37,8 @@ export class ProductService {
     return this.http.get(`${this.url}/productDetails?productId=${id}`, this.requestOptions);
   }
 
-  create(data: any) {
-    return this.http.post(this.url, data, this.requestOptions);
+  addToCart(data: any) {
+    return this.http.post(`${environment.apiUrl}/cart/addProduct`, data, this.requestOptions);
   }
 
   findByTitle(title: any) {

@@ -2,142 +2,43 @@
   <div class="service2">
     <mat-card>
       <mat-card-content>
-        <div class="cart-main">
+        <div class="cart-main" *ngFor="let item of cartList.productDetails; let i = index">
           <div class="cart-left">
-            <img src="../../../../assets/img/servicess.png" />
+            <img src="../../../assets/img/servicess.png" />
           </div>
           <div class="cart-right">
-            <h2 class="cart-delete">Software Development<span><a (click)="removeItem()"><i class="fa fa-times"
-                    aria-hidden="true"></i></a></span>
+            <h2 class="cart-delete">{{item.product.productName}}<span><a (click)="removeItem(item.product.id)"><i
+                    class="fa fa-times" aria-hidden="true"></i></a></span>
             </h2>
-            <p>Software development refers to a set of computer science activities dedicated to the process of creating,
-              designing, deploying and supporting software. Software itself is the set of instructions or programs that
-              tell a computer what to do.
-            </p>
+            <p>{{item.product.productDescription}}</p>
             <div class="quantity"><span>Total Quantity: </span>
               <div class="quan-drop">
                 <mat-form-field>
-                  <mat-select [value]="'one'">
-                    <mat-option value="one">1</mat-option>
-                    <mat-option value="two">2</mat-option>
-                    <mat-option value="three">3</mat-option>
-                    <mat-option value="four">4</mat-option>
-                    <mat-option value="five">5</mat-option>
-                    <mat-option value="six">6</mat-option>
+                  <mat-select value="{{item.quantity}}"
+                    (selectionChange)="onQuantityChange({productId: item.product.id, quantity: $event.value})">
+                    <mat-option value=1>1</mat-option>
+                    <mat-option value=2>2</mat-option>
+                    <mat-option value=3>3</mat-option>
+                    <mat-option value=4>4</mat-option>
+                    <mat-option value=5>5</mat-option>
+                    <mat-option value=6>6</mat-option>
                   </mat-select>
                 </mat-form-field>
               </div>
             </div>
             <div class="quantity"><span>Price: </span>
               <div class="quan-drop">
-                $2520
+                ${{item.product.price}}
               </div>
             </div>
-          </div>
-        </div>
-        <div class="cart-main">
-          <div class="cart-left">
-            <img src="../../../../assets/img/lan.png" />
-          </div>
-          <div class="cart-right">
-            <h2 class="cart-delete">LAN Installation<span><a (click)="removeItem()"><i class="fa fa-times"
-                    aria-hidden="true"></i></a></span></h2>
-            <p>A LAN comprises cables, access points, switches, routers, and other components that enable devices to
-              connect to internal servers, web servers, and other LANs via wide area networks.
-            </p>
-            <div class="quantity"><span>Total Quantity: </span>
-              <div class="quan-drop">
-                <mat-form-field>
-                  <mat-select [value]="'five'">
-                    <mat-option value="one">1</mat-option>
-                    <mat-option value="two">2</mat-option>
-                    <mat-option value="three">3</mat-option>
-                    <mat-option value="four">4</mat-option>
-                    <mat-option value="five">5</mat-option>
-                    <mat-option value="six">6</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-            </div>
-            <div class="quantity"><span>Price: </span>
-              <div class="quan-drop">
-                $3820
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="cart-main">
-          <div class="cart-left">
-            <img src="../../../../assets/img/software.png" />
-          </div>
-          <div class="cart-right">
-            <h2 class="cart-delete">Software Installation<span><a (click)="removeItem()"><i class="fa fa-times"
-                    aria-hidden="true"></i></a></span></h2>
-            <p>Software installation refers to the large scale distribution of software and application on an
-              organizational level. Administrators are frequently bombarded with numerous software installation
-              requests, and have to validate those requests individually and authorize the software installation.
-            </p>
-            <div class="quantity"><span>Total Quantity: </span>
-              <div class="quan-drop">
-                <mat-form-field>
-                  <mat-select [value]="'three'">
-                    <mat-option value="one">1</mat-option>
-                    <mat-option value="two">2</mat-option>
-                    <mat-option value="three">3</mat-option>
-                    <mat-option value="four">4</mat-option>
-                    <mat-option value="five">5</mat-option>
-                    <mat-option value="six">6</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-            </div>
-            <div class="quantity"><span>Price: </span>
-              <div class="quan-drop">
-                $150
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="cart-main">
-          <div class="cart-left">
-            <img src="../../../../assets/img/web.png" />
-          </div>
-          <div class="cart-right">
-            <h2 class="cart-delete">Website Development<span><a (click)="removeItem()"><i class="fa fa-times"
-                    aria-hidden="true"></i></a></span></h2>
-            <p>Web development, also known as website development, refers to the tasks associated with creating,
-              building, and maintaining websites and web applications that run online on a browser. It may, however,
-              also include web design, web programming, and database management.
-            </p>
-            <div class="quantity"><span>Total Quantity: </span>
-              <div class="quan-drop">
-                <mat-form-field>
-                  <!-- <mat-label>Select</mat-label> -->
-                  <mat-select [value]="'two'">
-                    <mat-option value="one">1</mat-option>
-                    <mat-option value="two">2</mat-option>
-                    <mat-option value="three">3</mat-option>
-                    <mat-option value="four">4</mat-option>
-                    <mat-option value="five">5</mat-option>
-                    <mat-option value="six">6</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-            </div>
-            <div class="quantity"><span>Price: </span>
-              <div class="quan-drop">
-                $1500
-              </div>
-            </div>
-
           </div>
         </div>
         <div class="subtotal">
-          <p>Sub Total:<span>$7990</span></p>
+          <p>Sub Total:<span>${{cartList.orderTotalPrice}}</span></p>
         </div>
         <div class="cart-btn">
           <button mat-button color="primary" routerLink="/product/list">Continue Shopping</button>
-          <button mat-button color="primary" routerLink="/checkout">Proceed To Checkout</button>
+          <button mat-button color="primary" (click)="checkout()">Proceed To Checkout</button>
         </div>
       </mat-card-content>
     </mat-card>

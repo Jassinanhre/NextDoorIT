@@ -1,12 +1,7 @@
+import { Product } from "./product.model";
+
 export class Cart {
   id?: string;
-  title?: string;
-  description?: string;
-  price?: string;
-  image?: string;
-  productCategory?: string;
-  reviewRatings?: {
-    rating?: string,
-    reviews?: any
-  };
+  orderTotalPrice?: string;
+  productDetails?: [{ product: Product, quantity: number }]
 }

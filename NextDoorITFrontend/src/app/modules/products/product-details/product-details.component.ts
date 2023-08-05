@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { GlobalConstants } from 'src/app/global-constants';
 
@@ -44,6 +44,7 @@ export class ProductDetailsComponent implements OnInit {
   newRating: number = 0;
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private snackbarService: SnackbarService,
@@ -106,5 +107,30 @@ export class ProductDetailsComponent implements OnInit {
       }
       this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
     });
+  }
+
+  handleAddToCart(): void {
+    const data = {
+      productId: Number(this.route.snapshot.params.id),
+      userId: 1,
+      quantity: 1,
+    }
+
+    this.productService.addToCart(data).subscribe((response: any) => {
+      this.ngxService.stop();
+      this.responseMessage = 'Product added to cart successfully.';
+      this.snackbarService.openSnackBar(this.responseMessage, "");
+      this.router.navigate(['/cart']);
+    }, (error) => {
+      this.ngxService.stop();
+      if (error.error?.error) {
+        this.responseMessage = error.error?.error
+      }
+      else {
+        this.responseMessage = GlobalConstants.genericError;
+      }
+      this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
+    });
+
   }
 }

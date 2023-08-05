@@ -18,7 +18,7 @@
                     uncheckedcolor="grey" size="24px" [readonly]="true"></star-rating>
                 </div>
               </div>
-              <div class="review-dv"
+              <!-- <div class="review-dv"
                 *ngFor="let reviewRating of currentProduct.productReviewsAndRatings; let i = index">
                 <mat-grid-list cols="1" rowHeight="100px">
                   <mat-grid-tile>
@@ -35,8 +35,8 @@
                     </div>
                   </mat-grid-tile>
                 </mat-grid-list>
-              </div>
-              <div class="review-dv review-edit">
+              </div> -->
+              <!-- <div class="review-dv review-edit">
                 <mat-grid-list cols="1" rowHeight="180px">
                   <mat-grid-tile>
                     <div class="review-left">
@@ -61,11 +61,9 @@
                     </div>
                   </mat-grid-tile>
                 </mat-grid-list>
-              </div>
-
-
+              </div> -->
               <div *ngIf="isLogin" class="cart-dv">
-                <button mat-stroked-button color="primary" routerLink="/cart">Add to Cart</button>
+                <button mat-stroked-button color="primary" (click)="handleAddToCart()">Add to Cart</button>
               </div>
             </div>
           </mat-card-content>
