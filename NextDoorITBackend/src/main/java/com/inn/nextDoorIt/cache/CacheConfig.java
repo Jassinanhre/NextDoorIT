@@ -22,7 +22,7 @@ public class CacheConfig {
     /*
      * Schedular for clearing all cache in system
      */
-    @Scheduled(fixedDelay = 120000) // will clear all cache after 2 minutes
+    @Scheduled(fixedDelay = 5000) // will clear all cache after 2 minutes
     public void clearCacheEntries() {
         log.info("CLEARING ALL CACHES IN SYSTEM ");
 

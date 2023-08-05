@@ -1,5 +1,6 @@
 package com.inn.nextDoorIt.restImpl;
 
+import com.inn.nextDoorIt.POJO.EnrollTrainingRequest;
 import com.inn.nextDoorIt.POJO.ITTrainingRequest;
 import com.inn.nextDoorIt.entity.TrainingCategory;
 import com.inn.nextDoorIt.rest.TrainingRest;
@@ -37,8 +38,8 @@ public class TrainingRestImpl implements TrainingRest {
     }
 
     @Override
-    public ResponseEntity<Object> enrollTraining(int userId, int trainingId) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(new ApplicationResponse(service.enrollTraining(userId, trainingId), HttpStatus.CREATED.value()));
+    public ResponseEntity<Object> enrollTraining(EnrollTrainingRequest enrollTrainingRequest) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(new ApplicationResponse(service.enrollTraining(enrollTrainingRequest), HttpStatus.CREATED.value()));
     }
 
 
