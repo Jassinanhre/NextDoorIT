@@ -73,6 +73,7 @@ public class UserServiceImpl implements UserService {
                 UserLoginResponse loginResponse = new UserLoginResponse();
                 loginResponse.setAccessToken(accessToken);
                 loginResponse.setUserId(user.getId());
+                loginResponse.setUserName(user.getName());
                 return loginResponse;
             }
         } else {
