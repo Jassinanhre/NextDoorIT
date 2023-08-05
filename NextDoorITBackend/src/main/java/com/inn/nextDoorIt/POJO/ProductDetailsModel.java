@@ -22,5 +22,7 @@ public class ProductDetailsModel {
     private String specifications;
     private Float overallRating;
     private List<ProductReviewAndRating> productReviewsAndRatings;
+    private long price;
+    private String imageId;
 
 }

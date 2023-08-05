@@ -1,5 +1,6 @@
 package com.inn.nextDoorIt.rest;
 
+import com.inn.nextDoorIt.POJO.EnrollTrainingRequest;
 import com.inn.nextDoorIt.POJO.ITTrainingRequest;
 import com.inn.nextDoorIt.entity.TrainingCategory;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public interface TrainingRest {
     public ResponseEntity<Object> getTrainingDetails(@RequestParam("trainingId") int trainingId);
 
     @PutMapping(path = "/enroll")
-    public ResponseEntity<Object> enrollTraining(@RequestParam("userId") int userId, @RequestParam("trainingId") int trainingId);
+    public ResponseEntity<Object> enrollTraining(@RequestBody EnrollTrainingRequest enrollTrainingRequest);
 
     @GetMapping(path = "/reviewRatings")
     public ResponseEntity<Object> getTrainingReviewAndRatings(@RequestParam("trainingId") int trainingId);

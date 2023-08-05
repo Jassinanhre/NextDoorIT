@@ -1,5 +1,6 @@
 package com.inn.nextDoorIt.serviceImpl;
 
+import com.inn.nextDoorIt.POJO.EnrollTrainingRequest;
 import com.inn.nextDoorIt.POJO.EnrollmentResponse;
 import com.inn.nextDoorIt.POJO.ITTrainingRequest;
 import com.inn.nextDoorIt.dao.TrainingCategoryDao;
@@ -75,13 +76,20 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
     @Override
-    public EnrollmentResponse enrollTraining(int userId, int trainingId) {
-        User user = userDao.findById(userId).orElseThrow(() -> new ApplicationException("No user found for requested userId", HttpStatus.BAD_REQUEST));
-        ITTraining training = trainingDao.findById(trainingId).orElseThrow(() -> new ApplicationException("No IT Training found for requested trainingId", HttpStatus.BAD_REQUEST));
+    public EnrollmentResponse enrollTraining(EnrollTrainingRequest enrollTrainingRequest) {
+        User user = userDao.findByEmailId(enrollTrainingRequest.getEmail());
+        if (Objects.isNull(user)) {
+            throw new ApplicationException("No user found with requested email", HttpStatus.BAD_REQUEST);
+        }
+        ITTraining training = trainingDao.findById(enrollTrainingRequest.getTrainingId()).orElseThrow(() -> new ApplicationException("No IT Training found for requested trainingId", HttpStatus.BAD_REQUEST));
         List<ITTraining> alreadyEnrolled = user.getUserTakenTrainings();
-//        List<User> enrolledUsersForTraining = training.getUsers();
-
-
+        if (!Objects.isNull(alreadyEnrolled) && alreadyEnrolled.size() > 0) { // IF THERE ARE SOME TRAININGS ALREADY ENROLLED
+            List<ITTraining> duplicateTrainings = alreadyEnrolled.stream().filter(currentTraining -> training.getId() == enrollTrainingRequest.getTrainingId()).collect(Collectors.toList());
+            if (!Objects.isNull(duplicateTrainings) && duplicateTrainings.size() > 0) {
+                throw new ApplicationException("The requested training is alredady enrolled by user", HttpStatus.BAD_REQUEST);
+            }
+        }
+//      List<User> enrolledUsersForTraining = training.getUsers();
         List<ITTraining> updatedTraining = null;
         List<User> updatedUserList = null;
         if (Objects.isNull(alreadyEnrolled) || alreadyEnrolled.size() == 0) { // IF THERE IS NO TRAINING ENROLLED ALREADY

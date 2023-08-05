@@ -1,5 +1,6 @@
 package com.inn.nextDoorIt.service;
 
+import com.inn.nextDoorIt.POJO.EnrollTrainingRequest;
 import com.inn.nextDoorIt.POJO.EnrollmentResponse;
 import com.inn.nextDoorIt.POJO.ITTrainingRequest;
 import com.inn.nextDoorIt.entity.ITTraining;
@@ -18,7 +19,7 @@ public interface TrainingService {
 
     public Map<String, Object> getTrainingDetails(int trainingId);
 
-    public EnrollmentResponse enrollTraining(int userId, int trainingId);
+    public EnrollmentResponse enrollTraining(EnrollTrainingRequest trainingRequest);
 
     public List<TrainingReviewRatings> getTrainingReviewAndRatings(int trainingId);
 

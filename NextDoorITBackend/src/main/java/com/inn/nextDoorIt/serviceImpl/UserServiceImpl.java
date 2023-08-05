@@ -1,6 +1,7 @@
 package com.inn.nextDoorIt.serviceImpl;
 
 import com.inn.nextDoorIt.JWT.JwtUtil;
+import com.inn.nextDoorIt.POJO.UserLoginResponse;
 import com.inn.nextDoorIt.entity.Cart;
 import com.inn.nextDoorIt.entity.User;
 import com.inn.nextDoorIt.dao.CartDao;
@@ -60,7 +61,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public String login(Map<String, String> requestMap) {
+    public UserLoginResponse login(Map<String, String> requestMap) {
         log.info("LOGIN REQUEST RECEIVED");
         if (validateLoginRequest(requestMap)) {
             User user = userDao.findByEmailAndPassword(requestMap.get("email"), requestMap.get("password"));
@@ -69,7 +70,11 @@ public class UserServiceImpl implements UserService {
             } else {
                 // WRITE TOKEN HERE TO GENERATE TOKEN AND RETURN IT AFTER SUCCESSFUL LOGIN
                 String accessToken = jwtUtil.generateToken(requestMap.get("email"), "user");
-                return accessToken;
+                UserLoginResponse loginResponse = new UserLoginResponse();
+                loginResponse.setAccessToken(accessToken);
+                loginResponse.setUserId(user.getId());
+                loginResponse.setUserName(user.getName());
+                return loginResponse;
             }
         } else {
             throw new ApplicationException("Invalid login request", HttpStatus.BAD_REQUEST);
