@@ -85,7 +85,7 @@ export class ProductDetailsComponent implements OnInit {
     this.ngxService.start();
     const data = {
       productId: this.route.snapshot.params.id,
-      userId: 1,
+      username: this.localStorageService.getItem('userName'),
       rating: this.newRating,
       summery: formData.review,
     }
@@ -93,7 +93,6 @@ export class ProductDetailsComponent implements OnInit {
     this.feedbackService.createProductRating(data).subscribe((response: any) => {
       this.ngxService.stop();
       this.responseMessage = response?.data;
-      // this.snackbarService.openSnackBar(this.responseMessage, "");
       this.reviewRatingForm.reset();
       this.reviewRatingForm.controls['review'].setErrors(null);
       this.getProduct();
@@ -112,10 +111,9 @@ export class ProductDetailsComponent implements OnInit {
   handleAddToCart(): void {
     const data = {
       productId: Number(this.route.snapshot.params.id),
-      userId: 1,
+      userId: this.localStorageService.getItem('userId'),
       quantity: 1,
     }
-
     this.productService.addToCart(data).subscribe((response: any) => {
       this.ngxService.stop();
       this.responseMessage = 'Product added to cart successfully.';

@@ -28,8 +28,7 @@ export class CartComponent implements OnInit {
   }
 
   fetchCartItems(): void {
-    // const userId: string = this.route.snapshot.params.id;
-    const userId: string = '1';
+    const userId: string = this.localStorageService.getItem('userId');
     this.cartService.getAll(userId)
       .subscribe(
         (response: any) => {
@@ -44,7 +43,7 @@ export class CartComponent implements OnInit {
   onQuantityChange(obj: any): void {
     const data = {
       productId: obj.productId,
-      userId: 1,
+      userId: this.localStorageService.getItem('userId'),
       quantity: Number(obj.quantity),
     }
     this.productService.addToCart(data).subscribe((response: any) => {
@@ -57,8 +56,7 @@ export class CartComponent implements OnInit {
   }
 
   removeItem(productId: any): void {
-    // const userId: string = this.route.snapshot.params.id;
-    const userId: string = '1';
+    const userId: string = this.localStorageService.getItem('userId');
     this.cartService.removeOne(userId, productId)
       .subscribe(
         (response: any) => {
@@ -72,8 +70,7 @@ export class CartComponent implements OnInit {
   }
 
   checkout(): void {
-    // const userId: string = this.route.snapshot.params.id;
-    const userId: string = '1';
+    const userId: string = this.localStorageService.getItem('userId');
     this.router.navigate(['/checkout']);
     // this.cartService.(userId)
     //   .subscribe(

@@ -10,6 +10,7 @@ import { FeedbackService } from 'src/app/services/user/feedback.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 
 import { GlobalConstants } from 'src/app/global-constants';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
   selector: 'app-service-details',
@@ -29,7 +30,8 @@ export class ServiceDetailsComponent implements OnInit {
     private snackbarService: SnackbarService,
     private ngxService: NgxUiLoaderService,
     private servicesService: ServicesService,
-    private feedbackService: FeedbackService
+    private feedbackService: FeedbackService,
+    private localStorageService: LocalStorageService
   ) { }
 
   ngOnInit(): void {
@@ -61,7 +63,7 @@ export class ServiceDetailsComponent implements OnInit {
     this.ngxService.start();
     const data = {
       serviceId: this.route.snapshot.params.id,
-      userId: 1,
+      username: this.localStorageService.getItem('userName'),
       rating: this.newRating,
       summery: formData.review,
     }

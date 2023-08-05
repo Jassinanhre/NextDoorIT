@@ -4,7 +4,7 @@
       <mat-card-content>
         <div class="cart-main" *ngFor="let item of cartList.productDetails; let i = index">
           <div class="cart-left">
-            <img src="../../../assets/img/servicess.png" />
+            <img src="../../../assets/img/{{item.product.imageId}}" />
           </div>
           <div class="cart-right">
             <h2 class="cart-delete">{{item.product.productName}}<span><a (click)="removeItem(item.product.id)"><i

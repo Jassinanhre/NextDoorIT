@@ -49,7 +49,9 @@ export class LoginComponent implements OnInit {
     this.authService.login(data).subscribe((response: any) => {
       this.ngxService.stop();
       this.localStorageService.setItem('isLoggedIn', true);
-      this.localStorageService.setItem('JWT', response.data)
+      this.localStorageService.setItem('JWT', response.data.accessToken)
+      this.localStorageService.setItem('userName', response.data.userName)
+      this.localStorageService.setItem('userId', response.data.userId)
       this.dialogRef.close();
       this.authService.setLoginStatus(true);
       this.router.navigate(['/home']);
