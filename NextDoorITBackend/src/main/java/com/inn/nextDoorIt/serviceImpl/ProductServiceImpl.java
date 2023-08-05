@@ -64,7 +64,6 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    @Cacheable(value = "productDetailCache", key = "#productId")
     public Map<String, Object> getProductDetails(int productId) {
         Product product = productDao.findById(productId).orElseThrow(() -> new ApplicationException("No data found for given productId", HttpStatus.NO_CONTENT));
         List<ProductReviewAndRating> productReviewAndRatingList = productReviewAndRatingDao.findAll();
@@ -82,6 +81,8 @@ public class ProductServiceImpl implements ProductService {
         response.put("specifications", request.getSpecifications());
         response.put("overallRating", request.getOverallRating());
         response.put("productReviewsAndRatings", request.getProductReviewsAndRatings());
+        response.put("price", request.getPrice());
+        response.put("imageId", request.getImageId());
         return response;
     }
 
@@ -113,6 +114,8 @@ public class ProductServiceImpl implements ProductService {
         response.setFeatures(product.getFeatures());
         response.setSpecifications(product.getSpecifications());
         response.setProductReviewsAndRatings(productReviewAndRatingList);
+        response.setPrice(product.getPrice());
+        response.setImageId(product.getImageId());
         if (!Objects.isNull(productReviewAndRatingList) && productReviewAndRatingList.size() > 0) {
             response.setOverallRating(getProductOverallRating(productReviewAndRatingList));
         } else {
