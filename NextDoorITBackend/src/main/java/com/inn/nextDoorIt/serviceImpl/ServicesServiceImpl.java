@@ -135,6 +135,7 @@ public class ServicesServiceImpl implements ServicesService {
         }
         float ratingSum = ratingsCounts.values().stream().reduce((first, second) -> first + second).get();
         float overallRating = productSums / ratingSum;
+        overallRating = Math.round(overallRating);
         return overallRating;
     }
 
