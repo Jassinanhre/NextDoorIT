@@ -8,57 +8,48 @@
         Price
       </div>
     </div>
-    <div class="table1">
-      <div class="table-left">Software Development</div>
-      <div class="table-center">1</div>
+    <div class="table1" *ngFor="let item of cartItem.productDetails; let i = index">
+      <div class="table-left">{{item.product.productName}}</div>
+      <div class="table-center">{{item.quantity}}</div>
       <div class="table-right">
-        $ 2520
-      </div>
-    </div>
-    <div class="table1">
-      <div class="table-left">LAN Installation</div>
-      <div class="table-center">5</div>
-      <div class="table-right">
-        $ 3820
-      </div>
-    </div>
-    <div class="table1">
-      <div class="table-left">Software Installation</div>
-      <div class="table-center">3</div>
-      <div class="table-right">
-        $ 150
-      </div>
-    </div>
-    <div class="table1">
-      <div class="table-left">Website Development</div>
-      <div class="table-center">2</div>
-      <div class="table-right">
-        $ 1500
+        $ {{item.product.price}}
       </div>
     </div>
     <div class="table1">
       <div class="table-left"><strong>Total</strong></div>
       <div class="table-center"></div>
       <div class="table-right">
-        <strong> $ 7990</strong>
+        <strong> $ {{cartItem.orderTotalPrice}}</strong>
       </div>
     </div>
 
     <div class="table2 table2-form">
-      <form>
+      <form [formGroup]="shippingForm">
         <mat-form-field appearance="fill">
           <mat-label>Name:</mat-label>
-          <input matInput value="Sam Fedrick" required>
+          <input matInput placeholder="Sam Fedrick" formControlName="name" required>
+          <mat-error *ngIf="shippingForm.controls.name.touched && shippingForm.controls.name.invalid">
+            <span *ngIf="shippingForm.controls.name.errors.required">This field is mandatory</span>
+            <span *ngIf="shippingForm.controls.name.errors.pattern">This field is invalid</span>
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>Address:</mat-label>
-          <input matInput value="JOHN JONES MARKETING DEPARTMENT 10-123 1/2 MAIN STREET NW" required>
+          <input matInput placeholder="JOHN JONES MARKETING DEPARTMENT 10-123 1/2 MAIN STREET NW"
+            formControlName="address" required>
+          <mat-error *ngIf="shippingForm.controls.address.touched && shippingForm.controls.address.invalid">
+            <span *ngIf="shippingForm.controls.address.errors.required">This field is mandatory</span>
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>Contact Info:</mat-label>
-          <input matInput value="325 5486 2156" required>
+          <input matInput placeholder="325 5486 2156" formControlName="contactInfo" required>
+          <mat-error *ngIf="shippingForm.controls.contactInfo.touched && shippingForm.controls.contactInfo.invalid">
+            <span *ngIf="shippingForm.controls.contactInfo.errors.required">This field is mandatory</span>
+            <span *ngIf="shippingForm.controls.contactInfo.errors.pattern">This field is invalid</span>
+          </mat-error>
         </mat-form-field>
       </form>
     </div>
@@ -66,6 +57,7 @@
   </div>
   <div class="place-order">
     <button mat-button color="primary" routerLink="/cart">Back</button>
-    <button mat-button color="primary" routerLink="/payment">Place Order</button>
+    <button mat-button color="primary" mat-raised-button type="submit"
+      [disabled]="!(shippingForm.valid && shippingForm.dirty)" (click)="handlePlaceOrder()">Place Order</button>
   </div>
 </div>

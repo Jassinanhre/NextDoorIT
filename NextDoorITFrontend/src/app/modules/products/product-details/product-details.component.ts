@@ -9,7 +9,7 @@ import { Product } from 'src/app/models/product.model';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { ProductService } from 'src/app/services/product/product.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
-import { FeedbackService } from 'src/app/services/user/feedback.service';
+import { FeedbackService } from 'src/app/services/user/feedback/feedback.service';
 
 
 @Component({
@@ -96,7 +96,7 @@ export class ProductDetailsComponent implements OnInit {
       this.reviewRatingForm.reset();
       this.reviewRatingForm.controls['review'].setErrors(null);
       this.getProduct();
-    }, (error) => {
+    }, (error: any) => {
       this.ngxService.stop();
       if (error.error?.error) {
         this.responseMessage = error.error?.error

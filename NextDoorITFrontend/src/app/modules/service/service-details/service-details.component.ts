@@ -6,7 +6,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 import { Service } from 'src/app/models/service.model';
 import { ServicesService } from 'src/app/services/service/services.service';
-import { FeedbackService } from 'src/app/services/user/feedback.service';
+import { FeedbackService } from 'src/app/services/user/feedback/feedback.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 
 import { GlobalConstants } from 'src/app/global-constants';

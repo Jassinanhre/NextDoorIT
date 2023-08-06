@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Cart } from 'src/app/models/cart.model';
-import { LocalStorageService } from '../local-storage.service';
+import { LocalStorageService } from '../../local-storage.service';
 
 import { environment } from 'src/environments/environment';
 

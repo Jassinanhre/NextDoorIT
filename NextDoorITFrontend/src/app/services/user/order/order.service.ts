@@ -1,15 +1,14 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
-import { LocalStorageService } from '../local-storage.service';
+import { Injectable } from '@angular/core';
 
 import { environment } from 'src/environments/environment';
+import { LocalStorageService } from '../../local-storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class FeedbackService {
-  url = `${environment.apiUrl}/feedback`;
+export class OrderService {
+  url = `${environment.apiUrl}/order`;
 
   constructor(
     private http: HttpClient,
@@ -23,13 +22,11 @@ export class FeedbackService {
       'Authorization': `Bearer ${this.jwtToken}`
     })
   }
-
-  createServiceRating(data: any) {
-    return this.http.post(`${this.url}/save`, data, this.requestOptions);
+  placeOrder(data: any) {
+    return this.http.post(`${this.url}/placeOrder`, data, this.requestOptions);
   }
 
-  createProductRating(data: any) {
-    return this.http.post(`${this.url}/save/productReview`, data, this.requestOptions);
+  getOrderInfo(userId: string) {
+    return this.http.get(`${this.url}/info?userId=${userId}`, this.requestOptions);
   }
-
 }

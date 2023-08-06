@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { LocalStorageService } from 'src/app/services/local-storage.service';
-import { CartService } from 'src/app/services/cart/cart.service';
-import { SnackbarService } from 'src/app/services/snackbar.service';
+import { Router } from '@angular/router';
+
 import { Cart } from 'src/app/models/cart.model';
+
+import { SnackbarService } from 'src/app/services/snackbar.service';
+import { CartService } from 'src/app/services/user/cart/cart.service';
 import { ProductService } from 'src/app/services/product/product.service';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
   selector: 'app-cart',
@@ -16,7 +18,6 @@ export class CartComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
     private snackbarService: SnackbarService,
     private cartService: CartService,
     private productService: ProductService,
@@ -33,9 +34,8 @@ export class CartComponent implements OnInit {
       .subscribe(
         (response: any) => {
           this.cartList = response.data;
-          console.log("Cart Items :-->", response.data);
         },
-        error => {
+        (error: any) => {
           console.log(error);
         });
   }
@@ -72,16 +72,6 @@ export class CartComponent implements OnInit {
   checkout(): void {
     const userId: string = this.localStorageService.getItem('userId');
     this.router.navigate(['/checkout']);
-    // this.cartService.(userId)
-    //   .subscribe(
-    //     (response: any) => {
-    //       console.log(response.data);
-    //       this.snackbarService.openSnackBar("Item removed successfully from cart.", "");
-    //       this.router.navigate(['/checkout']);
-    //     },
-    //     error => {
-    //       console.log(error);
-    //     });
   }
 
 }

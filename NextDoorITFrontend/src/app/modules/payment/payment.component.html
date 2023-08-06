@@ -6,25 +6,25 @@
         <div class="example-container">
           <div class="details-dv">
             <div class="detail-left"><strong>Name: </strong> </div>
-            <div class="detail-right">Sam Fedrick</div>
+            <div class="detail-right">{{orderInfo.info.name}}</div>
           </div>
           <div class="details-dv">
             <div class="detail-left"><strong>Address:</strong> </div>
-            <div class="detail-right">JOHN JONES MARKETING DEPARTMENT 10-123 1/2 MAIN STREET NW</div>
+            <div class="detail-right">{{orderInfo.info.address}}</div>
           </div>
           <div class="details-dv">
             <div class="detail-left"><strong>Contact Info: </strong></div>
-            <div class="detail-right">325 5486 2156</div>
+            <div class="detail-right">{{orderInfo.info.contactInfo}}</div>
           </div>
 
           <div class="details-dv">
             <div class="detail-left"><strong>Quantity:</strong> </div>
-            <div class="detail-right">11</div>
+            <div class="detail-right">{{orderInfo.quantity}}</div>
           </div>
 
           <div class="details-dv">
             <div class="detail-left"><strong>Total:</strong> </div>
-            <div class="detail-right">$7990</div>
+            <div class="detail-right">${{orderInfo.total}}</div>
           </div>
 
           <div class="pay-method">
