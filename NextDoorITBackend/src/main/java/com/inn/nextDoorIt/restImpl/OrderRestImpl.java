@@ -18,4 +18,9 @@ public class OrderRestImpl implements OrderRest {
     public ResponseEntity<Object> placeOrder(OrderDetails orderDetails) {
         return ResponseEntity.status(HttpStatus.CREATED.value()).body(new ApplicationResponse(service.placeOrder(orderDetails), HttpStatus.CREATED.value()));
     }
+
+    @Override
+    public ResponseEntity<Object> getOrderInfo(int userId) {
+        return ResponseEntity.ok(new ApplicationResponse(service.getOrderInformation(userId), HttpStatus.OK.value()));
+    }
 }
