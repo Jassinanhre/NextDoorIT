@@ -66,7 +66,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Map<String, Object> getProductDetails(int productId) {
         Product product = productDao.findById(productId).orElseThrow(() -> new ApplicationException("No data found for given productId", HttpStatus.NO_CONTENT));
-        List<ProductReviewAndRating> productReviewAndRatingList = productReviewAndRatingDao.findAll();
+        List<ProductReviewAndRating> productReviewAndRatingList = productReviewAndRatingDao.findByProductId(productId);
         ProductDetailsModel response = buildProductDetailsResponse(product, productReviewAndRatingList);
         return buildMapResponse(response);
     }
@@ -143,6 +143,7 @@ public class ProductServiceImpl implements ProductService {
         }
         float ratingSum = ratingsCounts.values().stream().reduce((first, second) -> first + second).get();
         float overallRating = productSums / ratingSum;
+        overallRating = Math.round(overallRating);
         return overallRating;
     }
 
