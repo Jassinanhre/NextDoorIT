@@ -2,71 +2,82 @@
   <mat-card>
     <mat-card-content *ngIf="!showReceipt">
       <div>
-        <h2 class="payment-h2">Payment Information<span><img src="../../../assets/img/card.png" /></span></h2>
-        <div class="example-container">
-          <div class="details-dv">
-            <div class="detail-left"><strong>Name: </strong> </div>
-            <div class="detail-right">{{orderInfo.info.name}}</div>
+        <form [formGroup]="paymentForm">
+          <h2 class="payment-h2">Payment Information<span><img src="../../../assets/img/card.png" /></span></h2>
+          <div class="example-container">
+            <div class="details-dv">
+              <div class="detail-left"><strong>Name: </strong> </div>
+              <div class="detail-right">{{orderInfo.info.name}}</div>
+            </div>
+            <div class="details-dv">
+              <div class="detail-left"><strong>Address:</strong> </div>
+              <div class="detail-right">{{orderInfo.info.address}}</div>
+            </div>
+            <div class="details-dv">
+              <div class="detail-left"><strong>Contact Info: </strong></div>
+              <div class="detail-right">{{orderInfo.info.contactInfo}}</div>
+            </div>
+
+            <div class="details-dv">
+              <div class="detail-left"><strong>Quantity:</strong> </div>
+              <div class="detail-right">{{orderInfo.quantity}}</div>
+            </div>
+
+            <div class="details-dv">
+              <div class="detail-left"><strong>Total:</strong> </div>
+              <div class="detail-right">${{orderInfo.total}}</div>
+            </div>
+
+            <div class="pay-method">
+              <p><strong>Payment Method:</strong></p>
+              <input type="radio" id="html" value="paypal" formControlName="method" required>
+              <label for="html">PayPal</label>
+              <input type="radio" id="html" value="master" formControlName="method" required>
+              <label for="html">MasterCard</label>
+              <input type="radio" id="html" value="visa" formControlName="method" required>
+              <label for="html">VISA</label>
+              <input type="radio" id="html" value="apple" formControlName="method" required>
+              <label for="html">Apple Pay</label>
+              <mat-error *ngIf="paymentForm.controls.method.touched && paymentForm.controls.method.invalid">
+                <span *ngIf="paymentForm.controls.method.errors.required">This field is mandatory</span>
+              </mat-error>
+            </div>
           </div>
-          <div class="details-dv">
-            <div class="detail-left"><strong>Address:</strong> </div>
-            <div class="detail-right">{{orderInfo.info.address}}</div>
-          </div>
-          <div class="details-dv">
-            <div class="detail-left"><strong>Contact Info: </strong></div>
-            <div class="detail-right">{{orderInfo.info.contactInfo}}</div>
-          </div>
 
-          <div class="details-dv">
-            <div class="detail-left"><strong>Quantity:</strong> </div>
-            <div class="detail-right">{{orderInfo.quantity}}</div>
-          </div>
-
-          <div class="details-dv">
-            <div class="detail-left"><strong>Total:</strong> </div>
-            <div class="detail-right">${{orderInfo.total}}</div>
-          </div>
-
-          <div class="pay-method">
-            <p><strong>Payment Method:</strong></p>
-            <input type="radio" id="html" name="fav_language" value="HTML">
-              <label for="html">PayPal</label>
-            <input type="radio" id="html" name="fav_language" value="HTML">
-              <label for="html">MasterCard</label>
-            <input type="radio" id="html" name="fav_language" value="HTML">
-              <label for="html">VISA</label>
-            <input type="radio" id="html" name="fav_language" value="HTML">
-              <label for="html">Apple Pay</label>
+          <div class="checkout1">
+            <mat-form-field>
+              <mat-label>Card Number</mat-label>
+              <input matInput #input maxlength="10" placeholder="0000 1234 5678" formControlName="cardNumber" required>
+              <mat-error *ngIf="paymentForm.controls.cardNumber.touched && paymentForm.controls.cardNumber.invalid">
+                <span *ngIf="paymentForm.controls.cardNumber.errors.required">This field is mandatory</span>
+              </mat-error>
+            </mat-form-field>
 
           </div>
-        </div>
+          <div class="checkout1">
+            <mat-form-field>
+              <mat-label>Expiry Date</mat-label>
+              <input matInput #input maxlength="10" placeholder="12-24" formControlName="expiry" required>
+              <mat-error *ngIf="paymentForm.controls.expiry.touched && paymentForm.controls.expiry.invalid">
+                <span *ngIf="paymentForm.controls.expiry.errors.required">This field is mandatory</span>
+              </mat-error>
+            </mat-form-field>
 
-        <div class="checkout1">
-          <mat-form-field>
-            <mat-label>Card Number</mat-label>
-            <input matInput #input maxlength="10" placeholder="0000 1234 5678">
-          </mat-form-field>
+            <mat-form-field>
+              <mat-label>CVV</mat-label>
+              <input matInput #input maxlength="10" placeholder="222" formControlName="cvv" required>
+              <mat-error *ngIf="paymentForm.controls.cvv.touched && paymentForm.controls.cvv.invalid">
+                <span *ngIf="paymentForm.controls.cvv.errors.required">This field is mandatory</span>
+              </mat-error>
+            </mat-form-field>
 
+          </div>
 
-
-        </div>
-        <div class="checkout1">
-          <mat-form-field>
-            <mat-label>Expiry Date</mat-label>
-            <input matInput #input maxlength="10" placeholder="0000 1234 5678">
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>CVV</mat-label>
-            <input matInput #input maxlength="10" placeholder="222">
-          </mat-form-field>
-
-        </div>
-
-        <div class="pay-dv">
-          <button mat-button color="primary" (click)="handlePay()">Pay</button>
-        </div>
-
+          <div class="pay-dv">
+            <button mat-button color="primary" mat-raised-button type="submit"
+              [disabled]="!(paymentForm.valid && paymentForm.dirty)" (click)="handlePay()">Pay</button>
+          </div>
+        </form>
       </div>
     </mat-card-content>
 
