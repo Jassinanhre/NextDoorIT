@@ -88,7 +88,7 @@ public class CartServiceImpl implements CartService {
         if (Objects.isNull(savedCartResponse)) {
             throw new ApplicationException("Error while saving cart record in database", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        cartQuantityDao.deleteWithUserIdAndProductId(userId, productId);
+        cartQuantityDao.deleteByUserIdAndProductId(userId, productId);
         List<CartQuantity> response = cartQuantityDao.findByUserId(userId);
         if (Objects.isNull(response) || response.size() == 0) {
             throw new ApplicationException("No data found", HttpStatus.NO_CONTENT);
