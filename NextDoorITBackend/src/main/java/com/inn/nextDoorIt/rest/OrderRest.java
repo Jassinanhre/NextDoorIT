@@ -1,5 +1,6 @@
 package com.inn.nextDoorIt.rest;
 
+import com.inn.nextDoorIt.POJO.PaymentPortalRequest;
 import com.inn.nextDoorIt.entity.OrderDetails;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,4 +12,7 @@ public interface OrderRest {
 
     @GetMapping("/info")
     public ResponseEntity<Object> getOrderInfo(@RequestParam("userId") int userId);
+
+    @PostMapping("/payment")
+    public ResponseEntity<Object> completePayment(@RequestBody PaymentPortalRequest paymentRequest);
 }
