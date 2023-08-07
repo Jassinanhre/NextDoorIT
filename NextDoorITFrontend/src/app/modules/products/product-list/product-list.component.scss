@@ -378,12 +378,17 @@ a {
 }
 
 .product-image img {
-  width: 70%;
+  width: 90%;
+  max-width: 100%;
+  height: 280px;
 }
 
 .product-image {
   text-align: center;
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .service-matcard .product-card {
@@ -392,7 +397,7 @@ a {
 
 .service-matcard .product-card p {
   color: #787878;
-  min-height: 100px;
+  // min-height: 100px;
 }
 
 .service-matcard .product-card h3 span {

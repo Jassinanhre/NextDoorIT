@@ -18,21 +18,18 @@ export class TrainingCategoryComponent implements OnInit {
   trainingCategory?: TrainingCategory[] = [
     {
       id: "1",
-      name: "Computer Accessories",
+      categoryName: "Computer Accessories",
       description: "Our website offers a convenient online platform for individuals looking to purchase hardware parts.",
-      image: "assets/img/bulb.png",
     },
     {
       id: "2",
-      name: "Printer Supplies",
+      categoryName: "Printer Supplies",
       description: "Our website offers a convenient online platform for individuals looking to purchase hardware parts.",
-      image: "assets/img/bulb.png",
     },
     {
       id: "3",
-      name: "Networking Equipment",
+      categoryName: "Networking Equipment",
       description: "Our website offers a convenient online platform for individuals looking to purchase hardware parts.",
-      image: "assets/img/bulb.png",
     }
   ];
   responseMessage: any;

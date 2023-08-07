@@ -1,6 +1,6 @@
 <div class="service2-outer a">
   <div class="service2">
-    <mat-grid-list cols="1" rowHeight="850px">
+    <mat-grid-list cols="1" rowHeight="1350px">
       <mat-grid-tile>
         <mat-card class="service-matcard">
           <mat-card-content>
@@ -11,6 +11,8 @@
               <h2>{{currentProduct.productName}}</h2>
               <p>{{currentProduct.productDescription}}</p>
               <h3 class="price-h2"><span>Price:</span> ${{currentProduct.price}}</h3>
+              <h3 class="price-h2"><span>Specifications:</span> {{currentProduct.specifications}}</h3>
+              <h3 class="price-h2"><span>Features:</span> {{currentProduct.features || ""}}</h3>
               <div class="customer-review">
                 <h2>Ratings & Reviews:</h2>
                 <div class="r_rating">
@@ -18,25 +20,27 @@
                     uncheckedcolor="grey" size="24px" [readonly]="true"></star-rating>
                 </div>
               </div>
-              <!-- <div class="review-dv"
-                *ngFor="let reviewRating of currentProduct.productReviewsAndRatings; let i = index">
-                <mat-grid-list cols="1" rowHeight="100px">
-                  <mat-grid-tile>
-                    <div class="review-left">
-                      <span><i class="fa fa-user"></i></span>
-                    </div>
-                    <div class="review-right">
-                      <h2>{{reviewRating.username}} <span class="progress"></span></h2>
-                      <p>{{reviewRating.summery}}</p>
-                      <div class="r_rating">
-                        <star-rating [value]="reviewRating.rating || 0" [totalstars]="5" checkedcolor="green"
-                          uncheckedcolor="grey" size="24px" [readonly]="true"></star-rating>
+              <div class="review-dv-outer">
+                <div class="review-dv"
+                  *ngFor="let reviewRating of currentProduct.productReviewsAndRatings; let i = index">
+                  <mat-grid-list cols="1" rowHeight="100px">
+                    <mat-grid-tile>
+                      <div class="review-left">
+                        <span><i class="fa fa-user"></i></span>
                       </div>
-                    </div>
-                  </mat-grid-tile>
-                </mat-grid-list>
-              </div> -->
-              <!-- <div class="review-dv review-edit">
+                      <div class="review-right">
+                        <h2>{{reviewRating.username}} <span class="progress"></span></h2>
+                        <p>{{reviewRating.summery}}</p>
+                        <div class="r_rating">
+                          <star-rating [value]="reviewRating.rating || 0" [totalstars]="5" checkedcolor="green"
+                            uncheckedcolor="grey" size="24px" [readonly]="true"></star-rating>
+                        </div>
+                      </div>
+                    </mat-grid-tile>
+                  </mat-grid-list>
+                </div>
+              </div>
+              <div class="review-dv review-edit">
                 <mat-grid-list cols="1" rowHeight="180px">
                   <mat-grid-tile>
                     <div class="review-left">
@@ -61,7 +65,7 @@
                     </div>
                   </mat-grid-tile>
                 </mat-grid-list>
-              </div> -->
+              </div>
               <div *ngIf="isLogin" class="cart-dv">
                 <button mat-stroked-button color="primary" (click)="handleAddToCart()">Add to Cart</button>
               </div>

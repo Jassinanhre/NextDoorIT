@@ -7,6 +7,7 @@ export class Product {
   price?: string;
   imageId?: string;
   specifications?: string;
+  features?: string;
   productCategory?: string;
   overallRating?: number;
   productReviewsAndRatings?: any = ReviewRating;

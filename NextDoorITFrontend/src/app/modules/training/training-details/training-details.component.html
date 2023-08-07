@@ -8,97 +8,57 @@
             <mat-card-content>
               <div class="card1 a ser-detail-card">
                 <div class="training-image">
-                  <img src="{{currentTraining.image}}" />
+                  <!-- <img src="assets/img/{{currentTraining.imageId}}" /> -->
+                  <img src="assets/img/lan_service.png" />
                 </div>
-                <h2>{{currentTraining.trainingName}} </h2>
+                <h2>{{currentTraining.name}} </h2>
                 <p>{{currentTraining.description}}</p>
-                <p><strong>Duration:</strong>25 Days</p>
-                <p><strong>Prerequisite:</strong>Masters</p>
-                <p><strong>Objective:</strong>
-                  HTML is the standard markup language used to create and structure the content of web pages. The
-                  objective of HTML training is to teach individuals how to design and create web pages using HTML
-                  elements and tags. Some of the main objectives of HTML training include:</p>
-                <p><strong>Syllabus:</strong>
-                  The syllabus for an HTML training course may vary depending on the depth and complexity of the
-                  training, the target audience, and the duration of the course. Below is a comprehensive syllabus that
-                  covers the essential topics typically included in an introductory HTML training </p>
-                <p><strong>Price:</strong>$1000</p>
+                <p><strong>Duration:</strong>{{currentTraining.duration}} Days</p>
+                <p><strong>Prerequisite:</strong>{{currentTraining.prerequisites}}</p>
+                <p><strong>Objective:</strong>{{currentTraining.objective}}:</p>
+                <p><strong>Syllabus:</strong>{{currentTraining.syllabus}}</p>
+                <p><strong>Price:</strong>${{currentTraining.price}}</p>
               </div>
-              <div class="review-dv">
+              <!-- <div class="review-dv" *ngFor="let reviewRating of trainingReviews; let i = index">
                 <mat-grid-list cols="1" rowHeight="100px">
                   <mat-grid-tile>
                     <div class="review-left">
                       <span><i class="fa fa-user"></i></span>
                     </div>
                     <div class="review-right">
-                      <h2>John Doe <span class="progress"></span></h2>
-                      <p>Its a good experience using these services.Very satisfied with the purchase. The generated
-                        Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic
-                        words etc.</p>
+                      <h2>{{reviewRating.username}} <span class="progress"></span></h2>
+                      <p>{{reviewRating.summery}}</p>
                       <div class="r_rating">
-                        <i class="fa fa-star green"></i>
-                        <i class="fa fa-star green"></i>
-                        <i class="fa fa-star green"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                      </div>
-
-                    </div>
-                  </mat-grid-tile>
-                </mat-grid-list>
-              </div>
-
-              <div class="review-dv">
-                <mat-grid-list cols="1" rowHeight="80px">
-                  <mat-grid-tile>
-                    <div class="review-left">
-                      <span><i class="fa fa-user"></i></span>
-                    </div>
-                    <div class="review-right">
-                      <h2>Alan</h2>
-                      <p>Its a good experience using these services.Very satisfied with the purchase.</p>
-                      <div class="r_rating">
-                        <i class="fa fa-star green"></i>
-                        <i class="fa fa-star green"></i>
-                        <i class="fa fa-star green"></i>
-                        <i class="fa fa-star green"></i>
-                        <i class="fa fa-star"></i>
+                        <star-rating [value]="reviewRating.rating || 0" [totalstars]="5" checkedcolor="green"
+                          uncheckedcolor="grey" size="24px" [readonly]="true"></star-rating>
                       </div>
                     </div>
                   </mat-grid-tile>
                 </mat-grid-list>
               </div>
 
-              <!-- <div class="review-dv review-edit">
+              <div class="review-dv review-edit">
                 <mat-grid-list cols="1" rowHeight="180px">
                   <mat-grid-tile>
                     <div class="review-left">
                       <span><i class="fa fa-user"></i></span>
                     </div>
                     <div class="review-right">
-                      <h2> User Name</h2>
-
-                      <mat-form-field class="example-full-width">
-                        <mat-label>Leave a comment</mat-label>
-                        <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
-                      </mat-form-field>
-                      <div class="r_rating">
-                        <i class="fa fa-star green"></i>
-                        <i class="fa fa-star green"></i>
-                        <i class="fa fa-star green"></i>
-                        <i class="fa fa-star green"></i>
-                        <i class="fa fa-star"></i>
-                      </div>
-                      <div class="status-edit">
-                        <mat-form-field>
-                          <mat-label>Status </mat-label>
-                          <mat-select>
-                            <mat-option value="one">Pending</mat-option>
-                            <mat-option value="two">Complete</mat-option>
-                            <mat-option value="three">In Progress</mat-option>
-                          </mat-select>
+                      <form [formGroup]="reviewRatingForm">
+                        <mat-form-field class="example-full-width">
+                          <mat-label>Leave a comment</mat-label>
+                          <textarea matInput placeholder="Ex. It makes me feel..." formControlName="review"></textarea>
                         </mat-form-field>
-                      </div>
+                        <div class="r_rating">
+                          <star-rating [value]="0" [totalstars]="5" checkedcolor="green" uncheckedcolor="grey"
+                            size="24px" [readonly]="false" (rate)="onRate($event.newValue)"></star-rating>
+                        </div>
+                        <div class="submit-btn text-center">
+                          <button mat-raised-button type="submit"
+                            [disabled]="!(reviewRatingForm.valid && reviewRatingForm.dirty)" (click)="handleSubmit()"
+                            mat-button color="primary">Submit</button>
+                        </div>
+                      </form>
                     </div>
                   </mat-grid-tile>
                 </mat-grid-list>

@@ -22,11 +22,16 @@ export class OrderService {
       'Authorization': `Bearer ${this.jwtToken}`
     })
   }
+
   placeOrder(data: any) {
     return this.http.post(`${this.url}/placeOrder`, data, this.requestOptions);
   }
 
   getOrderInfo(userId: string) {
     return this.http.get(`${this.url}/info?userId=${userId}`, this.requestOptions);
+  }
+
+  makePayment(data: any) {
+    return this.http.post(`${this.url}/payment`, data, this.requestOptions);
   }
 }

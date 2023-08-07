@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
 import { Training } from 'src/app/models/training.model';
 import { environment } from 'src/environments/environment';
+import { LocalStorageService } from '../local-storage.service';
 
 
 @Injectable({
@@ -13,34 +14,49 @@ import { environment } from 'src/environments/environment';
 export class TrainingService {
   url = `${environment.apiUrl}/training`;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private localStorageService: LocalStorageService
+  ) { }
 
-  getAll(): Observable<Training[]> {
-    return this.http.get<Training[]>(`${this.url}/all`);
+  jwtToken: string = this.localStorageService.getItem('JWT')
+  requestOptions: any = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.jwtToken}`
+    })
   }
 
-  getAllByCategory(categoryId: string): Observable<Training[]> {
-    return this.http.get<Training[]>(`${this.url}/category?categoryId=${categoryId}`);
+  getAll() {
+    return this.http.get<Training[]>(`${this.url}/all`, this.requestOptions);
   }
 
-  get(id: any): Observable<Training> {
-    return this.http.get(`${this.url}/${id}`);
+  getAllByCategory(categoryId: string) {
+    return this.http.get<Training[]>(`${this.url}/byCategory?categoryId=${categoryId}`, this.requestOptions);
+  }
+
+  get(id: string) {
+    return this.http.get(`${this.url}/getDetails?trainingId=${id}`, this.requestOptions);
   }
 
   enroll(data: any): Observable<any> {
-    return this.http.post(this.url, data);
+    return this.http.post(this.url, data, this.requestOptions);
+  }
+
+  getReview(id: string) {
+    return this.http.get(`${this.url}/reviewRatings?trainingId=${id}`, this.requestOptions);
   }
 
   update(id: any, data: any): Observable<any> {
-    return this.http.put(`${this.url}/${id}`, data);
+    return this.http.put(`${this.url}/${id}`, data, this.requestOptions);
   }
 
   delete(id: any): Observable<any> {
-    return this.http.delete(`${this.url}/${id}`);
+    return this.http.delete(`${this.url}/${id}`, this.requestOptions);
   }
 
   deleteAll(): Observable<any> {
-    return this.http.delete(this.url);
+    return this.http.delete(this.url, this.requestOptions);
   }
 
   findByTitle(title: any): Observable<Training[]> {

@@ -75,7 +75,12 @@
 }
 
 .product-image img {
-  width: 40%;
+  width: 30%;
+}
+
+.review-dv-outer {
+  height: 500px;
+  overflow: auto;
 }
 
 .service-matcard .product-card {

@@ -3,15 +3,25 @@
     <app-service-category (categoryEvent)="filterByCategory($event)"></app-service-category>
   </div>
   <div class="service2">
-    <mat-grid-list cols="3" rowHeight="280px">
+    <mat-grid-list cols="3" rowHeight="450px">
       <mat-grid-tile *ngFor="let service of services; let i = index" [class.active]="i == currentIndex"
         (click)="setActiveService(service, i)">
         <mat-card class="service-matcard">
           <mat-card-content routerLink="/service/{{ service.id }}">
             <div class="card1 a">
-              <img src="assets/img/{{service.imageId}}" />
+              <div class="service-image">
+                <img src="assets/img/{{service.imageId}}" />
+              </div>
               <h2>{{service.serviceName}} </h2>
               <p>{{service.description}}</p>
+              <div class="price-dv">
+                <div class="left-price">
+                  <p><strong>Duration:</strong>{{service.duration}} Days</p>
+                </div>
+                <div class="right-price">
+                  <p><strong>Price:</strong>$ {{service.price}}</p>
+                </div>
+              </div>
             </div>
           </mat-card-content>
         </mat-card>

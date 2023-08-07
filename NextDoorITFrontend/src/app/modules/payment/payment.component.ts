@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { OrderService } from 'src/app/services/user/order/order.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { GlobalConstants } from 'src/app/global-constants';
 
 @Component({
   selector: 'app-payment',
@@ -51,8 +50,10 @@ export class PaymentComponent implements OnInit {
       "expiry": formData.expiry,
       "cvv": formData.cvv
     }
-    console.log("payload : ", payload);
-    this.showReceipt = !this.showReceipt;
+    this.orderService.makePayment(payload).subscribe((response: any) => {
+      this.showReceipt = !this.showReceipt;
+    }, (error: any) => {
+      console.log("error: ", error);
+    });
   }
-
 }
