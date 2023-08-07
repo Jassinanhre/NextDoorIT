@@ -1,5 +1,6 @@
 package com.inn.nextDoorIt.restImpl;
 
+import com.inn.nextDoorIt.POJO.PaymentPortalRequest;
 import com.inn.nextDoorIt.entity.OrderDetails;
 import com.inn.nextDoorIt.rest.OrderRest;
 import com.inn.nextDoorIt.service.OrderService;
@@ -22,5 +23,10 @@ public class OrderRestImpl implements OrderRest {
     @Override
     public ResponseEntity<Object> getOrderInfo(int userId) {
         return ResponseEntity.ok(new ApplicationResponse(service.getOrderInformation(userId), HttpStatus.OK.value()));
+    }
+
+    @Override
+    public ResponseEntity<Object> completePayment(PaymentPortalRequest paymentRequest) {
+        return ResponseEntity.ok(new ApplicationResponse(service.completePaymentRequest(paymentRequest), HttpStatus.OK.value()));
     }
 }
