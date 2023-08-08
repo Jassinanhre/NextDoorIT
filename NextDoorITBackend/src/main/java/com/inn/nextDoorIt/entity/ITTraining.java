@@ -41,9 +41,4 @@ public class ITTraining {
 
     private String syllabus;
     private String prerequisites;
-
-
-    @ManyToMany(mappedBy = "userTakenTrainings")
-    @JsonIgnore
-    private List<User> users;
 }

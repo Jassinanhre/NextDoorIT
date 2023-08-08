@@ -40,24 +40,29 @@ public class OrderServiceImpl implements OrderService {
     public OrderDetails placeOrder(OrderDetails request) {
         validateOrderRequest(request);
         User user = userDao.findById(request.getUserId()).orElseThrow(() -> new ApplicationException("No user found for requested userId", HttpStatus.BAD_REQUEST));
-        if (Objects.isNull(user)) {
-            throw new ApplicationException("No user found for requested userId", HttpStatus.BAD_REQUEST);
-        }
         request.setName(user.getEmail());
+        request.setOrderStatus("IN_PROCESSING"); // FOR FIRST TIME MARK THE ORDER STATUS IN PROCESSING
         // HERE WE CAN CHECK IS THERE ANY PRODUCT ACTUALLY PRESENT IN USER'S CART OR NOT
         Cart cart = cartDao.findByUserId(request.getUserId());
         if (Objects.isNull(cart.getProducts()) || cart.getProducts().size() == 0) {
             throw new ApplicationException("No product in cart, invalid place order request [EMPTY CART]", HttpStatus.CONFLICT);
         }
-        OrderDetails details = orderDao.findByUserId(request.getUserId());
-        if (!Objects.isNull(details)) {
-            throw new ApplicationException("The order is already under processing, you are on payment portal, please complete the session first", HttpStatus.BAD_REQUEST);
+
+        OrderDetails details = orderDao.findByUserIdAndOrderStatus(request.getUserId(), "IN_PROCESSING");
+        if (!Objects.isNull(details)) { // IF THE REQUEST IS FOR UPDATING ALREADY UNDER PROCESSING ORDER
+            details.setAddress(request.getAddress());
+            details.setName(request.getName());
+            details.setContactInfo(request.getContactInfo());
+            OrderDetails savedResponse = orderDao.save(details);
+            if (Objects.isNull(savedResponse))
+                throw new ApplicationException("Not able to save order information", HttpStatus.INTERNAL_SERVER_ERROR);
+            return savedResponse;
+        } else {      // IF THERE IS NO ORDER DETAILS RECORD ALREADY EXISTING IN DATABASE
+            OrderDetails newSavedRecord = orderDao.save(request);
+            if (Objects.isNull(newSavedRecord))
+                throw new ApplicationException("Not able to save order information", HttpStatus.INTERNAL_SERVER_ERROR);
+            return newSavedRecord;
         }
-        var savedOrderResponse = orderDao.save(request);
-        if (Objects.isNull(savedOrderResponse)) {
-            throw new ApplicationException("Error while saving order request ", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        return savedOrderResponse;
     }
 
     @Override
@@ -74,7 +79,7 @@ public class OrderServiceImpl implements OrderService {
             totalQuantity += currentCartQuantity.getQuantity();
             orderTotal += cartProducts.get(i).getPrice() * currentCartQuantity.getQuantity();
         }
-        OrderDetails orderDetails = orderDao.findByUserId(userId);
+        OrderDetails orderDetails = orderDao.findByUserIdAndOrderStatus(userId, "IN_PROCESSING");
         if (Objects.isNull(orderDetails))
             throw new ApplicationException("No order details found for requested userId", HttpStatus.BAD_REQUEST);
         orderDetails.setName(user.getName());
@@ -106,8 +111,8 @@ public class OrderServiceImpl implements OrderService {
             throw new ApplicationException("Payment failure, while processing the payment", HttpStatus.INTERNAL_SERVER_ERROR);
         }
         // SETTING THE USER ID OF ORDER INFO AS NULL
-        OrderDetails orderDetails = orderDao.findByUserId(paymentRequest.getUserId());
-        orderDetails.setUserId(0);
+        OrderDetails orderDetails = orderDao.findByUserIdAndOrderStatus(paymentRequest.getUserId(), "IN_PROCESSING");
+        orderDetails.setOrderStatus("PAYMENT_COMPLETED");
         OrderDetails savedDetails = orderDao.save(orderDetails);
         if (Objects.isNull(savedDetails)) {
             throw new ApplicationException("Unable to save the order", HttpStatus.INTERNAL_SERVER_ERROR);

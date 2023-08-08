@@ -49,13 +49,4 @@ public class User implements Serializable {
     @Column(name = "role")
     private String role;
 
-    @JsonIgnore
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "user_trainings",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "training_id")
-    )
-    @ToString.Exclude
-    private List<ITTraining> userTakenTrainings;
 }

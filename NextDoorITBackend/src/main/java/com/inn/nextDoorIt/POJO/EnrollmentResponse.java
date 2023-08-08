@@ -9,5 +9,5 @@ import java.util.List;
 public class EnrollmentResponse {
     private String userName;
     private String email;
-    private List<ITTraining> enrolledTrainings;
+    private String message;
 }
