@@ -1,0 +1,43 @@
+<div class="service-form">
+  <h2>Enroll yourself into our Training Program</h2>
+  <form [formGroup]="enrollForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" required>
+      <mat-error *ngIf="enrollForm.controls.name.touched && enrollForm.controls.name.invalid">
+        <span *ngIf="enrollForm.controls.name.errors.required">This field is mandatory</span>
+        <span *ngIf="enrollForm.controls.name.errors.pattern">This field is invalid</span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>address@yourmail.com</mat-label>
+      <input matInput formControlName="email" required>
+      <mat-error *ngIf="enrollForm.controls.email.touched && enrollForm.controls.email.invalid">
+        <span *ngIf="enrollForm.controls.email.errors.required">This field is mandatory</span>
+        <span *ngIf="enrollForm.controls.email.errors.pattern">This field is invalid</span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Training Type</mat-label>
+      <mat-select formControlName="trainingType" required>
+        <mat-option value="Network Administration">Network Administration</mat-option>
+        <mat-option value="Programming Language">Programming Language</mat-option>
+        <mat-option value="Office Software">Office Software</mat-option>
+      </mat-select>
+      <mat-error *ngIf="enrollForm.controls.trainingType.touched && enrollForm.controls.trainingType.invalid">
+        <span *ngIf="enrollForm.controls.trainingType.errors.required">This field is mandatory</span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Your objective</mat-label>
+      <textarea matInput formControlName="objective" required></textarea>
+      <mat-error *ngIf="enrollForm.controls.objective.touched && enrollForm.controls.objective.invalid">
+        <span *ngIf="enrollForm.controls.objective.errors.required">This field is mandatory</span>
+      </mat-error>
+    </mat-form-field>
+    <div class="submit-btn text-center">
+      <button mat-raised-button type="submit" [disabled]="!(enrollForm.valid && enrollForm.dirty)"
+        (click)="handleSubmit()">Submit</button>
+    </div>
+  </form>
+</div>

@@ -10,12 +10,12 @@ import { SnackbarService } from 'src/app/services/snackbar.service';
 
 
 @Component({
-  selector: 'app-training-request',
-  templateUrl: './training-request.component.html',
-  styleUrls: ['./training-request.component.scss']
+  selector: 'app-training-enroll',
+  templateUrl: './training-enroll.component.html',
+  styleUrls: ['./training-enroll.component.scss']
 })
-export class TrainingRequestComponent implements OnInit {
-  requestForm: any = FormGroup;
+export class TrainingEnrollComponent implements OnInit {
+  enrollForm: any = FormGroup;
   responseMessage: any;
 
   constructor(
@@ -27,28 +27,36 @@ export class TrainingRequestComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.requestForm = this.formBuilder.group({
+    this.enrollForm = this.formBuilder.group({
       name: [null, [Validators.required, Validators.pattern(GlobalConstants.nameRegex)]],
       email: [null, [Validators.required, Validators.pattern(GlobalConstants.emailRegex)]],
-      category: [null, [Validators.required, Validators.pattern(GlobalConstants.nameRegex)]],
-      query: [null, [Validators.required]],
+      trainingType: [null, [Validators.required, Validators.pattern(GlobalConstants.nameRegex)]],
+      objective: [null, [Validators.required]],
     })
   }
 
   handleSubmit() {
-    const formData = this.requestForm.value;
-    console.log('Here Training enroll form values are :', formData);
+    const formData = this.enrollForm.value;
     this.ngxService.start();
     const data = {
       name: formData.name,
       email: formData.email,
-      category: formData.category,
-      query: formData.query,
+      trainingType: formData.category,
+      objective: formData.objective,
+      trainingId: '',
     }
+    console.log('Here Training enroll form values are :', data);
 
     this.trainingService.enroll(data).subscribe((response: any) => {
       this.ngxService.stop();
+      this.responseMessage = 'Feedback submitted successfully.';
+      this.snackbarService.openSnackBar(this.responseMessage, "");
       this.router.navigate(['/training/list']);
+      this.enrollForm.reset();
+      this.enrollForm.controls['name'].setErrors(null);
+      this.enrollForm.controls['email'].setErrors(null);
+      this.enrollForm.controls['category'].setErrors(null);
+      this.enrollForm.controls['query'].setErrors(null);
     }, (error) => {
       this.ngxService.stop();
       if (error.error?.error) {

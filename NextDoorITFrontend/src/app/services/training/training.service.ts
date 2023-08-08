@@ -39,8 +39,8 @@ export class TrainingService {
     return this.http.get(`${this.url}/getDetails?trainingId=${id}`, this.requestOptions);
   }
 
-  enroll(data: any): Observable<any> {
-    return this.http.post(this.url, data, this.requestOptions);
+  enroll(data: any) {
+    return this.http.post(`${this.url}/enroll`, data, this.requestOptions);
   }
 
   getReview(id: string) {
