@@ -24,4 +24,5 @@ public interface TrainingService {
     public List<TrainingReviewRatings> getTrainingReviewAndRatings(int trainingId);
 
     public List<ITTraining> trainingByCategoryId(int categoryId);
+    public List<TrainingCategory> getAllTrainingCategory();
 }

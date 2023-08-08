@@ -135,6 +135,14 @@ public class TrainingServiceImpl implements TrainingService {
         throw new ApplicationException("No data found for given categoryId", HttpStatus.BAD_REQUEST);
     }
 
+    @Override
+    public List<TrainingCategory> getAllTrainingCategory() {
+        List<TrainingCategory> categoryList = categoryDao.findAll();
+        if (Objects.isNull(categoryList) || categoryList.size() == 0)
+            throw new ApplicationException("No training category is found", HttpStatus.NO_CONTENT);
+        return categoryList;
+    }
+
     private void verifyDuplicateEnrollment(List<ITTraining> alreadyEnrolled, int trainingId) {
         List<ITTraining> matchingRecords = alreadyEnrolled.stream().filter(itTraining -> {
             return itTraining.getId() == trainingId;
@@ -181,9 +189,9 @@ public class TrainingServiceImpl implements TrainingService {
             productSums += keySet.get(i) * ratingsCounts.get(keySet.get(i));
         }
         float ratingSum = ratingsCounts.values().stream().reduce((first, second) -> first + second).get();
-        float overallRating = productSums / ratingSum;
-        overallRating = Math.round(overallRating);
-        return overallRating;
+        double overallRating = productSums / ratingSum;
+        overallRating = Math.ceil(overallRating);
+        return (float) overallRating;
     }
 
     private ITTraining buildItTrainingObject(ITTrainingRequest request, TrainingCategory category) {

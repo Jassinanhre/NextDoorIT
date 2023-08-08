@@ -29,4 +29,7 @@ public interface TrainingRest {
 
     @GetMapping(path = "/byCategory")
     public ResponseEntity<Object> getTrainingByCategory(@RequestParam("categoryId") int categoryId);
+
+    @GetMapping(path = "/allCategory")
+    public ResponseEntity<Object> getAllTrainingCategory();
 }
