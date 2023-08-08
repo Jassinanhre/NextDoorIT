@@ -7,6 +7,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { GlobalConstants } from 'src/app/global-constants';
 import { TrainingService } from 'src/app/services/training/training.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class TrainingEnrollComponent implements OnInit {
     private snackbarService: SnackbarService,
     private ngxService: NgxUiLoaderService,
     private trainingService: TrainingService,
+    private localStorageService: LocalStorageService,
   ) { }
 
   ngOnInit(): void {
@@ -41,22 +43,20 @@ export class TrainingEnrollComponent implements OnInit {
     const data = {
       name: formData.name,
       email: formData.email,
-      trainingType: formData.category,
+      trainingType: formData.trainingType,
       objective: formData.objective,
-      trainingId: '',
+      userId: this.localStorageService.getItem('userId'),
     }
-    console.log('Here Training enroll form values are :', data);
-
     this.trainingService.enroll(data).subscribe((response: any) => {
       this.ngxService.stop();
-      this.responseMessage = 'Feedback submitted successfully.';
+      this.responseMessage = 'Enrollment successfully done in your selected training program.';
       this.snackbarService.openSnackBar(this.responseMessage, "");
       this.router.navigate(['/training/list']);
       this.enrollForm.reset();
       this.enrollForm.controls['name'].setErrors(null);
       this.enrollForm.controls['email'].setErrors(null);
-      this.enrollForm.controls['category'].setErrors(null);
-      this.enrollForm.controls['query'].setErrors(null);
+      this.enrollForm.controls['trainingType'].setErrors(null);
+      this.enrollForm.controls['objective'].setErrors(null);
     }, (error) => {
       this.ngxService.stop();
       if (error.error?.error) {

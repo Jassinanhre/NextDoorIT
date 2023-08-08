@@ -27,7 +27,7 @@
       <form [formGroup]="shippingForm">
         <mat-form-field appearance="fill">
           <mat-label>Name:</mat-label>
-          <input matInput placeholder="Sam Fedrick" formControlName="name" required>
+          <input matInput maxlength="20" placeholder="Sam Fedrick" formControlName="name" required>
           <mat-error *ngIf="shippingForm.controls.name.touched && shippingForm.controls.name.invalid">
             <span *ngIf="shippingForm.controls.name.errors.required">This field is mandatory</span>
             <span *ngIf="shippingForm.controls.name.errors.pattern">This field is invalid</span>
@@ -36,7 +36,7 @@
 
         <mat-form-field appearance="fill">
           <mat-label>Address:</mat-label>
-          <input matInput placeholder="JOHN JONES MARKETING DEPARTMENT 10-123 1/2 MAIN STREET NW"
+          <input matInput maxlength="100" placeholder="JOHN JONES MARKETING DEPARTMENT 10-123 1/2 MAIN STREET NW"
             formControlName="address" required>
           <mat-error *ngIf="shippingForm.controls.address.touched && shippingForm.controls.address.invalid">
             <span *ngIf="shippingForm.controls.address.errors.required">This field is mandatory</span>
@@ -45,7 +45,7 @@
 
         <mat-form-field appearance="fill">
           <mat-label>Contact Info:</mat-label>
-          <input matInput placeholder="325 5486 2156" formControlName="contactInfo" required>
+          <input matInput maxlength="10" placeholder="325 5486 2156" formControlName="contactInfo" required>
           <mat-error *ngIf="shippingForm.controls.contactInfo.touched && shippingForm.controls.contactInfo.invalid">
             <span *ngIf="shippingForm.controls.contactInfo.errors.required">This field is mandatory</span>
             <span *ngIf="shippingForm.controls.contactInfo.errors.pattern">This field is invalid</span>

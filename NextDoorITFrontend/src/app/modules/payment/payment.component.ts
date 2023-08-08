@@ -45,7 +45,7 @@ export class PaymentComponent implements OnInit {
     const formData = this.paymentForm.value;
     const payload: any = {
       userId: this.localStorageService.getItem('userId'),
-      "method": formData.method,
+      "paymentMethod": formData.method,
       "cardNumber": formData.cardNumber,
       "expiry": formData.expiry,
       "cvv": formData.cvv

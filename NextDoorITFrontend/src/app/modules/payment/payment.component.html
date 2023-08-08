@@ -57,7 +57,7 @@
           <div class="checkout1">
             <mat-form-field>
               <mat-label>Expiry Date</mat-label>
-              <input matInput #input maxlength="10" placeholder="12-24" formControlName="expiry" required>
+              <input matInput #input maxlength="4" placeholder="12-24" formControlName="expiry" required>
               <mat-error *ngIf="paymentForm.controls.expiry.touched && paymentForm.controls.expiry.invalid">
                 <span *ngIf="paymentForm.controls.expiry.errors.required">This field is mandatory</span>
               </mat-error>
@@ -65,7 +65,7 @@
 
             <mat-form-field>
               <mat-label>CVV</mat-label>
-              <input matInput #input maxlength="10" placeholder="222" formControlName="cvv" required>
+              <input matInput #input maxlength="3" placeholder="222" formControlName="cvv" required>
               <mat-error *ngIf="paymentForm.controls.cvv.touched && paymentForm.controls.cvv.invalid">
                 <span *ngIf="paymentForm.controls.cvv.errors.required">This field is mandatory</span>
               </mat-error>
@@ -82,7 +82,7 @@
     </mat-card-content>
 
     <mat-card-content *ngIf="showReceipt">
-      Here you will show the payment receipt !!
+      Your order is placed successfully !!
     </mat-card-content>
   </mat-card>
 </div>

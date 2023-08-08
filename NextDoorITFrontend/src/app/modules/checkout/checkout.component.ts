@@ -52,10 +52,10 @@ export class CheckoutComponent implements OnInit {
     const userId = this.localStorageService.getItem('userId');
     this.orderService.getOrderInfo(userId).subscribe((response: any) => {
       this.orderInfo = response.data;
-      this.shippingForm = this.formBuilder.group({
-        name: [this.orderInfo.info.name, [Validators.required, Validators.pattern(GlobalConstants.nameRegex)]],
-        address: [this.orderInfo.info.address, [Validators.required]],
-        contactInfo: [this.orderInfo.info.contactInfo, [Validators.required, Validators.pattern(GlobalConstants.contactNumberRegex)]],
+      this.shippingForm.setValue({
+        name: this.orderInfo.info.name,
+        address: this.orderInfo.info.address,
+        contactInfo: this.orderInfo.info.contactInfo
       })
     }, (error: any) => {
       console.log("error: ", error);

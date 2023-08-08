@@ -14,6 +14,7 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
+  isCartEmpty: boolean = true;
   cartList: Cart = {};
 
   constructor(
@@ -34,6 +35,7 @@ export class CartComponent implements OnInit {
       .subscribe(
         (response: any) => {
           this.cartList = response.data;
+          this.isCartEmpty = this.cartList.productDetails?.length ? false : true;
         },
         (error: any) => {
           console.log(error);
