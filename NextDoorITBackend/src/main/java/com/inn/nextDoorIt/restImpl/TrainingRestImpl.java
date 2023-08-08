@@ -53,4 +53,9 @@ public class TrainingRestImpl implements TrainingRest {
         return ResponseEntity.ok(new ApplicationResponse(service.trainingByCategoryId(categoryId), HttpStatus.OK.value()));
     }
 
+    @Override
+    public ResponseEntity<Object> getAllTrainingCategory() {
+        return ResponseEntity.ok(new ApplicationResponse(service.getAllTrainingCategory(), HttpStatus.OK.value()));
+    }
+
 }

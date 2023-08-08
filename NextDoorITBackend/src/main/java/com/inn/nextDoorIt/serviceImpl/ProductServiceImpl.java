@@ -142,9 +142,9 @@ public class ProductServiceImpl implements ProductService {
             productSums += keySet.get(i) * ratingsCounts.get(keySet.get(i));
         }
         float ratingSum = ratingsCounts.values().stream().reduce((first, second) -> first + second).get();
-        float overallRating = productSums / ratingSum;
-        overallRating = Math.round(overallRating);
-        return overallRating;
+        double overallRating = productSums / ratingSum;
+        overallRating = (Math.ceil(overallRating));
+        return (float) overallRating;
     }
 
 
