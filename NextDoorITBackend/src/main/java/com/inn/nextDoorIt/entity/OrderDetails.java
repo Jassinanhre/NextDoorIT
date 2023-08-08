@@ -23,4 +23,7 @@ public class OrderDetails {
 
     @Column(name = "contact_info")
     private String contactInfo;
+
+    @Column(name = "order_status")
+    private String orderStatus;
 }
