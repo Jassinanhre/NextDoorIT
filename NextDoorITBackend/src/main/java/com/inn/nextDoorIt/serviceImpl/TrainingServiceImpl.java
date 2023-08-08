@@ -3,14 +3,8 @@ package com.inn.nextDoorIt.serviceImpl;
 import com.inn.nextDoorIt.POJO.EnrollTrainingRequest;
 import com.inn.nextDoorIt.POJO.EnrollmentResponse;
 import com.inn.nextDoorIt.POJO.ITTrainingRequest;
-import com.inn.nextDoorIt.dao.TrainingCategoryDao;
-import com.inn.nextDoorIt.dao.TrainingDao;
-import com.inn.nextDoorIt.dao.TrainingReviewAndRatingsDao;
-import com.inn.nextDoorIt.dao.UserDao;
-import com.inn.nextDoorIt.entity.ITTraining;
-import com.inn.nextDoorIt.entity.TrainingCategory;
-import com.inn.nextDoorIt.entity.TrainingReviewRatings;
-import com.inn.nextDoorIt.entity.User;
+import com.inn.nextDoorIt.dao.*;
+import com.inn.nextDoorIt.entity.*;
 import com.inn.nextDoorIt.exception.ApplicationException;
 import com.inn.nextDoorIt.service.TrainingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +28,9 @@ public class TrainingServiceImpl implements TrainingService {
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private TrainingEnrollmentDao trainingEnrollmentDao;
 
     @Override
     public TrainingCategory saveTrainingCategory(TrainingCategory category) {
@@ -76,43 +73,24 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
     @Override
-    public EnrollmentResponse enrollTraining(EnrollTrainingRequest enrollTrainingRequest) {
-        User user = userDao.findByEmailId(enrollTrainingRequest.getEmail());
-        if (Objects.isNull(user)) {
-            throw new ApplicationException("No user found with requested email", HttpStatus.BAD_REQUEST);
+    public EnrollmentResponse enrollTraining(EnrollmentRecord enrollmentRequest) {
+        validateEnrollmentRequest(enrollmentRequest);
+        User user = userDao.findById(enrollmentRequest.getUserId()).orElseThrow(() -> new ApplicationException("No user found for requested userId", HttpStatus.BAD_REQUEST));
+        EnrollmentRecord savedEnrollmentRecord = trainingEnrollmentDao.save(enrollmentRequest);
+        if (Objects.isNull(savedEnrollmentRecord)) {
+            throw new ApplicationException("Error while saving enrollment record", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        ITTraining training = trainingDao.findById(enrollTrainingRequest.getTrainingId()).orElseThrow(() -> new ApplicationException("No IT Training found for requested trainingId", HttpStatus.BAD_REQUEST));
-        List<ITTraining> alreadyEnrolled = user.getUserTakenTrainings();
-        if (!Objects.isNull(alreadyEnrolled) && alreadyEnrolled.size() > 0) { // IF THERE ARE SOME TRAININGS ALREADY ENROLLED
-            List<ITTraining> duplicateTrainings = alreadyEnrolled.stream().filter(currentTraining -> training.getId() == enrollTrainingRequest.getTrainingId()).collect(Collectors.toList());
-            if (!Objects.isNull(duplicateTrainings) && duplicateTrainings.size() > 0) {
-                throw new ApplicationException("The requested training is alredady enrolled by user", HttpStatus.BAD_REQUEST);
-            }
-        }
-//      List<User> enrolledUsersForTraining = training.getUsers();
-        List<ITTraining> updatedTraining = null;
-        List<User> updatedUserList = null;
-        if (Objects.isNull(alreadyEnrolled) || alreadyEnrolled.size() == 0) { // IF THERE IS NO TRAINING ENROLLED ALREADY
-            updatedTraining = new ArrayList<>();
-            updatedTraining.add(training);
-            user.setUserTakenTrainings(updatedTraining);
-        } else {
-            updatedTraining = new ArrayList<>();
-            updatedTraining.addAll(alreadyEnrolled);
-            updatedTraining.add(training);
-            user.setUserTakenTrainings(updatedTraining);
-        }
+        EnrollmentResponse response = new EnrollmentResponse();
+        response.setEmail(enrollmentRequest.getEmail());
+        response.setUserName(enrollmentRequest.getName());
+        response.setMessage("Training successfully enrolled ");
+        return response;
+    }
 
-        User updatedUserResponse = userDao.save(user);// saved user
-        ITTraining trainingResponse = trainingDao.save(training);
-        if (!Objects.isNull(updatedUserResponse)) {
-            EnrollmentResponse response = new EnrollmentResponse();
-            response.setUserName(updatedUserResponse.getName());
-            response.setEmail(updatedUserResponse.getEmail());
-            response.setEnrolledTrainings(user.getUserTakenTrainings());
-            return response;
-        }
-        throw new ApplicationException("Unable to enroll the it training for the requested user", HttpStatus.INTERNAL_SERVER_ERROR);
+
+    private void validateEnrollmentRequest(EnrollmentRecord request) {
+        if (Objects.isNull(request) || request.getObjective().isBlank() || request.getTrainingType().isBlank() || request.getEmail().isBlank() || Objects.isNull(request.getUserId()) || request.getName().isBlank())
+            throw new ApplicationException("Invalid request for training enrollment", HttpStatus.BAD_REQUEST);
     }
 
     @Override
@@ -159,7 +137,7 @@ public class TrainingServiceImpl implements TrainingService {
         response.put("description", training.getDescription());
         response.put("price", training.getPrice());
         response.put("duration", training.getDuration());
-        response.put("image_id", training.getImageId());
+        response.put("imageId", training.getImageId());
         response.put("objective", training.getObjective());
         response.put("prerequisites", training.getPrerequisites());
         response.put("syllabus", training.getSyllabus());
