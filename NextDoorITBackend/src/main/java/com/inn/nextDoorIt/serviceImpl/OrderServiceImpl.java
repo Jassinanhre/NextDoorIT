@@ -40,6 +40,19 @@ public class OrderServiceImpl implements OrderService {
     public OrderDetails placeOrder(OrderDetails request) {
         validateOrderRequest(request);
         User user = userDao.findById(request.getUserId()).orElseThrow(() -> new ApplicationException("No user found for requested userId", HttpStatus.BAD_REQUEST));
+        if (Objects.isNull(user)) {
+            throw new ApplicationException("No user found for requested userId", HttpStatus.BAD_REQUEST);
+        }
+        request.setName(user.getEmail());
+        // HERE WE CAN CHECK IS THERE ANY PRODUCT ACTUALLY PRESENT IN USER'S CART OR NOT
+        Cart cart = cartDao.findByUserId(request.getUserId());
+        if (Objects.isNull(cart.getProducts()) || cart.getProducts().size() == 0) {
+            throw new ApplicationException("No product in cart, invalid place order request [EMPTY CART]", HttpStatus.CONFLICT);
+        }
+        OrderDetails details = orderDao.findByUserId(request.getUserId());
+        if (!Objects.isNull(details)) {
+            throw new ApplicationException("The order is already under processing, you are on payment portal, please complete the session first", HttpStatus.BAD_REQUEST);
+        }
         var savedOrderResponse = orderDao.save(request);
         if (Objects.isNull(savedOrderResponse)) {
             throw new ApplicationException("Error while saving order request ", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -50,7 +63,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderInfo getOrderInformation(int userId) {
         Cart userCart = cartDao.findByUserId(userId);
+        if (Objects.isNull(userCart))
+            throw new ApplicationException("No cart record found for requested userId", HttpStatus.BAD_REQUEST);
         List<Product> cartProducts = userCart.getProducts();
+        User user = userDao.findById(userId).orElseThrow(() -> new ApplicationException("No user found for requested userId", HttpStatus.BAD_REQUEST));
         int totalQuantity = 0;
         long orderTotal = 0;
         for (int i = 0; i < cartProducts.size(); i++) {
@@ -59,6 +75,9 @@ public class OrderServiceImpl implements OrderService {
             orderTotal += cartProducts.get(i).getPrice() * currentCartQuantity.getQuantity();
         }
         OrderDetails orderDetails = orderDao.findByUserId(userId);
+        if (Objects.isNull(orderDetails))
+            throw new ApplicationException("No order details found for requested userId", HttpStatus.BAD_REQUEST);
+        orderDetails.setName(user.getName());
         OrderInfo response = new OrderInfo();
         response.setInfo(orderDetails);
         response.setQuantity(totalQuantity);
@@ -86,6 +105,13 @@ public class OrderServiceImpl implements OrderService {
         if (Objects.isNull(savedCart)) {
             throw new ApplicationException("Payment failure, while processing the payment", HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        // SETTING THE USER ID OF ORDER INFO AS NULL
+        OrderDetails orderDetails = orderDao.findByUserId(paymentRequest.getUserId());
+        orderDetails.setUserId(0);
+        OrderDetails savedDetails = orderDao.save(orderDetails);
+        if (Objects.isNull(savedDetails)) {
+            throw new ApplicationException("Unable to save the order", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
         PaymentResponse response = new PaymentResponse();
         response.setPaymentStatus("COMPLETED");
         response.setDate(new Date(System.currentTimeMillis()).toString());
@@ -93,10 +119,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     private void validatePaymentPortalRequest(PaymentPortalRequest paymentRequest) {
-        if (Objects.isNull(paymentRequest) || paymentRequest.getPaymentMethod().isBlank() || paymentRequest.getCvv().isBlank()
-                || Objects.isNull(paymentRequest.getUserId()) || paymentRequest.getExpiry().isBlank()
-                || paymentRequest.getCardNumber().isBlank() || Objects.isNull(paymentRequest.getUserId())
-        )
+        if (Objects.isNull(paymentRequest) || paymentRequest.getPaymentMethod().isBlank() || paymentRequest.getCvv().isBlank() || Objects.isNull(paymentRequest.getUserId()) || paymentRequest.getExpiry().isBlank() || paymentRequest.getCardNumber().isBlank() || Objects.isNull(paymentRequest.getUserId()))
             throw new ApplicationException("Invalid payment request, fields are missing", HttpStatus.BAD_REQUEST);
     }
 
