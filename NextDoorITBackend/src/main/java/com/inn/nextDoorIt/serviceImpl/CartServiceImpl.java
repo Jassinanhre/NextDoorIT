@@ -90,9 +90,6 @@ public class CartServiceImpl implements CartService {
         }
         cartQuantityDao.deleteByUserIdAndProductId(userId, productId);
         List<CartQuantity> response = cartQuantityDao.findByUserId(userId);
-        if (Objects.isNull(response) || response.size() == 0) {
-            throw new ApplicationException("No data found", HttpStatus.NO_CONTENT);
-        }
         return response;
     }
 
