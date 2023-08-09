@@ -14,7 +14,6 @@ import { GlobalConstants } from 'src/app/global-constants';
 })
 export class CheckoutComponent implements OnInit {
   cartItem: any = {};
-  orderInfo: any = {};
   shippingForm: any = FormGroup;
   responseMessage: any;
 
@@ -28,7 +27,6 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchCartItems();
-    this.getOrderInfo()
     this.shippingForm = this.formBuilder.group({
       name: [null, [Validators.required, Validators.pattern(GlobalConstants.nameRegex)]],
       address: [null, [Validators.required]],
@@ -46,20 +44,6 @@ export class CheckoutComponent implements OnInit {
         (error: any) => {
           console.log(error);
         });
-  }
-
-  getOrderInfo(): void {
-    const userId = this.localStorageService.getItem('userId');
-    this.orderService.getOrderInfo(userId).subscribe((response: any) => {
-      this.orderInfo = response.data;
-      this.shippingForm.setValue({
-        name: this.orderInfo.info.name,
-        address: this.orderInfo.info.address,
-        contactInfo: this.orderInfo.info.contactInfo
-      })
-    }, (error: any) => {
-      console.log("error: ", error);
-    })
   }
 
   handlePlaceOrder(): void {
