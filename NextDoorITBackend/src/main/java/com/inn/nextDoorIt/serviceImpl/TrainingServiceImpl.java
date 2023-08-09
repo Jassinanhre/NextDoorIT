@@ -147,6 +147,7 @@ public class TrainingServiceImpl implements TrainingService {
         } else {
             response.put("overallRating", getOverallRating(reviewAndRatings));
         }
+        response.put("reviews", reviewAndRatings);
         return response;
     }
 

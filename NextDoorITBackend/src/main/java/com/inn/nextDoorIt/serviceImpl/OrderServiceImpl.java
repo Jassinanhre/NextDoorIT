@@ -80,8 +80,13 @@ public class OrderServiceImpl implements OrderService {
             orderTotal += cartProducts.get(i).getPrice() * currentCartQuantity.getQuantity();
         }
         OrderDetails orderDetails = orderDao.findByUserIdAndOrderStatus(userId, "IN_PROCESSING");
-        if (Objects.isNull(orderDetails))
-            throw new ApplicationException("No order details found for requested userId", HttpStatus.BAD_REQUEST);
+        if (Objects.isNull(orderDetails)) { // if no order details are found
+            OrderInfo emptyInfo = new OrderInfo();
+            emptyInfo.setTotal(0);
+            emptyInfo.setQuantity(0);
+            emptyInfo.setInfo(null);
+            return emptyInfo;
+        }
         orderDetails.setName(user.getName());
         OrderInfo response = new OrderInfo();
         response.setInfo(orderDetails);

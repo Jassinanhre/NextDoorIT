@@ -14,8 +14,11 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
 
 import javax.servlet.Filter;
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -51,6 +54,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues()).and().csrf().disable().authorizeRequests().antMatchers("/user/login", "/user/signup", "/user/forgotPassword", "/service/save", "/categories/save").permitAll().anyRequest().authenticated().and().exceptionHandling().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore((Filter) jwtFilter, (Class<? extends Filter>) UsernamePasswordAuthenticationFilter.class);
+        http.cors().configurationSource(new CorsConfigurationSource() {
+            @Override
+            public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
+                CorsConfiguration configuration = new CorsConfiguration();
+                configuration.setAllowedOrigins(List.of("http://localhost:4200"));
+                configuration.setAllowedMethods(List.of("POST", "GET", "PUT", "DELETE"));
+                return configuration;
+            }
+        });
         http.addFilterAfter((Filter) logoutFilter, JwtFilter.class);
     }
 }
