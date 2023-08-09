@@ -18,6 +18,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 
 import javax.servlet.Filter;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
 import java.util.List;
 
 @Configuration
@@ -58,11 +59,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             @Override
             public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
                 CorsConfiguration configuration = new CorsConfiguration();
-                configuration.setAllowedOrigins(List.of("http://localhost:4200"));
-                configuration.setAllowedMethods(List.of("POST", "GET", "PUT", "DELETE"));
+                configuration.setAllowedOrigins(List.of("http://localhost:4200", "localhost:4200","http://localhost:4200/"));
+                configuration.setAllowedMethods(Arrays.asList("*"));
+                configuration.setAllowedHeaders(Arrays.asList("*"));
                 return configuration;
             }
-        });
+        }).configure(http);
         http.addFilterAfter((Filter) logoutFilter, JwtFilter.class);
     }
 }
