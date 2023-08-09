@@ -59,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             @Override
             public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
                 CorsConfiguration configuration = new CorsConfiguration();
-                configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200", "localhost:4200", "http://localhost:4200/"));
+                configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200", "localhost:4200", "http://localhost:4200/", "http://localhost:4200/*"));
                 configuration.setAllowedMethods(Arrays.asList("*"));
                 configuration.setAllowedHeaders(Arrays.asList("*"));
                 return configuration;
