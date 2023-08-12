@@ -33,7 +33,7 @@ export class CartService {
 
 
   removeOne(userId: string, productId: string) {
-    return this.http.put(`${this.url}/removeProduct?userId=${userId}&productId=${productId}`, this.requestOptions)
+    return this.http.put(`${this.url}/removeProduct?userId=${userId}&productId=${productId}`, {}, this.requestOptions)
   }
 
 }
